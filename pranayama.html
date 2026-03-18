@@ -6,7 +6,6 @@
 <title>Pranayama — Hatha Ashtanga Vinyasa Yoga</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Karla:wght@300;400;500&family=Noto+Serif+Devanagari:wght@300;400&display=swap" rel="stylesheet"/>
 <style>
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --bg:#0f0d0a; --bg2:#161310; --bg3:#1e1a15;
@@ -17,86 +16,596 @@
     --text:#e8dfd0; --muted:#8a7d6e;
     --line:rgba(212,184,150,0.12); --line-s:rgba(212,184,150,0.25);
     --r:8px;
-    --accent: var(--clay); --accent-lt: var(--clay-lt);
+    --accent:#a0c4d8; --accent-lt:#c0dce8;
   }
   html { scroll-behavior: smooth; }
-  body { font-family: 'Karla', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+  body { font-family:'Karla',sans-serif; background:var(--bg); color:var(--text); font-size:16px; line-height:1.7; overflow-x:hidden; }
   body::before { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events:none; z-index:0; opacity:0.4; }
+
+  /* NAV */
   nav { position:fixed; top:0; width:100%; z-index:100; padding:18px 48px; display:flex; justify-content:space-between; align-items:center; background:linear-gradient(to bottom,rgba(15,13,10,0.95) 0%,transparent 100%); backdrop-filter:blur(2px); }
   .nav-logo { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:300; letter-spacing:0.12em; color:var(--sand); text-decoration:none; }
   .nav-links { display:flex; gap:32px; list-style:none; }
   .nav-links a { font-size:13px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color 0.2s; }
   .nav-links a:hover { color:var(--sand-lt); }
-  .hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:120px 24px 80px; position:relative; }
+
+  /* HERO */
+  .hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:120px 24px 80px; position:relative; background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(100,140,180,0.08) 0%,transparent 70%); }
   .hero-devanagari { font-family:'Noto Serif Devanagari',serif; font-size:clamp(24px,4vw,44px); font-weight:300; color:var(--accent); opacity:0.65; letter-spacing:0.04em; margin-bottom:12px; animation:fadeUp 1.2s ease both 0.2s; }
   .hero-title { font-family:'Cormorant Garamond',serif; font-size:clamp(56px,9vw,108px); font-weight:300; line-height:0.9; letter-spacing:-0.02em; color:var(--sand-lt); animation:fadeUp 1.2s ease both 0.4s; }
   .hero-title em { font-style:italic; color:var(--accent-lt); }
-  .hero-badge { display:inline-block; margin-top:28px; padding:6px 20px; border:1px solid rgba(196,98,42,0.35); border-radius:20px; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent-lt); animation:fadeUp 1.2s ease both 0.6s; }
+  .hero-badge { display:inline-block; margin-top:28px; padding:6px 20px; border:1px solid rgba(100,140,180,0.35); border-radius:20px; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent-lt); animation:fadeUp 1.2s ease both 0.6s; }
   .hero-subtitle { margin-top:16px; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); animation:fadeUp 1.2s ease both 0.65s; }
   .hero-meaning { margin-top:32px; max-width:560px; font-family:'Cormorant Garamond',serif; font-size:clamp(17px,2.2vw,21px); font-style:italic; font-weight:300; color:var(--sand); line-height:1.65; animation:fadeUp 1.2s ease both 0.8s; }
+  .hero-scroll { position:absolute; bottom:40px; display:flex; flex-direction:column; align-items:center; gap:8px; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); animation:fadeUp 1.2s ease both 1s; }
+  .hero-scroll-line { width:1px; height:48px; background:linear-gradient(to bottom,var(--accent),transparent); animation:scrollPulse 2s ease-in-out infinite; }
+
+  /* DIVIDER */
   .divider { width:100%; height:1px; background:linear-gradient(to right,transparent,var(--line-s) 30%,var(--line-s) 70%,transparent); }
-  .coming-section { padding:100px 48px 120px; max-width:800px; margin:0 auto; text-align:center; }
-  .coming-section h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(32px,4.5vw,52px); font-weight:300; color:var(--sand-lt); margin-bottom:24px; }
-  .coming-section p { font-size:15px; color:var(--muted); line-height:1.85; margin-bottom:20px; max-width:600px; margin-left:auto; margin-right:auto; }
-  .coming-badge { display:inline-flex; align-items:center; gap:10px; margin-top:48px; padding:14px 32px; border:1px solid rgba(184,150,58,0.3); border-radius:40px; font-family:'Cormorant Garamond',serif; font-size:20px; font-style:italic; color:var(--gold-lt); }
-  .coming-badge::before { content:'◌'; font-style:normal; font-size:14px; opacity:0.6; }
-  .back-link { display:inline-block; margin-top:48px; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color 0.2s; }
-  .back-link:hover { color:var(--sand-lt); }
-  .back-link::before { content:'← '; }
+
+  /* SECTION INTRO */
+  .section-intro { padding:80px 48px 60px; max-width:760px; margin:0 auto; text-align:center; }
+  .section-intro h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(32px,4.5vw,48px); font-weight:300; color:var(--sand-lt); margin-bottom:16px; }
+  .section-intro p { font-size:15px; color:var(--muted); line-height:1.85; }
+
+  /* SEQUENCE OVERVIEW */
+  .sequence-overview-section { padding:80px 48px; background:var(--bg2); border-bottom:1px solid var(--line); }
+  .sequence-overview-inner { max-width:860px; margin:0 auto; }
+  .overview-header { text-align:center; margin-bottom:56px; }
+  .overview-label { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:12px; }
+  .overview-title { font-family:'Cormorant Garamond',serif; font-size:clamp(32px,4.5vw,52px); font-weight:300; color:var(--sand-lt); line-height:1.1; margin-bottom:10px; }
+  .overview-subtitle { font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); }
+  .overview-steps { display:flex; flex-direction:column; gap:2px; }
+  .overview-step { display:grid; grid-template-columns:56px 1fr; background:var(--bg3); border:1px solid var(--line); border-radius:var(--r); overflow:hidden; transition:border-color 0.2s; }
+  .overview-step:hover { border-color:rgba(100,140,180,0.3); }
+  .overview-step--blue  { border-left:3px solid rgba(100,140,180,0.5); }
+  .overview-step--gold  { border-left:3px solid rgba(184,150,58,0.5); }
+  .overview-step--sage  { border-left:3px solid rgba(107,140,110,0.5); }
+  .overview-step--clay  { border-left:3px solid rgba(196,98,42,0.5); }
+  .step-num { display:flex; align-items:flex-start; justify-content:center; padding-top:20px; font-family:'Cormorant Garamond',serif; font-size:15px; font-weight:600; color:var(--muted); background:var(--bg2); border-right:1px solid var(--line); }
+  .overview-step--blue  .step-num { color:var(--accent-lt); }
+  .overview-step--gold  .step-num { color:var(--gold-lt); }
+  .overview-step--sage  .step-num { color:var(--sage-lt); }
+  .overview-step--clay  .step-num { color:var(--clay-lt); }
+  .step-body { padding:18px 24px; }
+  .step-title { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; font-style:italic; color:var(--sand-lt); margin-bottom:6px; line-height:1.1; }
+  .step-desc { font-size:13px; color:var(--muted); line-height:1.75; }
+  .step-meta { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+  .step-pill { font-size:10px; letter-spacing:0.12em; text-transform:uppercase; padding:3px 10px; border-radius:10px; }
+  .pill-blue   { background:rgba(100,140,180,0.12); color:var(--accent-lt); }
+  .pill-gold   { background:rgba(184,150,58,0.12); color:var(--gold-lt); }
+  .pill-sage   { background:rgba(107,140,110,0.12); color:var(--sage-lt); }
+  .pill-clay   { background:rgba(196,98,42,0.12); color:var(--clay-lt); }
+  .step-chant { margin-top:10px; font-family:'Noto Serif Devanagari',serif; font-size:14px; color:var(--gold-lt); opacity:0.85; line-height:1.9; }
+
+  /* TECHNIQUE CARDS */
+  .sequence-block { padding:80px 48px; max-width:1100px; margin:0 auto; }
+  .block-header { display:flex; align-items:baseline; gap:20px; margin-bottom:40px; flex-wrap:wrap; }
+  .block-label { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent); font-weight:500; white-space:nowrap; }
+  .block-title { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,4vw,42px); font-weight:300; color:var(--sand-lt); line-height:1; }
+  .block-line { flex:1; height:1px; background:var(--line); min-width:20px; }
+
+  .technique-list { display:flex; flex-direction:column; gap:2px; }
+  .technique-card { display:grid; grid-template-columns:56px 1fr; border:1px solid var(--line); border-radius:var(--r); overflow:hidden; background:var(--bg2); opacity:0; transform:translateY(16px); transition:opacity 0.5s ease,transform 0.5s ease,border-color 0.2s; }
+  .technique-card.visible { opacity:1; transform:translateY(0); }
+  .technique-card:hover { border-color:rgba(100,140,180,0.3); transform:translateY(-1px); }
+  .tech-num { display:flex; align-items:center; justify-content:center; background:var(--bg3); border-right:1px solid var(--line); font-family:'Cormorant Garamond',serif; font-size:15px; font-weight:300; color:var(--accent); padding:16px 4px; min-height:72px; }
+  .tech-body { padding:20px 24px; }
+  .tech-names { margin-bottom:10px; }
+  .tech-skt { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:400; font-style:italic; color:var(--sand-lt); line-height:1.1; }
+  .tech-eng { font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-top:3px; }
+  .tech-hindi { font-family:'Noto Serif Devanagari',serif; font-size:13px; color:var(--accent); opacity:0.6; margin-top:2px; }
+  .tech-tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; }
+  .tag { display:inline-flex; align-items:center; font-size:11px; font-weight:500; padding:3px 10px; border-radius:4px; }
+  .tag-blue  { background:rgba(100,140,180,0.15); color:var(--accent-lt); }
+  .tag-gold  { background:rgba(184,150,58,0.12); color:var(--gold-lt); }
+  .tag-sage  { background:rgba(107,140,110,0.15); color:var(--sage-lt); }
+  .tag-clay  { background:rgba(196,98,42,0.12); color:var(--clay-lt); }
+  .tag-muted { background:rgba(212,184,150,0.08); color:var(--sand); }
+  .tech-desc { font-size:14px; color:var(--muted); line-height:1.75; }
+  .tech-desc strong { color:var(--sand); font-weight:500; }
+  .tech-note { margin-top:10px; font-size:12px; color:var(--accent-lt); padding:5px 12px; border-left:2px solid rgba(100,140,180,0.4); background:rgba(100,140,180,0.05); border-radius:0 4px 4px 0; line-height:1.6; }
+
+  /* FLOW DIAGRAM SECTION */
+  .flow-section { padding:80px 48px; max-width:900px; margin:0 auto; }
+  .flow-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:40px; }
+  .flow-card { background:var(--bg2); border:1px solid var(--line); border-radius:12px; padding:28px 24px; }
+  .flow-card--cool { border-top:3px solid rgba(100,140,180,0.5); }
+  .flow-card--warm { border-top:3px solid rgba(196,98,42,0.5); }
+  .flow-card--sleep { border-top:3px solid rgba(107,140,110,0.5); }
+  .flow-card--quick { border-top:3px solid rgba(184,150,58,0.5); }
+  .flow-title { font-family:'Cormorant Garamond',serif; font-size:22px; font-style:italic; color:var(--sand-lt); margin-bottom:6px; }
+  .flow-sub { font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin-bottom:16px; display:block; }
+  .flow-steps { display:flex; flex-direction:column; gap:6px; }
+  .flow-step { display:flex; align-items:center; gap:10px; font-size:13px; color:var(--muted); }
+  .flow-step-name { font-family:'Cormorant Garamond',serif; font-size:15px; font-style:italic; color:var(--sand); }
+  .flow-arrow { color:var(--line-s); font-size:11px; }
+  .flow-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+  .dot-blue  { background:var(--accent); }
+  .dot-clay  { background:var(--clay); }
+  .dot-sage  { background:var(--sage); }
+  .dot-gold  { background:var(--gold); }
+  .flow-time { font-size:10px; letter-spacing:0.1em; color:var(--muted); opacity:0.7; margin-left:auto; white-space:nowrap; }
+
+  /* FOOTER */
   footer { padding:60px 48px; text-align:center; border-top:1px solid var(--line); }
   footer p { font-size:12px; color:var(--muted); letter-spacing:0.08em; line-height:2; }
-  footer .footer-logo { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; font-style:italic; color:var(--clay); margin-bottom:12px; display:block; }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
-  @media (max-width:768px) { nav{padding:16px 20px;flex-wrap:wrap;gap:10px} .nav-links{flex-wrap:wrap;gap:16px} .coming-section{padding:60px 20px 80px} footer{padding:40px 20px} }
+  footer .footer-logo { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; font-style:italic; color:var(--accent); margin-bottom:12px; display:block; }
 
 
-  :root {
-    --accent: #a0c4d8;
-    --accent-lt: #c0dce8;
+  .pn-flow-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 48px;
   }
-  .hero { background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(100,140,180,0.07) 0%, transparent 70%); }
+  @media(max-width:768px){ .pn-flow-wrap{padding:40px 20px} }
 
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes scrollPulse { 0%,100%{opacity:0.4;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.15)} }
+
+  @media(max-width:768px) {
+    nav{padding:16px 20px;flex-wrap:wrap;gap:10px} .nav-links{flex-wrap:wrap;gap:16px}
+    .sequence-overview-section{padding:60px 20px} .sequence-block{padding:60px 20px}
+    .flow-section{padding:60px 20px} .flow-grid{grid-template-columns:1fr}
+    .section-intro{padding:60px 20px 40px} footer{padding:40px 20px}
+    .technique-card{grid-template-columns:48px 1fr}
+  }
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-logo" href="index.html">YTT 200</a>
+  <a class="nav-logo" href="index.html">Yoga Teacher Training</a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
-    <li><a href="ashtanga-yoga.html">Ashtanga</a></li>
+    <li><a href="#sequence">Sequence</a></li>
+    <li><a href="#techniques">Techniques</a></li>
+    <li><a href="#flows">When to Use</a></li>
   </ul>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-devanagari">प्राणायाम</div>
   <h1 class="hero-title">Prana<br/><em>yama</em></h1>
-  <div class="hero-badge">YTT Module 05 · Pranayama</div>
+  <div class="hero-badge">YTT Module 03 · Pranayama</div>
   <p class="hero-subtitle">The Science of Breath & Vital Energy</p>
-  <p class="hero-meaning">Prana — the vital life force that animates all living things. Ayama — to extend, to expand, to master.</p>
+  <p class="hero-meaning">Prana — the vital life force. Ayama — to expand, to master. The breath is the bridge between the body and the mind.</p>
+  <div class="hero-scroll"><div class="hero-scroll-line"></div>scroll</div>
 </section>
 
 <div class="divider"></div>
 
-<section class="coming-section">
-  <h2>About This Module</h2>
-  <p>Pranayama is the fourth limb of Patanjali's Ashtanga path — the bridge between the outer practices of asana and the inner world of meditation. By consciously directing the breath, we directly influence the state of the mind and the flow of prana through the nadis.</p>
-  <p>This module covers the classical pranayama techniques: Ujjayi (victorious breath), Nadi Shodhana (alternate nostril), Kapalabhati (skull-shining breath), Bhramari (humming bee), Sitali and Sitkari (cooling breaths), and Bhastrika (bellows breath).</p>
-  <p>We study the three bandhas — Mula, Uddiyana, and Jalandhara — as they relate to breath retention (kumbhaka), and explore how regular pranayama practice transforms the nervous system, concentration, and quality of sleep and energy.</p>
 
-  <div class="coming-badge">Content Coming Soon</div>
-  <br/>
-  <a class="back-link" href="index.html">Back to all subjects</a>
-</section>
+<div class="pn-flow-wrap">
+<svg width="100%" viewBox="0 0 680 600" xmlns="http://www.w3.org/2000/svg">
+<style>
+.pnl{font-family:'Karla',sans-serif;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;fill:var(--muted)}
+.pnt{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;font-weight:400}
+.pns{font-family:'Karla',sans-serif;font-size:11px;fill:var(--muted)}
+.pn-teal rect{fill:rgba(107,140,110,0.13);stroke:rgba(107,140,110,0.5);stroke-width:.5}
+.pn-teal .pnt{fill:var(--sage-lt)}
+.pn-coral rect{fill:rgba(196,98,42,0.12);stroke:rgba(196,98,42,0.5);stroke-width:.5}
+.pn-coral .pnt{fill:var(--clay-lt)}
+.pn-blue rect{fill:rgba(100,140,180,0.12);stroke:rgba(100,140,180,0.5);stroke-width:.5}
+.pn-blue .pnt{fill:var(--accent-lt)}
+.pn-gold rect{fill:rgba(184,150,58,0.12);stroke:rgba(184,150,58,0.5);stroke-width:.5}
+.pn-gold .pnt{fill:var(--gold-lt)}
+</style>
+<defs>
+<marker id="parr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="#8a7d6e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+
+<!-- Label -->
+<text class="pnl" x="40" y="22">pranayama · class sequence</text>
+
+<!-- 1: Opening exercises -->
+<g class="pn-teal">
+<rect x="120" y="36" width="400" height="44" rx="8"/>
+<text class="pnt" x="320" y="58" text-anchor="middle" dominant-baseline="central">Belly · Yogic · Lung opening exercises</text>
+</g>
+<line x1="320" y1="80" x2="320" y2="104" stroke="#8a7d6e" stroke-width="1.5" marker-end="url(#parr)"/>
+
+<!-- 2: Kapalabhati -->
+<g class="pn-coral">
+<rect x="210" y="104" width="220" height="44" rx="8"/>
+<text class="pnt" x="320" y="126" text-anchor="middle" dominant-baseline="central">Kapalabhati</text>
+</g>
+<line x1="320" y1="148" x2="320" y2="172" stroke="#8a7d6e" stroke-width="1.5" marker-end="url(#parr)"/>
+
+<!-- 3: Bhastrika -->
+<g class="pn-coral">
+<rect x="210" y="172" width="220" height="44" rx="8"/>
+<text class="pnt" x="320" y="194" text-anchor="middle" dominant-baseline="central">Bhastrika</text>
+</g>
+
+<!-- Branch left to Sheetali, right to Surya/Chandra (center) -->
+<path d="M320,216 V244 H120 V268" fill="none" stroke="#8a7d6e" stroke-width="1.5" marker-end="url(#parr)"/>
+<text class="pns" x="218" y="238" text-anchor="middle">Summer</text>
+
+<line x1="320" y1="216" x2="320" y2="268" stroke="#8a7d6e" stroke-width="1.5" marker-end="url(#parr)"/>
+<text class="pns" x="348" y="246" text-anchor="start">Winter</text>
+
+<!-- 4a: Sheetali/Sheetkari — left -->
+<g class="pn-blue">
+<rect x="40" y="268" width="160" height="56" rx="8"/>
+<text class="pnt" x="120" y="288" text-anchor="middle" dominant-baseline="central">Sheetali /</text>
+<text class="pnt" x="120" y="308" text-anchor="middle" dominant-baseline="central">Sheetkari</text>
+</g>
+
+<!-- 4b: Surya/Chandra Bhedan — CENTER -->
+<g class="pn-gold">
+<rect x="210" y="268" width="220" height="56" rx="8"/>
+<text class="pnt" x="320" y="288" text-anchor="middle" dominant-baseline="central">Surya /</text>
+<text class="pnt" x="320" y="308" text-anchor="middle" dominant-baseline="central">Chandra Bhedan</text>
+</g>
+
+<!-- Arrow from Sheetali → Surya/Chandra -->
+<line x1="200" y1="296" x2="208" y2="296" stroke="#8a7d6e" stroke-width="1.5" marker-end="url(#parr)"/>
+
+<!-- Arrow from Surya/Chandra → Nadi Shodhan -->
+<line x1="320" y1="324" x2="320" y2="372" stroke="#8a7d6e" stroke-width="1.5" marker-end="url(#parr)"/>
+
+<!-- 5: Nadi Shodhan -->
+<g class="pn-teal">
+<rect x="200" y="372" width="240" height="44" rx="8"/>
+<text class="pnt" x="320" y="394" text-anchor="middle" dominant-baseline="central">Nadi Shodhan</text>
+</g>
+<line x1="320" y1="416" x2="320" y2="440" stroke="#8a7d6e" stroke-width="1.5" marker-end="url(#parr)"/>
+
+<!-- 6: Ujjayi -->
+<g class="pn-teal">
+<rect x="200" y="440" width="240" height="44" rx="8"/>
+<text class="pnt" x="320" y="462" text-anchor="middle" dominant-baseline="central">Ujjayi</text>
+</g>
+<line x1="320" y1="484" x2="320" y2="508" stroke="#8a7d6e" stroke-width="1.5" marker-end="url(#parr)"/>
+
+<!-- 7: Bhramari -->
+<g class="pn-teal">
+<rect x="200" y="508" width="240" height="44" rx="8"/>
+<text class="pnt" x="320" y="530" text-anchor="middle" dominant-baseline="central">Bhramari</text>
+</g>
+<line x1="320" y1="552" x2="320" y2="576" stroke="#8a7d6e" stroke-width="1.5" marker-end="url(#parr)"/>
+
+<!-- 8: Meditation -->
+<g class="pn-teal">
+<rect x="200" y="576" width="240" height="44" rx="8"/>
+<text class="pnt" x="320" y="598" text-anchor="middle" dominant-baseline="central">Meditation</text>
+</g>
+
+</svg>
+
+<!-- Quick 10 min — separate diagram below -->
+<svg width="100%" viewBox="0 0 680 160" xmlns="http://www.w3.org/2000/svg" style="margin-top:24px;">
+<defs>
+<marker id="qarr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="#8a7d6e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<style>
+.qnl{font-family:'Karla',sans-serif;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;fill:var(--muted)}
+.qnt{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;font-weight:400}
+.qns{font-family:'Karla',sans-serif;font-size:11px;fill:var(--muted)}
+.qn-gold rect{fill:rgba(184,150,58,0.12);stroke:rgba(184,150,58,0.5);stroke-width:.5}
+.qn-gold .qnt{fill:var(--gold-lt)}
+.qn-coral rect{fill:rgba(196,98,42,0.12);stroke:rgba(196,98,42,0.5);stroke-width:.5}
+.qn-coral .qnt{fill:var(--clay-lt)}
+.qn-teal rect{fill:rgba(107,140,110,0.13);stroke:rgba(107,140,110,0.5);stroke-width:.5}
+.qn-teal .qnt{fill:var(--sage-lt)}
+</style>
+
+<text class="qnl" x="40" y="18">quick 10 min practice · bare minimum</text>
+
+<!-- 3 boxes in a row with arrows -->
+<g class="qn-coral">
+<rect x="40" y="30" width="160" height="56" rx="8"/>
+<text class="qnt" x="120" y="50" text-anchor="middle" dominant-baseline="central">Bhastrika</text>
+<text class="qns" x="120" y="68" text-anchor="middle" dominant-baseline="central">2 min</text>
+</g>
+
+<line x1="200" y1="58" x2="234" y2="58" stroke="#8a7d6e" stroke-width="1.5" marker-end="url(#qarr)"/>
+
+<g class="qn-teal">
+<rect x="234" y="30" width="212" height="56" rx="8"/>
+<text class="qnt" x="340" y="50" text-anchor="middle" dominant-baseline="central">Nadi Shodhan</text>
+<text class="qns" x="340" y="68" text-anchor="middle" dominant-baseline="central">5 min</text>
+</g>
+
+<line x1="446" y1="58" x2="480" y2="58" stroke="#8a7d6e" stroke-width="1.5" marker-end="url(#qarr)"/>
+
+<g class="qn-teal">
+<rect x="480" y="30" width="160" height="56" rx="8"/>
+<text class="qnt" x="560" y="50" text-anchor="middle" dominant-baseline="central">Bhramari</text>
+<text class="qns" x="560" y="68" text-anchor="middle" dominant-baseline="central">3 min</text>
+</g>
+
+<text class="qns" x="340" y="118" text-anchor="middle">total: 10 minutes</text>
+</svg>
+</div>
 
 <div class="divider"></div>
+
+<div class="section-intro">
+  <h2>The Practice</h2>
+  <p>Find a comfortable seated position. Keep the spine erect — back, neck, and head in one straight line. Relax the shoulders, forehead, and facial muscles. Gently close the eyes before beginning.</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- TECHNIQUES -->
+<div id="techniques" class="sequence-block">
+  <div class="block-header">
+    <span class="block-label">Detailed Reference</span>
+    <h2 class="block-title">The Techniques</h2>
+    <div class="block-line"></div>
+  </div>
+
+  <div class="technique-list">
+
+      <div class="technique-card visible" style="border-color:rgba(107,140,110,0.2);">
+      <div class="tech-num" style="color:var(--sage-lt);">✦</div>
+      <div class="tech-body">
+        <div class="tech-names">
+          <div class="tech-skt">Preparation</div>
+          <div class="tech-eng">Setting up for practice</div>
+        </div>
+        <div class="tech-tags"><span class="tag tag-sage">Seated</span><span class="tag tag-sage">Eyes closed</span><span class="tag tag-muted">Before beginning</span></div>
+        <div class="tech-desc">Sit comfortably in a cross-legged position or on a chair. <strong>Spine erect — back, neck, and head in one straight line.</strong> Relax the shoulders away from the ears. Soften the forehead and release all tension from the facial muscles. Rest the hands on the knees in Jnana Mudra or Chin Mudra. Gently close the eyes. Take 2–3 natural breaths and simply arrive.</div>
+      </div>
+    </div>
+
+    <div class="technique-card">
+      <div class="tech-num">1</div>
+      <div class="tech-body">
+        <div class="tech-names">
+          <div class="tech-skt">Belly Breathing</div>
+          <div class="tech-eng">Diaphragmatic Breath</div>
+          <div class="tech-hindi">उदर श्वास</div>
+        </div>
+        <div class="tech-tags"><span class="tag tag-blue">↑ Inhale — belly out</span><span class="tag tag-clay">↓ Exhale — belly in</span><span class="tag tag-muted">3–4 rounds</span></div>
+        <div class="tech-desc">The foundation of all pranayama. Place one hand on the belly. As you inhale, the belly rises — diaphragm descends. As you exhale, the belly falls — diaphragm ascends. Activates the parasympathetic nervous system.</div>
+      </div>
+    </div>
+
+    <div class="technique-card">
+      <div class="tech-num">2</div>
+      <div class="tech-body">
+        <div class="tech-names">
+          <div class="tech-skt">Yogic Breathing</div>
+          <div class="tech-eng">Three-Part Breath · Dirga Pranayama</div>
+          <div class="tech-hindi">दीर्घ श्वास</div>
+        </div>
+        <div class="tech-tags"><span class="tag tag-blue">↑ Belly → Chest → Clavicle</span><span class="tag tag-clay">↓ Clavicle → Chest → Belly</span><span class="tag tag-muted">Full capacity</span></div>
+        <div class="tech-desc">Fills the lungs in three stages from bottom to top. On the exhale, empty in reverse order. Develops full lung capacity and awareness of the complete breathing cycle. Gentle — do not force.</div>
+      </div>
+    </div>
+
+    <div class="technique-card">
+      <div class="tech-num">3</div>
+      <div class="tech-body">
+        <div class="tech-names">
+          <div class="tech-skt">Kapalabhati</div>
+          <div class="tech-eng">Skull Shining Breath</div>
+          <div class="tech-hindi">कपालभाति</div>
+        </div>
+        <div class="tech-tags"><span class="tag tag-clay">Forceful exhale — passive inhale</span><span class="tag tag-muted">Up to 100 rounds</span><span class="tag tag-clay">Activating · Cleansing</span></div>
+        <div class="tech-desc"><strong>Exhale sharply from the nostrils</strong> — belly pumps in. Inhalation is passive and automatic. Focus entirely on the forceful exhalation. Keep the chest still. Build up gradually. Cleanses the respiratory tract, energises the body, and sharpens mental clarity.</div>
+        <div class="tech-note">Avoid during menstruation, pregnancy, high blood pressure, heart conditions, or hernia. If dizzy, slow down or stop.</div>
+      </div>
+    </div>
+
+    <div class="technique-card">
+      <div class="tech-num">4</div>
+      <div class="tech-body">
+        <div class="tech-names">
+          <div class="tech-skt">Bhastrika</div>
+          <div class="tech-eng">Bellows Breath</div>
+          <div class="tech-hindi">भस्त्रिका</div>
+        </div>
+        <div class="tech-tags"><span class="tag tag-clay">↑ Forceful inhale — arms up</span><span class="tag tag-clay">↓ Forceful exhale — arms down</span><span class="tag tag-muted">20–40 counts</span></div>
+        <div class="tech-desc"><strong>Both the inhale and exhale are forceful.</strong> Arms rise overhead on inhale, lower on exhale. Generates heat, increases oxygen, energises the entire body. Feel the tingling sensation in the nose and lips — a sign of heightened oxygenation.</div>
+        <div class="tech-note">Go slow with asthma, dizziness, or neck/shoulder pain. Modify by moving arms to the sides instead of overhead.</div>
+      </div>
+    </div>
+
+    <div class="technique-card">
+      <div class="tech-num">5</div>
+      <div class="tech-body">
+        <div class="tech-names">
+          <div class="tech-skt">Chandra Bhedana</div>
+          <div class="tech-eng">Left Nostril · Moon Piercing Breath</div>
+          <div class="tech-hindi">चन्द्र भेदन</div>
+        </div>
+        <div class="tech-tags"><span class="tag tag-blue">Close right nostril</span><span class="tag tag-blue">Breathe only through left</span><span class="tag tag-sage">Cooling · Calming</span></div>
+        <div class="tech-desc">Close the right nostril with the thumb. Inhale and exhale only through the left. Activates the right hemisphere of the brain — cooling, receptive, feminine energy. Visualise a full moon at the third eye. Use in summer or when feeling heated or overactive.</div>
+      </div>
+    </div>
+
+    <div class="technique-card">
+      <div class="tech-num">6</div>
+      <div class="tech-body">
+        <div class="tech-names">
+          <div class="tech-skt">Surya Bhedana</div>
+          <div class="tech-eng">Right Nostril · Sun Piercing Breath</div>
+          <div class="tech-hindi">सूर्य भेदन</div>
+        </div>
+        <div class="tech-tags"><span class="tag tag-clay">Close left nostril</span><span class="tag tag-clay">Breathe only through right</span><span class="tag tag-clay">Warming · Activating</span></div>
+        <div class="tech-desc">Close the left nostril with the ring finger. Inhale and exhale only through the right. Activates the left hemisphere — warming, active, masculine energy. Visualise the morning sun at the third eye. Use in winter or when feeling cold, sluggish, or low energy.</div>
+      </div>
+    </div>
+
+    <div class="technique-card">
+      <div class="tech-num">7</div>
+      <div class="tech-body">
+        <div class="tech-names">
+          <div class="tech-skt">Nadi Shodhan</div>
+          <div class="tech-eng">Alternate Nostril Breathing · Channel Purification</div>
+          <div class="tech-hindi">नाड़ी शोधन</div>
+        </div>
+        <div class="tech-tags"><span class="tag tag-blue">↑ Inhale left → exhale right → inhale right → exhale left</span><span class="tag tag-sage">3–4 rounds · Balancing</span></div>
+        <div class="tech-desc">Use the right hand — thumb closes the right nostril, ring finger closes the left. <strong>Inhale left → exhale right → inhale right → exhale left</strong> = one round. Balances left and right brain, purifies the energy channels (nadis), and brings the mind to stillness. No contraindications — everyone can practice.</div>
+      </div>
+    </div>
+
+    <div class="technique-card">
+      <div class="tech-num">8</div>
+      <div class="tech-body">
+        <div class="tech-names">
+          <div class="tech-skt">Ujjayi</div>
+          <div class="tech-eng">Victorious Breath · Ocean Breath</div>
+          <div class="tech-hindi">उज्जायी</div>
+        </div>
+        <div class="tech-tags"><span class="tag tag-sage">Throat constriction</span><span class="tag tag-sage">Wave-like sound</span><span class="tag tag-muted">5 breaths · Tranquilizing</span></div>
+        <div class="tech-desc">Slight constriction at the back of the throat creates a soft hissing or oceanic sound on both inhale and exhale. Slight chin tuck. Breathe as if through a hole in the throat. Deepens concentration, calms the nervous system, and bridges the physical practice with meditation. Also used throughout Ashtanga asana practice.</div>
+      </div>
+    </div>
+
+    <div class="technique-card">
+      <div class="tech-num">9</div>
+      <div class="tech-body">
+        <div class="tech-names">
+          <div class="tech-skt">Bhramari</div>
+          <div class="tech-eng">Humming Bee Breath</div>
+          <div class="tech-hindi">भ्रामरी</div>
+        </div>
+        <div class="tech-tags"><span class="tag tag-sage">Long humming on exhale</span><span class="tag tag-sage">3–5 rounds</span><span class="tag tag-sage">Deeply soothing</span></div>
+        <div class="tech-desc">Shanmukhi Mudra: thumbs close the ears, index fingers on the eyes, middle fingers beside the nostrils, ring and little fingers on the lips. <strong>Full inhale, then exhale with a sustained humming sound</strong> — like a bee. Feel the vibration in the skull, throat, and chest. Instantly calms anxiety, reduces stress, and prepares the mind for meditation.</div>
+        <div class="tech-note">Avoid lying down. Those with ear infections can keep the ears open and simply hum.</div>
+      </div>
+    </div>
+
+    <div class="technique-card">
+      <div class="tech-num">10</div>
+      <div class="tech-body">
+        <div class="tech-names">
+          <div class="tech-skt">Sheetali · Sheetkari</div>
+          <div class="tech-eng">Cooling Breaths</div>
+          <div class="tech-hindi">शीतली · शीतकारी</div>
+        </div>
+        <div class="tech-tags"><span class="tag tag-blue">Cooling</span><span class="tag tag-blue">Summer practice</span><span class="tag tag-muted">5–10 rounds</span></div>
+        <div class="tech-desc"><strong>Sheetali:</strong> Roll the tongue into a tube. Inhale through the tube, exhale through the nose. <strong>Sheetkari:</strong> If you cannot roll your tongue — press the tip of the tongue to the upper palate, teeth slightly apart. Inhale through the teeth, exhale through the nose. Both cool the body and mind. Practice in summer or when overheated.</div>
+        <div class="tech-note">Avoid in cold climates or during winter. Those with low blood pressure should practise with caution.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Closing -->
+  <div class="technique-card visible" style="border-color:rgba(184,150,58,0.25);background:linear-gradient(135deg,rgba(184,150,58,0.06),rgba(140,100,180,0.06));">
+    <div class="tech-num" style="color:var(--gold-lt);">✦</div>
+    <div class="tech-body">
+      <div class="tech-names">
+        <div class="tech-skt">Closing</div>
+        <div class="tech-eng">Om · Shanti · Sankalpa · Namaste</div>
+      </div>
+      <div class="tech-tags">
+        <span class="tag tag-gold">Om × 1</span>
+        <span class="tag tag-gold">Shanti × 3</span>
+        <span class="tag tag-muted">Sankalpa · Namaste</span>
+      </div>
+      <div class="tech-desc">Eyes closed. Sit in silence — observe the colours and stillness behind the eyes. Take a full inhale and chant <strong>Om</strong> once together. Then: <strong>Shanti, Shanti, Shanti.</strong> Sit quietly. Visualise your healthiest, most radiant self. Chant your personal Sankalpa three times mentally. Slowly rub the palms, cup them over the eyes. Open gently. Namaste.</div>
+      <div style="margin-top:12px;font-family:'Noto Serif Devanagari',serif;font-size:16px;color:var(--gold-lt);opacity:0.85;letter-spacing:0.04em;">ॐ · शान्तिः &nbsp; शान्तिः &nbsp; शान्तिः</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- WHEN TO USE FLOWS -->
+<div id="flows" class="flow-section">
+  <div class="block-header">
+    <span class="block-label">Decision Guide</span>
+    <h2 class="block-title">When to Use Which</h2>
+    <div class="block-line"></div>
+  </div>
+  <p style="font-size:14px;color:var(--muted);margin-bottom:36px;margin-top:-16px;">Choose based on how your body and mind feel right now.</p>
+
+  <div class="flow-grid">
+
+    <div class="flow-card flow-card--cool">
+      <div class="flow-title">Feeling Hot or Overactive</div>
+      <span class="flow-sub">Summer · After physical practice · Anxious mind</span>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="flow-dot dot-blue"></div><span class="flow-step-name">Sheetali / Sheetkari</span><span class="flow-time">Cooling breath</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-dot dot-blue"></div><span class="flow-step-name">Chandra Bhedana</span><span class="flow-time">Left nostril</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-dot dot-blue"></div><span class="flow-step-name">Nadi Shodhan</span><span class="flow-time">Balance</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-dot dot-blue"></div><span class="flow-step-name">Bhramari</span><span class="flow-time">Soothe</span></div>
+      </div>
+    </div>
+
+    <div class="flow-card flow-card--warm">
+      <div class="flow-title">Feeling Cold or Sluggish</div>
+      <span class="flow-sub">Winter · Morning · Low energy</span>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="flow-dot dot-clay"></div><span class="flow-step-name">Kapalabhati</span><span class="flow-time">Cleanse & wake up</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-dot dot-clay"></div><span class="flow-step-name">Bhastrika</span><span class="flow-time">Build heat</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-dot dot-clay"></div><span class="flow-step-name">Surya Bhedana</span><span class="flow-time">Right nostril</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-dot dot-blue"></div><span class="flow-step-name">Nadi Shodhan</span><span class="flow-time">Balance</span></div>
+      </div>
+    </div>
+
+    <div class="flow-card flow-card--sleep">
+      <div class="flow-title">Trouble Sleeping</div>
+      <span class="flow-sub">Before bed · Overactive mind · Stress</span>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="flow-dot dot-blue"></div><span class="flow-step-name">Chandra Bhedana</span><span class="flow-time">Left nostril · cool</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-dot dot-blue"></div><span class="flow-step-name">Nadi Shodhan</span><span class="flow-time">Balance both sides</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-dot dot-blue"></div><span class="flow-step-name">Ujjayi</span><span class="flow-time">Tranquilize</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-dot dot-sage"></div><span class="flow-step-name">Bhramari</span><span class="flow-time">Calm the mind</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-dot dot-sage"></div><span class="flow-step-name">Meditation</span><span class="flow-time">Rest</span></div>
+      </div>
+    </div>
+
+    <div class="flow-card flow-card--quick">
+      <div class="flow-title">Quick 10-Minute Practice</div>
+      <span class="flow-sub">Bare minimum · Any time of day</span>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="flow-dot dot-clay"></div><span class="flow-step-name">Bhastrika</span><span class="flow-time">2 min</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-dot dot-blue"></div><span class="flow-step-name">Nadi Shodhan</span><span class="flow-time">5 min</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-dot dot-sage"></div><span class="flow-step-name">Bhramari</span><span class="flow-time">3 min</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
 
 <footer>
-  <span class="footer-logo">Hatha Ashtanga Vinyasa Yoga</span>
+  <span class="footer-logo">Pranayama</span>
   <p>200 Hour Yoga Teacher Training · Rishikesh, India<br/>
   <span style="font-size:11px;opacity:0.5;">प्राणायाम · The Expansion of Vital Breath</span>
   </p>
 </footer>
+
+<script>
+  const cards = document.querySelectorAll('.technique-card');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  cards.forEach(c => observer.observe(c));
+</script>
 
 </body>
 </html>
