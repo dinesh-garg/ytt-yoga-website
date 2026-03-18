@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hatha Yoga — Hatha Ashtanga Vinyasa Yoga</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Karla:wght@300;400;500&family=Noto+Serif+Devanagari:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:#0f0d0a; --bg2:#161310; --bg3:#1e1a15;
+    --clay:#c4622a; --clay-lt:#e07a42;
+    --sand:#d4b896; --sand-lt:#ecddc8;
+    --sage:#6b8c6e; --sage-lt:#9ab89d;
+    --gold:#b8963a; --gold-lt:#d4b05a;
+    --text:#e8dfd0; --muted:#8a7d6e;
+    --line:rgba(212,184,150,0.12); --line-s:rgba(212,184,150,0.25);
+    --r:8px;
+    --accent:#9ab89d; --accent-lt:#b8d4bb;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family:'Karla',sans-serif; background:var(--bg); color:var(--text); font-size:16px; line-height:1.7; overflow-x:hidden; }
+  body::before { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events:none; z-index:0; opacity:0.4; }
+  nav { position:fixed; top:0; width:100%; z-index:100; padding:18px 48px; display:flex; justify-content:space-between; align-items:center; background:linear-gradient(to bottom,rgba(15,13,10,0.95) 0%,transparent 100%); backdrop-filter:blur(2px); }
+  .nav-logo { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:300; letter-spacing:0.12em; color:var(--sand); text-decoration:none; }
+  .nav-links { display:flex; gap:32px; list-style:none; }
+  .nav-links a { font-size:13px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--sand-lt); }
+  .hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:120px 24px 80px; position:relative; background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(107,140,110,0.08) 0%,transparent 70%); }
+  .hero-devanagari { font-family:'Noto Serif Devanagari',serif; font-size:clamp(24px,4vw,44px); font-weight:300; color:var(--accent); opacity:0.65; letter-spacing:0.04em; margin-bottom:12px; animation:fadeUp 1.2s ease both 0.2s; }
+  .hero-title { font-family:'Cormorant Garamond',serif; font-size:clamp(56px,9vw,108px); font-weight:300; line-height:0.9; letter-spacing:-0.02em; color:var(--sand-lt); animation:fadeUp 1.2s ease both 0.4s; }
+  .hero-title em { font-style:italic; color:var(--accent-lt); }
+  .hero-badge { display:inline-block; margin-top:28px; padding:6px 20px; border:1px solid rgba(107,140,110,0.35); border-radius:20px; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent-lt); animation:fadeUp 1.2s ease both 0.6s; }
+  .hero-subtitle { margin-top:16px; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); animation:fadeUp 1.2s ease both 0.65s; }
+  .hero-meaning { margin-top:32px; max-width:560px; font-family:'Cormorant Garamond',serif; font-size:clamp(17px,2.2vw,21px); font-style:italic; font-weight:300; color:var(--sand); line-height:1.65; animation:fadeUp 1.2s ease both 0.8s; }
+  .hero-scroll { position:absolute; bottom:40px; display:flex; flex-direction:column; align-items:center; gap:8px; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); animation:fadeUp 1.2s ease both 1s; }
+  .hero-scroll-line { width:1px; height:48px; background:linear-gradient(to bottom,var(--accent),transparent); animation:scrollPulse 2s ease-in-out infinite; }
+  .divider { width:100%; height:1px; background:linear-gradient(to right,transparent,var(--line-s) 30%,var(--line-s) 70%,transparent); }
+  .section-intro { padding:80px 48px 60px; max-width:760px; margin:0 auto; text-align:center; }
+  .section-intro h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(32px,4.5vw,48px); font-weight:300; color:var(--sand-lt); margin-bottom:16px; }
+  .section-intro p { font-size:15px; color:var(--muted); line-height:1.85; }
+  .sequence-block { padding:80px 48px; max-width:1100px; margin:0 auto; }
+  .block-header { display:flex; align-items:baseline; gap:20px; margin-bottom:48px; flex-wrap:wrap; }
+  .block-label { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--sage); font-weight:500; white-space:nowrap; }
+  .block-title { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,4vw,42px); font-weight:300; color:var(--sand-lt); line-height:1; }
+  .block-line { flex:1; height:1px; background:var(--line); min-width:20px; }
+  .block-rounds { font-size:11px; letter-spacing:0.1em; color:var(--sage-lt); padding:3px 12px; border:1px solid rgba(107,140,110,0.3); border-radius:12px; white-space:nowrap; }
+  .block-note { font-size:13px; color:var(--muted); margin-bottom:28px; margin-top:-20px; }
+  .asana-list { display:flex; flex-direction:column; gap:2px; }
+  .asana-card { display:grid; grid-template-columns:56px 1fr; border:1px solid var(--line); border-radius:var(--r); overflow:hidden; background:var(--bg2); opacity:0; transform:translateY(16px); transition:opacity 0.5s ease,transform 0.5s ease,border-color 0.2s; }
+  .asana-card.visible { opacity:1; transform:translateY(0); }
+  .asana-card:hover { border-color:rgba(107,140,110,0.35); transform:translateY(-1px); }
+  .asana-num { display:flex; align-items:center; justify-content:center; background:var(--bg3); border-right:1px solid var(--line); font-family:'Cormorant Garamond',serif; font-size:15px; font-weight:300; color:var(--sage); padding:16px 4px; min-height:72px; }
+  .asana-body { padding:18px 24px; }
+  .asana-names { margin-bottom:8px; }
+  .asana-skt { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; font-style:italic; color:var(--sand-lt); line-height:1.1; }
+  .asana-eng { font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--sage-lt); margin-top:3px; }
+  .asana-instruction { font-size:14px; color:var(--muted); line-height:1.75; margin-bottom:10px; }
+  .asana-instruction strong { color:var(--sand); font-weight:500; }
+  .asana-note { margin-top:8px; font-size:12px; color:var(--accent-lt); padding:5px 12px; border-left:2px solid rgba(107,140,110,0.4); background:rgba(107,140,110,0.05); border-radius:0 4px 4px 0; line-height:1.6; }
+  .breath-tags { display:flex; flex-wrap:wrap; gap:6px; }
+  .tag { display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:500; letter-spacing:0.04em; padding:3px 10px; border-radius:4px; }
+  .tag-in    { background:rgba(107,140,110,0.15); color:var(--sage-lt); }
+  .tag-out   { background:rgba(196,98,42,0.12); color:var(--clay-lt); }
+  .tag-hold  { background:rgba(184,150,58,0.12); color:var(--gold-lt); }
+  .tag-note  { background:rgba(212,184,150,0.08); color:var(--sand); }
+  .side-pill { display:inline-block; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; padding:2px 10px; border-radius:10px; background:rgba(107,140,110,0.12); color:var(--sage-lt); margin-top:4px; margin-bottom:6px; }
+  .side-divider { display:flex; align-items:center; gap:16px; margin:16px 0 12px; }
+  .side-divider-line { flex:1; height:1px; background:var(--line); }
+  .side-divider-label { font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--sage); white-space:nowrap; }
+  .asana-summary { background:var(--bg3); border:1px solid var(--line); border-radius:var(--r); padding:20px 0; margin-bottom:36px; overflow:hidden; }
+  .asana-summary-title { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--sage); padding:0 20px 14px; border-bottom:1px solid var(--line); margin-bottom:4px; }
+  .asana-summary-row { display:grid; grid-template-columns:36px 1fr 1fr 1fr; padding:7px 20px; border-bottom:1px solid var(--line); transition:background 0.15s; align-items:center; }
+  .asana-summary-row:last-child { border-bottom:none; }
+  .asana-summary-row:hover { background:rgba(107,140,110,0.04); }
+  .asana-summary-row.header-row { padding:8px 20px; border-bottom:1px solid var(--line-s); }
+  .summary-num { font-family:'Cormorant Garamond',serif; font-size:13px; color:var(--sage); font-weight:600; }
+  .summary-num.header { font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); font-weight:400; font-family:'Karla',sans-serif; }
+  .summary-skt { font-family:'Cormorant Garamond',serif; font-size:14px; font-style:italic; color:var(--sand); }
+  .summary-skt.header { font-style:normal; font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); font-family:'Karla',sans-serif; }
+  .summary-eng { font-size:11px; color:var(--muted); }
+  .summary-eng.header { font-size:9px; letter-spacing:0.15em; text-transform:uppercase; }
+  .summary-hindi { font-family:'Noto Serif Devanagari',serif; font-size:12px; color:var(--sage); opacity:0.75; }
+  .summary-hindi.header { font-family:'Karla',sans-serif; font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); opacity:1; }
+  footer { padding:60px 48px; text-align:center; border-top:1px solid var(--line); }
+  footer p { font-size:12px; color:var(--muted); letter-spacing:0.08em; line-height:2; }
+  footer .footer-logo { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; font-style:italic; color:var(--sage); margin-bottom:12px; display:block; }
+
+  .asana-mantra {
+    margin-top: 8px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px; font-style: italic;
+    color: var(--gold-lt);
+    opacity: 0.75;
+    letter-spacing: 0.03em;
+  }
+
+
+  /* ── CLASS SEQUENCE OVERVIEW ── */
+  .sequence-overview-section {
+    padding: 80px 48px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--line);
+  }
+  .sequence-overview-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .overview-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .overview-label {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--sage); display: block; margin-bottom: 12px;
+  }
+  .overview-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4.5vw, 52px); font-weight: 300;
+    color: var(--sand-lt); line-height: 1.1; margin-bottom: 10px;
+  }
+  .overview-subtitle {
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .overview-steps {
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .overview-step {
+    display: grid; grid-template-columns: 56px 1fr;
+    background: var(--bg3);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .overview-step:hover {
+    border-color: rgba(107,140,110,0.35);
+    transform: translateX(2px);
+  }
+  .overview-step--sage { border-left: 3px solid rgba(107,140,110,0.5); }
+  .overview-step--gold { border-left: 3px solid rgba(184,150,58,0.5); }
+  .overview-step--clay { border-left: 3px solid rgba(196,98,42,0.5); }
+  .step-num {
+    display: flex; align-items: flex-start; justify-content: center;
+    padding-top: 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px; font-weight: 600;
+    color: var(--muted);
+    background: var(--bg2);
+    border-right: 1px solid var(--line);
+  }
+  .overview-step--sage .step-num { color: var(--sage-lt); }
+  .overview-step--gold .step-num { color: var(--gold-lt); }
+  .overview-step--clay .step-num { color: var(--clay-lt); }
+  .step-body { padding: 18px 24px; }
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 400; font-style: italic;
+    color: var(--sand-lt); margin-bottom: 6px; line-height: 1.1;
+  }
+  .step-desc {
+    font-size: 13px; color: var(--muted); line-height: 1.75;
+  }
+  .step-chant {
+    margin-top: 12px;
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 14px; color: var(--gold-lt);
+    opacity: 0.85; line-height: 1.9;
+  }
+  .step-chant-trans {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; font-style: italic;
+    color: var(--sand); opacity: 0.75; margin-top: 4px; line-height: 1.7;
+  }
+  .step-chant-meaning {
+    font-size: 12px; color: var(--muted); margin-top: 4px;
+    font-style: italic; line-height: 1.65;
+  }
+  .step-coming {
+    margin-top: 10px;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold-lt); opacity: 0.7;
+    padding: 4px 12px; border: 1px solid rgba(184,150,58,0.25);
+    border-radius: 10px;
+  }
+  .step-coming::before { content: '◌'; font-style: normal; }
+  .step-asana-grid {
+    margin-top: 14px;
+    display: flex; flex-direction: column; gap: 1px;
+  }
+  .step-asana-side {
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--clay-lt); padding: 6px 0 4px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 2px; margin-top: 6px;
+  }
+  .step-asana-side:first-child { margin-top: 0; }
+  .step-asana-row {
+    display: grid; grid-template-columns: 28px 1fr 1fr;
+    align-items: baseline; gap: 0;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background 0.15s;
+  }
+  .step-asana-row:hover { background: rgba(212,184,150,0.05); }
+  .asana-pos {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px; color: var(--clay); font-weight: 600;
+  }
+  .asana-skt-sm {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; font-style: italic;
+    color: var(--sand);
+  }
+  .asana-eng-sm {
+    font-size: 11px; color: var(--muted);
+    padding-left: 8px;
+  }
+
+  @media (max-width: 768px) {
+    .sequence-overview-section { padding: 60px 20px; }
+    .step-num { font-size: 13px; padding-top: 18px; }
+  }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes scrollPulse { 0%,100%{opacity:0.4;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.15)} }
+  @media(max-width:768px){ nav{padding:16px 20px;flex-wrap:wrap;gap:10px} .nav-links{flex-wrap:wrap;gap:16px} .sequence-block{padding:60px 20px} .section-intro{padding:60px 20px 40px} footer{padding:40px 20px} .asana-summary-row{grid-template-columns:28px 1fr 1fr} .summary-hindi,.summary-hindi.header{display:none} }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">YTT 200</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#sequence">Sequence</a></li>
+    <li><a href="#surya">Surya Namaskar</a></li>
+    <li><a href="#standing">Standing</a></li>
+    <li><a href="ashtanga-yoga.html">Ashtanga</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-devanagari">हठ योग</div>
+  <h1 class="hero-title">Hatha<br/><em>Yoga</em></h1>
+  <div class="hero-badge">YTT Module 02 · Hatha Yoga</div>
+  <p class="hero-subtitle">The Foundation of Physical Practice</p>
+  <p class="hero-meaning">Ha — sun. Tha — moon. The union of opposites through the discipline of posture, breath, and purification.</p>
+  <div class="hero-scroll"><div class="hero-scroll-line"></div>scroll</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CLASS SEQUENCE OVERVIEW -->
+<div id="sequence" class="sequence-overview-section">
+  <div class="sequence-overview-inner">
+    <div class="overview-header">
+      <span class="overview-label">Hatha Yoga · 200 Hr YTT</span>
+      <h2 class="overview-title">Class Sequence</h2>
+      <p class="overview-subtitle">A structured guide for the teacher — follow in order</p>
+    </div>
+    <div class="overview-steps">
+
+      <div class="overview-step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <div class="step-title">Introduce Self</div>
+          <div class="step-desc">Welcome students. Share your name, background, and brief teaching philosophy. Create a safe, inclusive atmosphere.</div>
+        </div>
+      </div>
+
+      <div class="overview-step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <div class="step-title">Ask About Injuries</div>
+          <div class="step-desc">Invite students to share any physical injuries, limitations, or areas of discomfort. Acknowledge each one and note modifications you will offer.</div>
+        </div>
+      </div>
+
+      <div class="overview-step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <div class="step-title">Ask About Hands-On Adjustment</div>
+          <div class="step-desc">Ask for consent before offering physical assists. Establish a clear signal (e.g. hand gesture or verbal cue) for students to opt out at any time.</div>
+        </div>
+      </div>
+
+      <div class="overview-step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <div class="step-title">Intention of Practice</div>
+          <div class="step-desc">Invite students to set a personal sankalpa — an intention or dedication for the practice. This could be a quality, a person, or simply the act of showing up.</div>
+        </div>
+      </div>
+
+      <div class="overview-step overview-step--sage">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <div class="step-title">3 Breaths of Awareness</div>
+          <div class="step-desc">Guide three slow, conscious breaths together. Inhale through the nose, exhale through the nose. Allow the body to arrive fully on the mat.</div>
+        </div>
+      </div>
+
+      <div class="overview-step overview-step--gold">
+        <div class="step-num">06</div>
+        <div class="step-body">
+          <div class="step-title">Om × 3</div>
+          <div class="step-desc">Chant Om three times together. The sound of Om unifies the group, clears the mind, and marks the formal opening of practice.</div>
+          <div class="step-chant">ॐ ॐ ॐ</div>
+        </div>
+      </div>
+
+      <div class="overview-step overview-step--gold">
+        <div class="step-num">07</div>
+        <div class="step-body">
+          <div class="step-title">Opening Mantra</div>
+          <div class="step-desc">Recite the Vakratunda Mahakaya mantra to invoke Ganesha — remover of obstacles — before beginning the physical practice.</div>
+          <div class="step-chant">वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br/>निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥</div>
+          <div class="step-chant-trans">Vakratunda Mahakaya Suryakoti Samaprabha<br/>Nirvighnam Kuru Me Deva Sarva Karyeshu Sarvada</div>
+          <div class="step-chant-meaning">O Lord with a curved trunk and a mighty body, whose brilliance equals ten million suns — please make all my works free of obstacles, always.</div>
+        </div>
+      </div>
+
+      <div class="overview-step overview-step--sage">
+        <div class="step-num">08</div>
+        <div class="step-body">
+          <div class="step-title">Warm Up Exercises</div>
+          <div class="step-desc">Guide students through a series of gentle warm-up movements to awaken the spine, shoulders, neck, and hips before the sun salutations.</div>
+          <div class="step-coming">Warm up sequence — to be added</div>
+        </div>
+      </div>
+
+      <div class="overview-step overview-step--clay">
+        <div class="step-num">09</div>
+        <div class="step-body">
+          <div class="step-title">Pranamasana + Sun Salutation Mantra</div>
+          <div class="step-desc">Come to standing at the top of the mat. Guide students into Pranamasana. Recite or play the 12 Surya Namaskar mantras once through before beginning the rounds.</div>
+          <div class="step-chant">ॐ मित्राय नमः · ॐ रवये नमः · ॐ सूर्याय नमः<br/>ॐ भानवे नमः · ॐ खगाय नमः · ॐ पूष्णे नमः<br/>ॐ हिरण्यगर्भाय नमः · ॐ मरीचये नमः · ॐ आदित्याय नमः<br/>ॐ सवित्रे नमः · ॐ अर्काय नमः · ॐ भास्कराय नमः</div>
+        </div>
+      </div>
+
+      <div class="overview-step overview-step--clay">
+        <div class="step-num">10</div>
+        <div class="step-body">
+          <div class="step-title">Surya Namaskar — 2–3 Rounds</div>
+          <div class="step-desc">Lead students through 2 to 3 complete rounds. Each round = 24 positions (right leg back for positions 1–12, left leg back for positions 13–24). Full sequence with mantras is detailed below.</div>
+          <div class="step-asana-grid">
+            <div class="step-asana-side">Right Leg Back · 1–12</div>
+            <div class="step-asana-row"><span class="asana-pos">1</span><span class="asana-skt-sm">Pranamasana</span><span class="asana-eng-sm">Prayer Pose</span></div>
+            <div class="step-asana-row"><span class="asana-pos">2</span><span class="asana-skt-sm">Hasta Utthanasana</span><span class="asana-eng-sm">Raised Arms Pose</span></div>
+            <div class="step-asana-row"><span class="asana-pos">3</span><span class="asana-skt-sm">Padahastasana</span><span class="asana-eng-sm">Hand to Foot Pose</span></div>
+            <div class="step-asana-row"><span class="asana-pos">4</span><span class="asana-skt-sm">Ashwa Sanchalanasana</span><span class="asana-eng-sm">Equestrian Pose · Right Back</span></div>
+            <div class="step-asana-row"><span class="asana-pos">5</span><span class="asana-skt-sm">Parvatasana</span><span class="asana-eng-sm">Mountain Pose — Inverted V</span></div>
+            <div class="step-asana-row"><span class="asana-pos">6</span><span class="asana-skt-sm">Ashtanga Namaskara</span><span class="asana-eng-sm">Eight-Limbed Salutation</span></div>
+            <div class="step-asana-row"><span class="asana-pos">7</span><span class="asana-skt-sm">Bhujangasana</span><span class="asana-eng-sm">Cobra Pose</span></div>
+            <div class="step-asana-row"><span class="asana-pos">8</span><span class="asana-skt-sm">Parvatasana</span><span class="asana-eng-sm">Mountain Pose — Inverted V</span></div>
+            <div class="step-asana-row"><span class="asana-pos">9</span><span class="asana-skt-sm">Ashwa Sanchalanasana</span><span class="asana-eng-sm">Equestrian Pose · Right Forward</span></div>
+            <div class="step-asana-row"><span class="asana-pos">10</span><span class="asana-skt-sm">Padahastasana</span><span class="asana-eng-sm">Hand to Foot Pose</span></div>
+            <div class="step-asana-row"><span class="asana-pos">11</span><span class="asana-skt-sm">Hasta Utthanasana</span><span class="asana-eng-sm">Raised Arms Pose</span></div>
+            <div class="step-asana-row"><span class="asana-pos">12</span><span class="asana-skt-sm">Pranamasana</span><span class="asana-eng-sm">Prayer Pose</span></div>
+            <div class="step-asana-side">Left Leg Back · 13–24</div>
+            <div class="step-asana-row"><span class="asana-pos">13–24</span><span class="asana-skt-sm">Same sequence</span><span class="asana-eng-sm">Left leg replaces right throughout</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="overview-step overview-step--sage">
+        <div class="step-num">11</div>
+        <div class="step-body">
+          <div class="step-title">Standing Sequence</div>
+          <div class="step-desc">Guide students through the 11 standing asanas below. Hold each posture for 5 breaths. Practise both sides before moving to the next pose. Full sequence with instructions is detailed below.</div>
+          <div class="step-asana-grid">
+            <div class="step-asana-row"><span class="asana-pos">1</span><span class="asana-skt-sm">Tadasana</span><span class="asana-eng-sm">Palm Tree Pose</span></div>
+            <div class="step-asana-row"><span class="asana-pos">2</span><span class="asana-skt-sm">Tiryaka Tadasana</span><span class="asana-eng-sm">Swaying Palm Tree Pose</span></div>
+            <div class="step-asana-row"><span class="asana-pos">3</span><span class="asana-skt-sm">Ukthanasana</span><span class="asana-eng-sm">Squat and Rise Pose</span></div>
+            <div class="step-asana-row"><span class="asana-pos">4</span><span class="asana-skt-sm">Dwikonasana</span><span class="asana-eng-sm">Double Angle Pose</span></div>
+            <div class="step-asana-row"><span class="asana-pos">5</span><span class="asana-skt-sm">Padangusthasana</span><span class="asana-eng-sm">Big Toe Posture</span></div>
+            <div class="step-asana-row"><span class="asana-pos">6</span><span class="asana-skt-sm">Padahastasana</span><span class="asana-eng-sm">Hand to Foot Pose</span></div>
+            <div class="step-asana-row"><span class="asana-pos">7</span><span class="asana-skt-sm">Trikonasana</span><span class="asana-eng-sm">Triangle Pose</span></div>
+            <div class="step-asana-row"><span class="asana-pos">8</span><span class="asana-skt-sm">Utthita Parsvakonasana</span><span class="asana-eng-sm">Extended Side Angle Pose</span></div>
+            <div class="step-asana-row"><span class="asana-pos">9</span><span class="asana-skt-sm">Virabhadrasana II</span><span class="asana-eng-sm">Warrior Pose II</span></div>
+            <div class="step-asana-row"><span class="asana-pos">10</span><span class="asana-skt-sm">Virabhadrasana I</span><span class="asana-eng-sm">Warrior Pose I</span></div>
+            <div class="step-asana-row"><span class="asana-pos">11</span><span class="asana-skt-sm">Parsvottanasana</span><span class="asana-eng-sm">Intense Side Stretch</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="overview-step overview-step--sage">
+        <div class="step-num">12</div>
+        <div class="step-body">
+          <div class="step-title">Cool Down</div>
+          <div class="step-desc">Guide students through a gentle floor sequence to release the body after standing work.</div>
+          <div class="step-asana-grid">
+            <div class="step-asana-row"><span class="asana-pos">①</span><span class="asana-skt-sm">Come to the floor</span><span class="asana-eng-sm">Slowly lower down to the mat</span></div>
+            <div class="step-asana-row"><span class="asana-pos">②</span><span class="asana-skt-sm">Apanasana</span><span class="asana-eng-sm">Lie down · hug both knees to chest</span></div>
+            <div class="step-asana-row"><span class="asana-pos">③</span><span class="asana-skt-sm">Supta Matsyendrasana</span><span class="asana-eng-sm">Supine twist · knees left, then right</span></div>
+            <div class="step-asana-row"><span class="asana-pos">④</span><span class="asana-skt-sm">Savasana</span><span class="asana-eng-sm">Corpse Pose · full relaxation</span></div>
+            <div class="step-asana-row"><span class="asana-pos">⑤</span><span class="asana-skt-sm">Roll to right side</span><span class="asana-eng-sm">Pause · a few breaths</span></div>
+            <div class="step-asana-row"><span class="asana-pos">⑥</span><span class="asana-skt-sm">Press hand down</span><span class="asana-eng-sm">Rise to comfortable sitting position</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="overview-step overview-step--gold">
+        <div class="step-num">13</div>
+        <div class="step-body">
+          <div class="step-title">Closing — Om Shanti × 3</div>
+          <div class="step-desc">Guide students into a comfortable seated position. Close the eyes. Take three breaths of awareness. Chant Om Shanti three times together to close the practice.</div>
+          <div class="step-chant">ॐ शान्तिः · ॐ शान्तिः · ॐ शान्तिः</div>
+          <div class="step-chant-trans">Om Shanti · Om Shanti · Om Shanti</div>
+          <div class="step-chant-meaning">May there be peace — in body, in mind, and in spirit.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div id="surya" class="sequence-block">
+  <div class="block-header">
+    <span class="block-label">Step 9–10 · Sun Salutations</span>
+    <h2 class="block-title">Surya Namaskar</h2>
+    <div class="block-line"></div>
+    <span class="block-rounds">2–3 Rounds · 24 Positions per Round</span>
+  </div>
+  <p class="block-note">One complete round = 24 positions: positions 1–12 with the <strong>right leg stepping back</strong>, positions 13–24 with the <strong>left leg stepping back</strong>. Perform 2–3 full rounds. Each position is linked to a mantra.</p>
+
+    <div class="side-divider"><div class="side-divider-line"></div><div class="side-divider-label">Positions 1–12 · Right Leg Back</div><div class="side-divider-line"></div></div>
+
+  <div class="asana-list">
+    <div class="asana-card">
+      <div class="asana-num">1</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Pranamasana</div><div class="asana-eng">Prayer Pose</div></div>
+                <div class="breath-tags"><span class="tag tag-out">↓ Breathe normally</span><span class="tag tag-hold">Still · 2 breaths</span></div>
+        <div class="asana-instruction">Palms together at the heart. <strong>Exhale.</strong> Eyes closed, body still.</div>
+        <div class="asana-mantra">✦ Om Mitraya Namaha — salutations to the friend of all</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">2</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Hasta Utthanasana</div><div class="asana-eng">Raised Arms Pose</div></div>
+                <div class="breath-tags"><span class="tag tag-in">↑ Inhale, arms sweep up</span></div>
+        <div class="asana-instruction"><strong>Inhale.</strong> Sweep arms up, palms together overhead. Gentle backbend.</div>
+        <div class="asana-mantra">✦ Om Ravaye Namaha — salutations to the shining one</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">3</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Padahastasana</div><div class="asana-eng">Hand to Foot Pose</div></div>
+                <div class="breath-tags"><span class="tag tag-out">↓ Exhale, hands to floor</span></div>
+        <div class="asana-instruction"><strong>Exhale.</strong> Fold forward — palms flat beside the feet, abdomen contracted.</div>
+        <div class="asana-mantra">✦ Om Suryaya Namaha — salutations to he who induces activity</div>
+        <div class="asana-note">The back should not bend fully forward. Keep the spine as straight as possible.</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">4</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Ashwa Sanchalanasana</div><div class="asana-eng">Equestrian Pose · Right Leg Back</div></div>
+        <div class="side-pill">Right leg steps back</div>
+                <div class="breath-tags"><span class="tag tag-in">↑ Inhale, step right back</span></div>
+        <div class="asana-instruction"><strong>Inhale.</strong> Step <strong>right leg</strong> back, lower right knee. Lift the chest, look forward.</div>
+        <div class="asana-mantra">✦ Om Bhanave Namaha — salutations to he who illumines</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">5</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Parvatasana</div><div class="asana-eng">Mountain Pose — Inverted V</div></div>
+                <div class="breath-tags"><span class="tag tag-out">↓ Exhale, hips high</span><span class="tag tag-note">Inverted V shape</span></div>
+        <div class="asana-instruction"><strong>Exhale.</strong> Both legs back, hips rise high — inverted V. Spine long, heels toward the floor.</div>
+        <div class="asana-mantra">✦ Om Khagaya Namaha — salutations to he who moves quickly in the sky</div>
+        <div class="asana-note">Cautions for inverted postures apply. People with back conditions should seek guidance.</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">6</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Ashtanga Namaskara</div><div class="asana-eng">Eight-Limbed Salutation</div></div>
+                <div class="breath-tags"><span class="tag tag-hold">Breath held out — no respiration</span></div>
+        <div class="asana-instruction"><strong>Breath held out.</strong> Lower knees, chest, chin to mat — eight points of contact. Hips lifted.</div>
+        <div class="asana-mantra">✦ Om Pushne Namaha — salutations to the giver of strength</div>
+        <div class="asana-note">People with serious back problems, high blood pressure or heart conditions should not do this practice.</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">7</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Bhujangasana</div><div class="asana-eng">Cobra Pose</div></div>
+                <div class="breath-tags"><span class="tag tag-in">↑ Inhale, raise torso and arch</span></div>
+        <div class="asana-instruction"><strong>Inhale.</strong> Slide chest forward and up, arms extend. Shoulders back and down.</div>
+        <div class="asana-mantra">✦ Om Hiranya Garbhaya Namaha — salutations to the golden cosmic self</div>
+        <div class="asana-note">Not advised for people suffering from peptic ulcer, hernia, intestinal tuberculosis or hyperthyroidism.</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">8</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Parvatasana</div><div class="asana-eng">Mountain Pose — Inverted V</div></div>
+                <div class="breath-tags"><span class="tag tag-out">↓ Exhale, raise buttocks</span></div>
+        <div class="asana-instruction"><strong>Exhale.</strong> Tuck toes, raise hips high — back to inverted V. Spine long.</div>
+        <div class="asana-mantra">✦ Om Marichaye Namaha — salutations to the Lord of the Dawn</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">9</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Ashwa Sanchalanasana</div><div class="asana-eng">Equestrian Pose · Right Leg Forward</div></div>
+        <div class="side-pill">Right foot steps forward</div>
+                <div class="breath-tags"><span class="tag tag-in">↑ Inhale, right foot forward</span></div>
+        <div class="asana-instruction"><strong>Inhale.</strong> Step <strong>right foot</strong> forward between the hands. Lift chest, look forward.</div>
+        <div class="asana-mantra">✦ Om Adityaya Namaha — salutations to the son of Aditi, the cosmic Mother</div>
+        <div class="asana-note">The full stretch is not advised for people with knee or ankle problems.</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">10</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Padahastasana</div><div class="asana-eng">Hand to Foot Pose</div></div>
+                <div class="breath-tags"><span class="tag tag-out">↓ Exhale, fold forward</span></div>
+        <div class="asana-instruction"><strong>Exhale.</strong> Step left foot forward. Fold — palms flat beside the feet.</div>
+        <div class="asana-mantra">✦ Om Savitre Namaha — salutations to the Lord of Creation</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">11</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Hasta Utthanasana</div><div class="asana-eng">Raised Arms Pose</div></div>
+                <div class="breath-tags"><span class="tag tag-in">↑ Inhale, sweep arms up</span></div>
+        <div class="asana-instruction"><strong>Inhale.</strong> Rise up, arms sweep overhead. Gentle backbend.</div>
+        <div class="asana-mantra">✦ Om Arkaya Namaha — salutations to he who is fit to be praised</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">12</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Pranamasana</div><div class="asana-eng">Prayer Pose · End of Side 1</div></div>
+                <div class="breath-tags"><span class="tag tag-out">↓ Exhale, return to prayer</span><span class="tag tag-hold">Pause · 1 breath</span></div>
+        <div class="asana-instruction"><strong>Exhale.</strong> Palms together at the heart. Pause one breath before the left side.</div>
+        <div class="asana-mantra">✦ Om Bhaskaraya Namaha — salutations to he who leads to enlightenment</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="side-divider" style="margin-top:32px;"><div class="side-divider-line"></div><div class="side-divider-label">Positions 13–24 · Left Leg Back</div><div class="side-divider-line"></div></div>
+
+  <div class="asana-list">
+    <div class="asana-card">
+      <div class="asana-num">13</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Pranamasana</div><div class="asana-eng">Prayer Pose</div></div>
+                <div class="breath-tags"><span class="tag tag-hold">Breathe normally</span></div>
+        <div class="asana-instruction">Palms at the heart. <strong>Breathe normally.</strong> Pause — feel the warmth before the second side.</div>
+        <div class="asana-mantra">✦ Om Mitraya Namaha</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">14</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Hasta Utthanasana</div><div class="asana-eng">Raised Arms Pose</div></div>
+                <div class="breath-tags"><span class="tag tag-in">↑ Inhale, arms up</span></div>
+        <div class="asana-instruction"><strong>Inhale.</strong> Arms sweep up overhead. Gentle backbend.</div>
+        <div class="asana-mantra">✦ Om Ravaye Namaha</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">15</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Padahastasana</div><div class="asana-eng">Hand to Foot Pose</div></div>
+                <div class="breath-tags"><span class="tag tag-out">↓ Exhale, hands to floor</span></div>
+        <div class="asana-instruction"><strong>Exhale.</strong> Fold forward — palms flat beside the feet.</div>
+        <div class="asana-mantra">✦ Om Suryaya Namaha</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">16</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Ashwa Sanchalanasana</div><div class="asana-eng">Equestrian Pose · Left Leg Back</div></div>
+        <div class="side-pill">Left leg steps back</div>
+                <div class="breath-tags"><span class="tag tag-in">↑ Inhale, step left back</span></div>
+        <div class="asana-instruction"><strong>Inhale.</strong> Step <strong>left leg</strong> back, lower left knee. Lift chest, look forward.</div>
+        <div class="asana-mantra">✦ Om Bhanave Namaha</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">17</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Parvatasana</div><div class="asana-eng">Mountain Pose — Inverted V</div></div>
+                <div class="breath-tags"><span class="tag tag-out">↓ Exhale, hips high</span></div>
+        <div class="asana-instruction"><strong>Exhale.</strong> Both legs back, hips rise — inverted V.</div>
+        <div class="asana-mantra">✦ Om Khagaya Namaha</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">18</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Ashtanga Namaskara</div><div class="asana-eng">Eight-Limbed Salutation</div></div>
+                <div class="breath-tags"><span class="tag tag-hold">Breath held out — no respiration</span></div>
+        <div class="asana-instruction"><strong>Breath held out.</strong> Knees, chest, chin to mat — eight-point contact.</div>
+        <div class="asana-mantra">✦ Om Pushne Namaha</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">19</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Bhujangasana</div><div class="asana-eng">Cobra Pose</div></div>
+                <div class="breath-tags"><span class="tag tag-in">↑ Inhale, raise torso</span></div>
+        <div class="asana-instruction"><strong>Inhale.</strong> Chest forward and up, arms extend. Shoulders back.</div>
+        <div class="asana-mantra">✦ Om Hiranya Garbhaya Namaha</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">20</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Parvatasana</div><div class="asana-eng">Mountain Pose — Inverted V</div></div>
+                <div class="breath-tags"><span class="tag tag-out">↓ Exhale, raise buttocks</span></div>
+        <div class="asana-instruction"><strong>Exhale.</strong> Hips rise — inverted V.</div>
+        <div class="asana-mantra">✦ Om Marichaye Namaha</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">21</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Ashwa Sanchalanasana</div><div class="asana-eng">Equestrian Pose · Left Leg Forward</div></div>
+        <div class="side-pill">Left foot steps forward</div>
+                <div class="breath-tags"><span class="tag tag-in">↑ Inhale, left foot forward</span></div>
+        <div class="asana-instruction"><strong>Inhale.</strong> Step <strong>left foot</strong> forward. Lift chest, look forward.</div>
+        <div class="asana-mantra">✦ Om Adityaya Namaha</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">22</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Padahastasana</div><div class="asana-eng">Hand to Foot Pose</div></div>
+                <div class="breath-tags"><span class="tag tag-out">↓ Exhale, fold forward</span></div>
+        <div class="asana-instruction"><strong>Exhale.</strong> Right foot joins left. Fold — palms flat beside the feet.</div>
+        <div class="asana-mantra">✦ Om Savitre Namaha</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">23</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Hasta Utthanasana</div><div class="asana-eng">Raised Arms Pose</div></div>
+                <div class="breath-tags"><span class="tag tag-in">↑ Inhale, arms up</span></div>
+        <div class="asana-instruction"><strong>Inhale.</strong> Rise, arms sweep up overhead.</div>
+        <div class="asana-mantra">✦ Om Arkaya Namaha</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">24</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Pranamasana</div><div class="asana-eng">Prayer Pose · End of Round</div></div>
+                <div class="breath-tags"><span class="tag tag-out">↓ Exhale, return</span><span class="tag tag-hold">Rest · 2–3 breaths between rounds</span></div>
+        <div class="asana-instruction"><strong>Exhale.</strong> Palms at the heart. Round complete — rest 2–3 breaths before the next.</div>
+        <div class="asana-mantra">✦ Om Bhaskaraya Namaha</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="divider"></div>
+
+<div id="standing" class="sequence-block" style="padding-bottom:0;">
+  <div class="block-header">
+    <span class="block-label">Step 11 · Standing Asanas</span>
+    <h2 class="block-title">Standing Sequence</h2>
+    <div class="block-line"></div>
+  </div>
+  <div class="sequence-block">
+  <p class="block-note">Hold each posture for 5 slow breaths unless otherwise noted. Practise both sides before moving to the next asana.</p>
+  <div class="asana-list">
+    <div class="asana-card">
+      <div class="asana-num">1</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Tadasana</div><div class="asana-eng">Palm Tree Pose</div></div>
+                <div class="breath-tags"><span class="tag tag-in">↑ Inhale, raise arms</span><span class="tag tag-hold">Retain in stretch</span><span class="tag tag-out">↓ Exhale, lower arms</span></div>
+        <div class="asana-instruction"><strong>Inhale:</strong> arms up, fingers interlaced, palms up, rise onto toes. <strong>Exhale:</strong> lower arms and heels.</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">2</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Tiryaka Tadasana</div><div class="asana-eng">Swaying Palm Tree Pose</div></div>
+        <div class="side-pill">Right side, then Left side</div>
+                <div class="breath-tags"><span class="tag tag-in">↑ Inhale, arms up</span><span class="tag tag-out">↓ Exhale, bend sideways</span><span class="tag tag-in">↑ Inhale, return</span></div>
+        <div class="asana-instruction"><strong>Inhale:</strong> arms up. <strong>Exhale:</strong> bend sideways from the waist — body faces forward. <strong>Inhale</strong> to return. Repeat both sides.</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">3</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Ukthanasana</div><div class="asana-eng">Squat and Rise Pose</div></div>
+                <div class="breath-tags"><span class="tag tag-in">↑ Inhale, squat down</span><span class="tag tag-out">↓ Exhale, rise up</span><span class="tag tag-note">5 rounds</span></div>
+        <div class="asana-instruction"><strong>Inhale:</strong> squat — back straight, hands on knees. <strong>Exhale:</strong> rise to standing. 5 rounds.</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">4</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Dwikonasana</div><div class="asana-eng">Double Angle Pose</div></div>
+                <div class="breath-tags"><span class="tag tag-in">↑ Inhale, stand erect</span><span class="tag tag-out">↓ Exhale, bend forward, arms up</span><span class="tag tag-hold">5 breaths</span></div>
+        <div class="asana-instruction"><strong>Inhale</strong> standing tall, hands clasped behind back. <strong>Exhale:</strong> fold forward, raising arms away from the back. <strong>Inhale</strong> to return.</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">5</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Padangusthasana</div><div class="asana-eng">Big Toe Posture</div></div>
+                <div class="breath-tags"><span class="tag tag-in">↑ Inhale, starting position</span><span class="tag tag-out">↓ Exhale, bend to toes</span><span class="tag tag-hold">Hold, breathe deeply</span><span class="tag tag-in">↑ Inhale to return</span></div>
+        <div class="asana-instruction"><strong>Inhale</strong> tall. <strong>Exhale:</strong> fold forward slowly, grasp big toes. Hold and breathe deeply. <strong>Inhale</strong> to return.</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">6</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Padahastasana</div><div class="asana-eng">Hand to Foot Pose</div></div>
+                <div class="breath-tags"><span class="tag tag-in">↑ Inhale, starting position</span><span class="tag tag-out">↓ Exhale, palms to floor</span><span class="tag tag-hold">Hold, breathe slowly</span></div>
+        <div class="asana-instruction"><strong>Inhale</strong> tall. <strong>Exhale:</strong> fold forward, palms flat on the floor. Hold and breathe. <strong>Inhale</strong> to return.</div>
+        <div class="asana-note">Contra-indications: not for people with serious back complaints, sciatica, heart disease, high blood pressure or abdominal hernia.</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">7</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Trikonasana</div><div class="asana-eng">Triangle Pose</div></div>
+        <div class="side-pill">Right side, then Left side</div>
+                <div class="breath-tags"><span class="tag tag-in">↑ Inhale, arms wide</span><span class="tag tag-out">↓ Exhale, extend sideways</span><span class="tag tag-hold">Hold · 5 breaths</span><span class="tag tag-in">↑ Inhale to rise</span></div>
+        <div class="asana-instruction">Feet wide, right foot out 90°. <strong>Inhale:</strong> arms wide. <strong>Exhale:</strong> extend torso right — right hand to shin, left arm up. <strong>Inhale</strong> to rise. Repeat left.</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">8</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Utthita Parsvakonasana</div><div class="asana-eng">Extended Side Angle Pose</div></div>
+        <div class="side-pill">Right side, then Left side</div>
+                <div class="breath-tags"><span class="tag tag-out">↓ Exhale, extend and twist</span><span class="tag tag-hold">Hold · 5 breaths</span><span class="tag tag-in">↑ Inhale to rise</span></div>
+        <div class="asana-instruction">From Warrior II, lean right — forearm on thigh or hand outside the foot. Left arm over the ear, one long diagonal line. <strong>Exhale</strong> into the pose. <strong>Inhale</strong> to rise.</div>
+        <div class="asana-note">Modified posture: right elbow on right knee instead of hand to floor; back knee to floor if necessary.</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">9</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Virabhadrasana II</div><div class="asana-eng">Warrior Pose II</div></div>
+        <div class="side-pill">Right side, then Left side</div>
+                <div class="breath-tags"><span class="tag tag-in">↑ Inhale, arms wide</span><span class="tag tag-hold">Hold · 5 breaths</span></div>
+        <div class="asana-instruction">Feet wide, right foot out 90°, arms at shoulder height. <strong>Bend the right knee</strong> over the ankle. Gaze over front fingers. <strong>Inhale</strong> to open. Repeat left.</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">10</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Virabhadrasana I</div><div class="asana-eng">Warrior Pose I</div></div>
+        <div class="side-pill">Right side, then Left side</div>
+                <div class="breath-tags"><span class="tag tag-in">↑ Inhale, arms up</span><span class="tag tag-hold">Hold · 5 breaths</span><span class="tag tag-out">↓ Exhale, release</span></div>
+        <div class="asana-instruction">Feet wide, right foot out 90°, back foot in 45°, hips squared. <strong>Inhale:</strong> arms up overhead, bend right knee. Tailbone down, chest lifts. Repeat left.</div>
+        <div class="asana-note">Back heel must stay grounded. If it lifts, widen your stance.</div>
+      </div>
+    </div>
+    <div class="asana-card">
+      <div class="asana-num">11</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Parsvottanasana</div><div class="asana-eng">Intense Side Stretch Posture</div></div>
+        <div class="side-pill">Right side, then Left side</div>
+                <div class="breath-tags"><span class="tag tag-out">↓ Exhale, fold over front leg</span><span class="tag tag-hold">Hold · 5 breaths</span></div>
+        <div class="asana-instruction">Right foot forward, back foot in 45°, elbows clasped behind back. <strong>Inhale.</strong> <strong>Exhale:</strong> fold forward over the front leg. <strong>Inhale</strong> to rise. Repeat left.</div>
+        <div class="asana-note">Modified posture: hold elbows behind back instead of hands in prayer.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<footer>
+  <span class="footer-logo">Hatha Yoga</span>
+  <p>200 Hour Yoga Teacher Training · Rishikesh, India<br/>
+  <span style="font-size:11px;opacity:0.5;">हठ योग · The Science of Physical Discipline</span>
+  </p>
+</footer>
+
+<script>
+  const cards = document.querySelectorAll('.asana-card');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 40);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  cards.forEach(c => observer.observe(c));
+</script>
+
+</body>
+</html>

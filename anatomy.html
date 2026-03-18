@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Anatomy — Hatha Ashtanga Vinyasa Yoga</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Karla:wght@300;400;500&family=Noto+Serif+Devanagari:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:#0f0d0a; --bg2:#161310; --bg3:#1e1a15;
+    --clay:#c4622a; --clay-lt:#e07a42;
+    --sand:#d4b896; --sand-lt:#ecddc8;
+    --sage:#6b8c6e; --sage-lt:#9ab89d;
+    --gold:#b8963a; --gold-lt:#d4b05a;
+    --text:#e8dfd0; --muted:#8a7d6e;
+    --line:rgba(212,184,150,0.12); --line-s:rgba(212,184,150,0.25);
+    --r:8px;
+    --accent: var(--clay); --accent-lt: var(--clay-lt);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Karla', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+  body::before { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events:none; z-index:0; opacity:0.4; }
+  nav { position:fixed; top:0; width:100%; z-index:100; padding:18px 48px; display:flex; justify-content:space-between; align-items:center; background:linear-gradient(to bottom,rgba(15,13,10,0.95) 0%,transparent 100%); backdrop-filter:blur(2px); }
+  .nav-logo { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:300; letter-spacing:0.12em; color:var(--sand); text-decoration:none; }
+  .nav-links { display:flex; gap:32px; list-style:none; }
+  .nav-links a { font-size:13px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--sand-lt); }
+  .hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:120px 24px 80px; position:relative; }
+  .hero-devanagari { font-family:'Noto Serif Devanagari',serif; font-size:clamp(24px,4vw,44px); font-weight:300; color:var(--accent); opacity:0.65; letter-spacing:0.04em; margin-bottom:12px; animation:fadeUp 1.2s ease both 0.2s; }
+  .hero-title { font-family:'Cormorant Garamond',serif; font-size:clamp(56px,9vw,108px); font-weight:300; line-height:0.9; letter-spacing:-0.02em; color:var(--sand-lt); animation:fadeUp 1.2s ease both 0.4s; }
+  .hero-title em { font-style:italic; color:var(--accent-lt); }
+  .hero-badge { display:inline-block; margin-top:28px; padding:6px 20px; border:1px solid rgba(196,98,42,0.35); border-radius:20px; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent-lt); animation:fadeUp 1.2s ease both 0.6s; }
+  .hero-subtitle { margin-top:16px; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); animation:fadeUp 1.2s ease both 0.65s; }
+  .hero-meaning { margin-top:32px; max-width:560px; font-family:'Cormorant Garamond',serif; font-size:clamp(17px,2.2vw,21px); font-style:italic; font-weight:300; color:var(--sand); line-height:1.65; animation:fadeUp 1.2s ease both 0.8s; }
+  .divider { width:100%; height:1px; background:linear-gradient(to right,transparent,var(--line-s) 30%,var(--line-s) 70%,transparent); }
+  .coming-section { padding:100px 48px 120px; max-width:800px; margin:0 auto; text-align:center; }
+  .coming-section h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(32px,4.5vw,52px); font-weight:300; color:var(--sand-lt); margin-bottom:24px; }
+  .coming-section p { font-size:15px; color:var(--muted); line-height:1.85; margin-bottom:20px; max-width:600px; margin-left:auto; margin-right:auto; }
+  .coming-badge { display:inline-flex; align-items:center; gap:10px; margin-top:48px; padding:14px 32px; border:1px solid rgba(184,150,58,0.3); border-radius:40px; font-family:'Cormorant Garamond',serif; font-size:20px; font-style:italic; color:var(--gold-lt); }
+  .coming-badge::before { content:'◌'; font-style:normal; font-size:14px; opacity:0.6; }
+  .back-link { display:inline-block; margin-top:48px; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+  .back-link:hover { color:var(--sand-lt); }
+  .back-link::before { content:'← '; }
+  footer { padding:60px 48px; text-align:center; border-top:1px solid var(--line); }
+  footer p { font-size:12px; color:var(--muted); letter-spacing:0.08em; line-height:2; }
+  footer .footer-logo { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; font-style:italic; color:var(--clay); margin-bottom:12px; display:block; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+  @media (max-width:768px) { nav{padding:16px 20px;flex-wrap:wrap;gap:10px} .nav-links{flex-wrap:wrap;gap:16px} .coming-section{padding:60px 20px 80px} footer{padding:40px 20px} }
+
+
+  :root {
+    --accent: #d4a090;
+    --accent-lt: #e8b8a8;
+  }
+  .hero { background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(180,120,100,0.07) 0%, transparent 70%); }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">YTT 200</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="ashtanga-yoga.html">Ashtanga</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-devanagari">शरीर रचना</div>
+  <h1 class="hero-title">Yoga<br/><em>Anatomy</em></h1>
+  <div class="hero-badge">YTT Module 04 · Sharira Rachana</div>
+  <p class="hero-subtitle">Applied Anatomy for Yoga Teachers</p>
+  <p class="hero-meaning">The body is a map. Knowing its terrain is what separates a good teacher from a safe one.</p>
+</section>
+
+<div class="divider"></div>
+
+<section class="coming-section">
+  <h2>About This Module</h2>
+  <p>Applied anatomy for yoga is the study of the human body through the lens of movement, posture, and breath. For a yoga teacher, understanding anatomy is not optional — it is the responsibility that makes practice safe, intelligent, and deeply transformative.</p>
+  <p>This module covers the skeletal system and joint mechanics, the major muscle groups and their roles in asana, the nervous system and its relationship to stress and relaxation, and the anatomy of breathing — the diaphragm, intercostals, and the mechanics of pranayama.</p>
+  <p>We examine common injuries, contraindications for specific postures, and how to intelligently modify practice for different bodies, conditions, and life stages.</p>
+
+  <div class="coming-badge">Content Coming Soon</div>
+  <br/>
+  <a class="back-link" href="index.html">Back to all subjects</a>
+</section>
+
+<div class="divider"></div>
+
+<footer>
+  <span class="footer-logo">Hatha Ashtanga Vinyasa Yoga</span>
+  <p>200 Hour Yoga Teacher Training · Rishikesh, India<br/>
+  <span style="font-size:11px;opacity:0.5;">शरीर रचना · The Architecture of the Body</span>
+  </p>
+</footer>
+
+</body>
+</html>
