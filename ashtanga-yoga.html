@@ -10,22 +10,22 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --bg:       #0f0d0a;
-    --bg2:      #161310;
-    --bg3:      #1e1a15;
+    :root {
+    --bg:       #faf8f5;
+    --bg2:      #f3ede5;
+    --bg3:      #e8e0d4;
     --clay:     #c4622a;
-    --clay-lt:  #e07a42;
-    --sand:     #d4b896;
-    --sand-lt:  #ecddc8;
-    --sage:     #6b8c6e;
-    --sage-lt:  #9ab89d;
-    --gold:     #b8963a;
-    --gold-lt:  #d4b05a;
-    --text:     #e8dfd0;
-    --muted:    #8a7d6e;
-    --line:     rgba(212,184,150,0.12);
-    --line-s:   rgba(212,184,150,0.25);
+    --clay-lt:  #a84e1f;
+    --sand:     #3d2c1a;
+    --sand-lt:  #1a1208;
+    --sage:     #3d6b42;
+    --sage-lt:  #2a5030;
+    --gold:     #8a6c14;
+    --gold-lt:  #6e5410;
+    --text:     #1e1a14;
+    --muted:    #3a2e22;
+    --line:     rgba(100,80,50,0.10);
+    --line-s:   rgba(100,80,50,0.22);
     --r: 8px;
   }
 
@@ -45,7 +45,7 @@
     content: '';
     position: fixed; inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 0; opacity: 0.4;
+    pointer-events: none; z-index: 0; opacity: 0.08;
   }
 
   /* ── NAV ── */
@@ -53,13 +53,13 @@
     position: fixed; top: 0; width: 100%; z-index: 100;
     padding: 18px 48px;
     display: flex; justify-content: space-between; align-items: center;
-    background: linear-gradient(to bottom, rgba(15,13,10,0.95) 0%, transparent 100%);
+    background: rgba(250,248,245,0.97); box-shadow: 0 1px 0 rgba(100,80,50,0.08);
     backdrop-filter: blur(2px);
   }
   .nav-logo {
     font-family: 'Cormorant Garamond', serif;
     font-size: 22px; font-weight: 300; letter-spacing: 0.12em;
-    color: var(--sand); text-decoration: none;
+    color: var(--clay); text-decoration: none;
   }
   .nav-links { display: flex; gap: 32px; list-style: none; }
   .nav-links a {
@@ -221,8 +221,9 @@
   }
   .asana-card.visible { opacity: 1; transform: translateY(0); }
   .asana-card:hover {
-    border-color: rgba(196,98,42,0.4);
+    border-color: rgba(196,98,42,0.55);
     transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(100,80,50,0.08);
   }
 
   .asana-num {
@@ -279,17 +280,17 @@
     font-size: 11px; font-weight: 500; letter-spacing: 0.04em;
     padding: 3px 10px; border-radius: 4px;
   }
-  .tag-in   { background: rgba(107,140,110,0.15); color: var(--sage-lt); }
-  .tag-out  { background: rgba(196,98,42,0.12);   color: var(--clay-lt); }
-  .tag-hold { background: rgba(184,150,58,0.12);  color: var(--gold-lt); }
-  .tag-ujjayi{ background: rgba(212,184,150,0.08); color: var(--sand);   }
+  .tag-in   { background: #ddf0e0; color: #1e5030; border: 1px solid rgba(42,80,48,0.25); }
+  .tag-out  { background: #fde8d8; color: #8a3010; border: 1px solid rgba(168,78,31,0.25); }
+  .tag-hold { background: #f8efc8; color: #5a4008; border: 1px solid rgba(138,108,20,0.25); }
+  .tag-ujjayi{ background: #f0e8dc; color: #3d2c1a; border: 1px solid rgba(100,80,50,0.20); }
 
   .asana-note {
     margin-top: 10px; font-size: 12px;
     color: var(--clay-lt);
     padding: 6px 12px;
-    border-left: 2px solid rgba(196,98,42,0.4);
-    background: rgba(196,98,42,0.05);
+    border-left: 2px solid rgba(196,98,42,0.5);
+    background: rgba(196,98,42,0.07);
     border-radius: 0 4px 4px 0;
     line-height: 1.6;
   }
@@ -439,7 +440,7 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="index.html">YTT 200</a>
+  <a class="nav-logo" href="index.html">YTT</a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="#surya">Surya Namaskar</a></li>
@@ -453,7 +454,7 @@
 <section class="hero">
   <div class="hero-devanagari">अष्टांग योग</div>
   <h1 class="hero-title">Ashtanga<br/><em>Yoga</em></h1>
-  <div class="hero-badge">Ashtanga Primary Series · YTT Module 01</div>
+  <div class="hero-badge">Ashtanga Primary Series</div>
   <p class="hero-subtitle">The Standing Sequence · Ashtanga Primary Series</p>
   <p class="hero-meaning">A dynamic, set sequence of postures linked by breath and movement — practiced in the same order every time, building strength, flexibility, and meditative focus through disciplined repetition.</p>
   <div class="hero-scroll">

@@ -8,27 +8,27 @@
 <style>
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg:#0f0d0a; --bg2:#161310; --bg3:#1e1a15;
-    --clay:#c4622a; --clay-lt:#e07a42;
-    --sand:#d4b896; --sand-lt:#ecddc8;
-    --sage:#6b8c6e; --sage-lt:#9ab89d;
-    --gold:#b8963a; --gold-lt:#d4b05a;
-    --text:#e8dfd0; --muted:#8a7d6e;
-    --line:rgba(212,184,150,0.12); --line-s:rgba(212,184,150,0.25);
+    :root {
+    --bg:#faf8f5; --bg2:#f3ede5; --bg3:#e8e0d4;
+    --clay:#c4622a; --clay-lt:#a84e1f;
+    --sand:#3d2c1a; --sand-lt:#1a1208;
+    --sage:#3d6b42; --sage-lt:#2a5030;
+    --gold:#8a6c14; --gold-lt:#6e5410;
+    --text:#1e1a14; --muted:#3a2e22;
+    --line:rgba(100,80,50,0.10); --line-s:rgba(100,80,50,0.22);
     --r:8px;
     --accent: var(--clay); --accent-lt: var(--clay-lt);
   }
   html { scroll-behavior: smooth; }
   body { font-family: 'Karla', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; overflow-x: hidden; }
-  body::before { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events:none; z-index:0; opacity:0.4; }
-  nav { position:fixed; top:0; width:100%; z-index:100; padding:18px 48px; display:flex; justify-content:space-between; align-items:center; background:linear-gradient(to bottom,rgba(15,13,10,0.95) 0%,transparent 100%); backdrop-filter:blur(2px); }
-  .nav-logo { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:300; letter-spacing:0.12em; color:var(--sand); text-decoration:none; }
+  body::before { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events:none; z-index:0; opacity:0.08; }
+  nav { position:fixed; top:0; width:100%; z-index:100; padding:18px 48px; display:flex; justify-content:space-between; align-items:center; background:rgba(250,248,245,0.97); box-shadow:0 1px 0 rgba(100,80,50,0.08); backdrop-filter:blur(2px); }
+  .nav-logo { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:300; letter-spacing:0.12em; color:var(--clay); text-decoration:none; }
   .nav-links { display:flex; gap:32px; list-style:none; }
   .nav-links a { font-size:13px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color 0.2s; }
   .nav-links a:hover { color:var(--sand-lt); }
   .hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:120px 24px 80px; position:relative; }
-  .hero-devanagari { font-family:'Noto Serif Devanagari',serif; font-size:clamp(24px,4vw,44px); font-weight:300; color:var(--accent); opacity:0.65; letter-spacing:0.04em; margin-bottom:12px; animation:fadeUp 1.2s ease both 0.2s; }
+  .hero-devanagari { font-family:'Noto Serif Devanagari',serif; font-size:clamp(24px,4vw,44px); font-weight:300; color:var(--accent); opacity:0.90; letter-spacing:0.04em; margin-bottom:12px; animation:fadeUp 1.2s ease both 0.2s; }
   .hero-title { font-family:'Cormorant Garamond',serif; font-size:clamp(56px,9vw,108px); font-weight:300; line-height:0.9; letter-spacing:-0.02em; color:var(--sand-lt); animation:fadeUp 1.2s ease both 0.4s; }
   .hero-title em { font-style:italic; color:var(--accent-lt); }
   .hero-badge { display:inline-block; margin-top:28px; padding:6px 20px; border:1px solid rgba(196,98,42,0.35); border-radius:20px; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent-lt); animation:fadeUp 1.2s ease both 0.6s; }
@@ -51,17 +51,17 @@
 
 
   :root {
-    --accent: #d4b05a;
-    --accent-lt: #e8cc78;
+    --accent: #7a5810;
+    --accent-lt: #5e4208;
   }
-  .hero { background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(184,150,58,0.07) 0%, transparent 70%); }
+  .hero { background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(122,88,16,0.06) 0%, transparent 70%); }
 
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-logo" href="index.html">YTT 200</a>
+  <a class="nav-logo" href="index.html">YTT</a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="ashtanga-yoga.html">Ashtanga</a></li>
@@ -71,7 +71,7 @@
 <section class="hero">
   <div class="hero-devanagari">योग दर्शन</div>
   <h1 class="hero-title">Yoga<br/><em>Philosophy</em></h1>
-  <div class="hero-badge">YTT Module 03 · Yoga Darshana</div>
+  <div class="hero-badge">Yoga Darshana</div>
   <p class="hero-subtitle">The Intellectual & Spiritual Foundations</p>
   <p class="hero-meaning">Chitta Vritti Nirodha — the cessation of the fluctuations of the mind. This is yoga, as defined by Patanjali.</p>
 </section>
@@ -93,7 +93,7 @@
 
 <footer>
   <span class="footer-logo">Hatha Ashtanga Vinyasa Yoga</span>
-  <p>200 Hour Yoga Teacher Training · Rishikesh, India<br/>
+  <p>Rishikesh, India<br/>
   <span style="font-size:11px;opacity:0.5;">योग दर्शन · The Vision of Yoga</span>
   </p>
 </footer>

@@ -3,27 +3,27 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Hatha Ashtanga Vinyasa Yoga — YTT 200 Hour</title>
+<title>Hatha Ashtanga Vinyasa Yoga</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Karla:wght@300;400;500&family=Noto+Serif+Devanagari:wght@300;400&display=swap" rel="stylesheet"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --bg:       #0f0d0a;
-    --bg2:      #161310;
-    --bg3:      #1e1a15;
+    :root {
+    --bg:       #faf8f5;
+    --bg2:      #f3ede5;
+    --bg3:      #e8e0d4;
     --clay:     #c4622a;
-    --clay-lt:  #e07a42;
-    --sand:     #d4b896;
-    --sand-lt:  #ecddc8;
-    --sage:     #6b8c6e;
-    --sage-lt:  #9ab89d;
-    --gold:     #b8963a;
-    --gold-lt:  #d4b05a;
-    --text:     #e8dfd0;
-    --muted:    #8a7d6e;
-    --line:     rgba(212,184,150,0.12);
-    --line-s:   rgba(212,184,150,0.25);
+    --clay-lt:  #a84e1f;
+    --sand:     #3d2c1a;
+    --sand-lt:  #1a1208;
+    --sage:     #3d6b42;
+    --sage-lt:  #2a5030;
+    --gold:     #8a6c14;
+    --gold-lt:  #6e5410;
+    --text:     #1e1a14;
+    --muted:    #3a2e22;
+    --line:     rgba(100,80,50,0.10);
+    --line-s:   rgba(100,80,50,0.22);
     --r: 8px;
   }
 
@@ -42,7 +42,7 @@
     content: '';
     position: fixed; inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 0; opacity: 0.4;
+    pointer-events: none; z-index: 0; opacity: 0.08;
   }
 
   /* NAV */
@@ -50,13 +50,13 @@
     position: fixed; top: 0; width: 100%; z-index: 100;
     padding: 18px 48px;
     display: flex; justify-content: space-between; align-items: center;
-    background: linear-gradient(to bottom, rgba(15,13,10,0.95) 0%, transparent 100%);
+    background: rgba(250,248,245,0.97); box-shadow: 0 1px 0 rgba(100,80,50,0.08);
     backdrop-filter: blur(2px);
   }
   .nav-logo {
     font-family: 'Cormorant Garamond', serif;
     font-size: 18px; font-weight: 300; letter-spacing: 0.12em;
-    color: var(--sand); text-decoration: none;
+    color: var(--clay); text-decoration: none;
   }
   .nav-links { display: flex; gap: 32px; list-style: none; }
   .nav-links a {
@@ -79,7 +79,7 @@
     font-size: clamp(20px, 3.5vw, 36px);
     font-weight: 300;
     color: var(--clay);
-    opacity: 0.65;
+    opacity: 0.90;
     letter-spacing: 0.06em;
     margin-bottom: 16px;
     animation: fadeUp 1.2s ease both 0.2s;
@@ -195,6 +195,7 @@
     border-color: var(--card-accent, rgba(196,98,42,0.45));
     transform: translateY(-3px);
     background: var(--bg3);
+    box-shadow: 0 8px 32px rgba(100,80,50,0.10);
   }
   .subject-card:hover::before {
     background: var(--card-glow-hover, rgba(196,98,42,0.04));
@@ -237,14 +238,14 @@
     padding: 4px 12px; border-radius: 12px;
   }
   .status-live {
-    background: rgba(107,140,110,0.18);
-    color: var(--sage-lt);
-    border: 1px solid rgba(107,140,110,0.3);
+    background: #ddf0e0;
+    color: #1e5030;
+    border: 1px solid rgba(42,80,48,0.3);
   }
   .status-soon {
-    background: rgba(184,150,58,0.1);
-    color: var(--gold-lt);
-    border: 1px solid rgba(184,150,58,0.25);
+    background: #f8efc8;
+    color: #5a4008;
+    border: 1px solid rgba(138,108,20,0.3);
   }
   .card-arrow {
     font-size: 18px; color: var(--card-accent-color, var(--clay));
@@ -298,7 +299,7 @@
 <body>
 
 <nav>
-  <a class="nav-logo" href="index.html">Yoga Teacher Training</a>
+  <a class="nav-logo" href="index.html">YTT</a>
   <ul class="nav-links">
     <li><a href="#subjects">Subjects</a></li>
   </ul>
@@ -308,7 +309,7 @@
 <section class="hero">
   <div class="hero-devanagari">हठ · अष्टांग · विन्यास योग</div>
   <h1 class="hero-title">Hatha Ashtanga<br/><em>Vinyasa Yoga</em></h1>
-  <div class="hero-badge">200 Hour Yoga Teacher Training · Rishikesh</div>
+  <div class="hero-badge">Rishikesh, India</div>
   <p class="hero-subtitle">A living study guide · All subjects in one place</p>
   <p class="hero-meaning">Six pillars of classical yoga — from posture and breath to philosophy, anatomy, and the depths of meditation.</p>
   <div class="hero-scroll">
@@ -407,7 +408,7 @@
 
 <footer>
   <span class="footer-logo">Hatha Ashtanga Vinyasa Yoga</span>
-  <p>200 Hour Yoga Teacher Training · Rishikesh, India<br/>
+  <p>Rishikesh, India, India<br/>
   <span style="font-size:11px;opacity:0.5;">हठ · अष्टांग · विन्यास योग</span>
   </p>
 </footer>
