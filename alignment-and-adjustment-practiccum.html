@@ -240,6 +240,61 @@ ul.bul li .kw {
   font-size: 12px; color: var(--warn); line-height: 1.6;
 }
 
+/* Long-form teaching paragraphs */
+.long-steps { display: flex; flex-direction: column; gap: 2px; margin-top: 2px; }
+.long-block {
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: white;
+  border-left: 3px solid #3a6640;
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.long-block.show { opacity: 1; transform: none; }
+.long-block:hover { border-color: rgba(184,90,36,0.3); }
+.long-block-inner { display: flex; align-items: flex-start; }
+.long-block-label {
+  width: 48px; flex-shrink: 0;
+  padding-top: 17px; text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; color: var(--sage);
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  align-self: stretch;
+  display: flex; align-items: flex-start; justify-content: center;
+  font-style: italic; line-height: 1.3;
+}
+.long-block-body { padding: 16px 20px; flex: 1; }
+.long-block-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; font-style: italic; font-weight: 400;
+  color: var(--sand); margin-bottom: 6px;
+}
+.long-block-text {
+  font-size: 13.5px; color: var(--muted); line-height: 1.75;
+}
+.long-block-text em { color: var(--clay); font-style: normal; font-weight: 500; }
+
+/* Tab toggle */
+.tab-bar {
+  display: flex; gap: 2px; margin-bottom: 16px;
+}
+.tab-btn {
+  flex: 1; padding: 9px 16px;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  background: var(--bg2); border: 1px solid var(--border);
+  color: var(--muted); cursor: pointer;
+  border-radius: 5px; transition: all 0.2s;
+}
+.tab-btn:hover { color: var(--sand); }
+.tab-btn.active {
+  background: white; color: var(--clay);
+  border-color: rgba(184,90,36,0.35);
+  font-weight: 500;
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
 /* FOOTER */
 footer {
   text-align: center;
@@ -403,232 +458,83 @@ footer p { font-size: 12px; color: var(--muted); line-height: 2; }
   <h2 class="sec-title">Teaching the Asana</h2>
   <div class="cards">
 
-    <!-- 1 -->
     <div class="card card--green">
       <div class="card-row">
         <div class="card-icon">1</div>
         <div class="card-body">
-          <div class="card-title">Start in Vajrasana</div>
-          <span class="card-sub">Foundation</span>
-          <div class="tags">
-            <span class="tag tag-note">Pre-pose · settle the breath</span>
-          </div>
+          <div class="card-title">Vajrasana — settle in</div>
           <ul class="bul">
-            <li><span class="dash">—</span><span>Sit on the heels — toes together, heels apart</span></li>
-            <li><span class="dash">—</span><span>Knees hip-width apart, spine long</span></li>
-            <li><span class="dash">—</span><span>Take two or three natural breaths to arrive</span></li>
-            <li><span class="dash">—</span><span>Offer a blanket between thighs and calves if knees are uncomfortable</span></li>
+            <li><span class="dash">—</span><span>Sit on heels, toes back, knees hip-width apart</span></li>
+            <li><span class="dash">—</span><span>Take a breath, let the body arrive</span></li>
           </ul>
-          <div class="cue">
-            <span class="cue-label">Teacher Cue</span>
-            <div class="cue-text">"Come to Vajrasana — sit on your heels. Toes together, heels apart, knees hip-width. Close your eyes and let the breath settle."</div>
-          </div>
         </div>
       </div>
     </div>
 
-    <!-- 2 -->
     <div class="card card--green">
       <div class="card-row">
         <div class="card-icon">2</div>
         <div class="card-body">
-          <div class="card-title">Rise onto the Knees</div>
-          <span class="card-sub">Setup</span>
-          <div class="tags">
-            <span class="tag tag-in">↑ Inhale — rise up</span>
-          </div>
+          <div class="card-title">Hands to waist</div>
           <ul class="bul">
-            <li><span class="dash">—</span><span>Inhale and rise to stand on the knees</span></li>
-            <li><span class="dash">—</span><span>Knees hip-width apart, thighs vertical</span></li>
-            <li><span class="dash">—</span><span>Press the center of the ankle and shin bone firmly into the mat</span></li>
-            <li><span class="dash">—</span><span>Large gap at the ankle? Place a rolled blanket underneath</span></li>
+            <li><span class="dash">—</span><span>Both hands behind the waist, thumbs close to the sacrum</span></li>
+            <li><span class="dash">—</span><span>Lift inner armpits up, roll shoulders back, draw elbows toward each other</span></li>
           </ul>
-          <div class="cue">
-            <span class="cue-label">Teacher Cue</span>
-            <div class="cue-text">"Inhale — rise onto your knees. Thighs vertical. Press the center of your ankle and shin into the ground. Gap at the ankle? Use a rolled blanket here."</div>
-          </div>
         </div>
       </div>
     </div>
 
-    <!-- 3 -->
-    <div class="card card--green">
+    <div class="card card--gold">
       <div class="card-row">
         <div class="card-icon">3</div>
         <div class="card-body">
-          <div class="card-title">Hands to Waist — Sacrum Anchor</div>
-          <span class="card-sub">Foundation</span>
-          <div class="tags">
-            <span class="tag tag-note">Both hands on lower back</span>
-          </div>
+          <div class="card-title">Rise onto the knees</div>
           <ul class="bul">
-            <li><span class="dash">—</span><span>Both hands to the back of the waist</span></li>
-            <li><span class="dash">—</span><span>Fingers wrap around the sides</span></li>
-            <li><span class="dash">—</span><span>Tips of thumbs close to the sacrum — the tailbone</span></li>
-            <li><span class="dash">—</span><span>Hands are active — they support the lower back throughout</span></li>
+            <li><span class="dash">—</span><span>Inhale and rise — engage front and back of the thighs to come up</span></li>
+            <li><span class="dash">—</span><span>Do not press the knees into the floor — power comes from the thighs, not the ground</span></li>
+            <li><span class="dash">—</span><span>Press center of ankle and shin bone down; rolled blanket under stiff ankles</span></li>
           </ul>
-          <div class="cue">
-            <span class="cue-label">Teacher Cue</span>
-            <div class="cue-text">"Both hands to the back of your waist. Fingers to the sides, thumbs toward the tailbone. This is your anchor."</div>
-          </div>
         </div>
       </div>
     </div>
 
-    <!-- 4 -->
     <div class="card card--gold">
       <div class="card-row">
         <div class="card-icon">4</div>
         <div class="card-body">
-          <div class="card-title">Open the Chest — Shoulder Action</div>
-          <span class="card-sub">Key Alignment</span>
-          <div class="tags">
-            <span class="tag tag-in">↑ Inhale — lift the inner armpits</span>
-          </div>
+          <div class="card-title">Pelvis forward, chest up</div>
           <ul class="bul">
-            <li><span class="dash">—</span><span>Lift the inner armpits upward</span></li>
-            <li><span class="dash">—</span><span>Roll shoulders back and down</span></li>
-            <li><span class="dash">—</span><span>Draw elbows toward each other behind you</span></li>
-            <li><span class="dash">—</span><span>Collar bones widen, sternum lifts</span></li>
-            <li><span class="dash">—</span><span>This must happen before leaning back — not after</span></li>
+            <li><span class="dash">—</span><span>Push hips forward — in line with the knees, not dropping back</span></li>
+            <li><span class="dash">—</span><span>Inhale: lift the sternum. Exhale: lean back slowly</span></li>
+            <li><span class="dash">—</span><span>Lift chest first, then lean — collapsing chest first compresses the lower back</span></li>
           </ul>
-          <div class="cue">
-            <span class="cue-label">Teacher Cue</span>
-            <div class="cue-text">"Lift your inner armpits — feel the chest open. Shoulders back, elbows toward each other. Sternum lifts. Open the chest here, before we lean back."</div>
-          </div>
         </div>
       </div>
     </div>
 
-    <!-- 5 -->
     <div class="card card--clay">
       <div class="card-row">
         <div class="card-icon">5</div>
         <div class="card-body">
-          <div class="card-title">Rise from the Thighs — Most Critical</div>
-          <span class="card-sub">⚑ Most Common Error</span>
-          <div class="tags">
-            <span class="tag tag-in">↑ Inhale — engage both thighs</span>
-            <span class="tag tag-warn">⚠ Do NOT press knees into the floor</span>
-          </div>
+          <div class="card-title">Hands to feet — full expression</div>
           <ul class="bul">
-            <li><span class="dash">—</span><span>Common error: pressing the knees hard down to push hips up — shifts all weight into the knee joint</span></li>
-            <li><span class="dash">—</span><span>Correct: engage the front (quadriceps) and back (hamstrings) of the thighs and rise from there</span></li>
-            <li><span class="dash">—</span><span>Knees stay relaxed on the mat — not actively pressing down</span></li>
-            <li><span class="dash">—</span><span>Power comes from the thighs, not the floor</span></li>
+            <li><span class="dash">—</span><span>Right hand to right foot, left hand to left foot</span></li>
+            <li><span class="dash">—</span><span>Chest keeps lifting, pelvis stays forward — don't collapse to reach</span></li>
+            <li><span class="dash">—</span><span>Gaze forward (not straight up) — keep the back of the neck long to avoid dizziness</span></li>
           </ul>
-          <div class="cue">
-            <span class="cue-label">Teacher Cue</span>
-            <div class="cue-text">"Engage the front and back of your thighs — quadriceps, hamstrings. Rise from your thighs. Do not press the knees into the floor. Can you feel the difference?"</div>
-          </div>
-          <div class="note">Demonstrate the wrong way first, then the right way — let students feel the contrast. This is the pedagogical heart of the pose.</div>
         </div>
       </div>
     </div>
 
-    <!-- 6 -->
-    <div class="card card--clay">
+    <div class="card card--green">
       <div class="card-row">
         <div class="card-icon">6</div>
         <div class="card-body">
-          <div class="card-title">Pelvis Forward — Begin the Backbend</div>
-          <span class="card-sub">Core Alignment</span>
-          <div class="tags">
-            <span class="tag tag-in">↑ Inhale — lift chest</span>
-            <span class="tag tag-out">↓ Exhale — lean back slowly</span>
-            <span class="tag tag-hold">Hips forward · in line with knees</span>
-          </div>
+          <div class="card-title">Exit</div>
           <ul class="bul">
-            <li><span class="dash">—</span><span>Move the pelvis forward — hip points in line with the knees</span></li>
-            <li><span class="dash">—</span><span>Do not drop the hips backward as you lean</span></li>
-            <li><span class="dash">—</span><span>Two opposing vectors: hips forward, chest back</span></li>
-            <li><span class="dash">—</span><span>Inhale — lift chest and sternum first; exhale — slowly lean back</span></li>
-            <li><span class="dash">—</span><span>Collapsing the chest first causes lumbar compression — always lift first, then lean</span></li>
+            <li><span class="dash">—</span><span>Hands to waist, exhale, lower hips back to Vajrasana</span></li>
+            <li><span class="dash">—</span><span>Fold into Child's Pose — hold 8–10 breaths</span></li>
           </ul>
-          <div class="cue">
-            <span class="cue-label">Teacher Cue</span>
-            <div class="cue-text">"Hips forward, in line with the knees. Inhale — lift the chest. Exhale — lean back slowly. Chest keeps lifting. Hips keep moving forward. Two directions at once."</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 7 -->
-    <div class="card card--gold">
-      <div class="card-row">
-        <div class="card-icon">7</div>
-        <div class="card-body">
-          <div class="card-title">Gaze — Where to Look</div>
-          <span class="card-sub">Neck &amp; Head</span>
-          <div class="tags">
-            <span class="tag tag-note">Look forward first → then gently upward</span>
-          </div>
-          <ul class="bul">
-            <li><span class="dash">—</span><span>Ideal dṛṣṭi in full expression: upward (ūrdhva)</span></li>
-            <li><span class="dash">—</span><span>For beginners — look forward first</span></li>
-            <li><span class="dash">—</span><span>Looking straight up too early crunches the cervical spine — causes dizziness and compression</span></li>
-            <li><span class="dash">—</span><span>Keep the back of the neck long; let the gaze travel upward gradually</span></li>
-          </ul>
-          <div class="cue">
-            <span class="cue-label">Teacher Cue</span>
-            <div class="cue-text">"Look forward for now — keep the back of the neck long. When ready, let the gaze travel gently upward. Do not drop the head. Feeling dizzy? Chin slowly to the chest."</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 8 -->
-    <div class="card card--clay">
-      <div class="card-row">
-        <div class="card-icon">8</div>
-        <div class="card-body">
-          <div class="card-title">Full Expression — Hands to Heels</div>
-          <span class="card-sub">Final Pose</span>
-          <div class="tags">
-            <span class="tag tag-in">↑ Inhale — one last chest lift</span>
-            <span class="tag tag-hold">Right hand → right heel · Left hand → left heel</span>
-            <span class="tag tag-hold">Hold 5–8 breaths</span>
-          </div>
-          <ul class="bul">
-            <li><span class="dash">—</span><span>Right hand to right heel, left hand to left heel</span></li>
-            <li><span class="dash">—</span><span>Pelvis continues forward, chest continues lifting</span></li>
-            <li><span class="dash">—</span><span>Full stretch across the front body — sternum, ribcage, abdomen, hip flexors, quads</span></li>
-            <li><span class="dash">—</span><span>Thigh muscles stay engaged; rib cage draws softly in to protect the lower back</span></li>
-            <li><span class="dash">—</span><span>Can't reach the heels? Hands at waist is a complete pose — never collapse just to reach</span></li>
-          </ul>
-          <div class="cue">
-            <span class="cue-label">Teacher Cue</span>
-            <div class="cue-text">"If you're ready — right hand to the right heel, left to the left. Pelvis forward. Chest lifts. Breathe here. Five breaths."</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 9 -->
-    <div class="card card--green">
-      <div class="card-row">
-        <div class="card-icon">9</div>
-        <div class="card-body">
-          <div class="card-title">Exit &amp; Counter-Pose</div>
-          <span class="card-sub">Non-Negotiable</span>
-          <div class="tags">
-            <span class="tag tag-in">↑ Inhale — lift chest</span>
-            <span class="tag tag-out">↓ Exhale — hands to waist</span>
-            <span class="tag tag-out">↓ Exhale — lower hips</span>
-            <span class="tag tag-hold">→ Bālāsana · 8–10 breaths</span>
-          </div>
-          <ul class="bul">
-            <li><span class="dash">—</span><span>Inhale — lift the chest one last time</span></li>
-            <li><span class="dash">—</span><span>Exhale — release both hands to the waist simultaneously, with control</span></li>
-            <li><span class="dash">—</span><span>Slowly lower hips back to Vajrasana</span></li>
-            <li><span class="dash">—</span><span>Fold into Bālāsana (Child's Pose) — arms extended, forehead to mat</span></li>
-            <li><span class="dash">—</span><span>Hold 8–10 breaths — spine decompresses, nervous system settles</span></li>
-          </ul>
-          <div class="cue">
-            <span class="cue-label">Teacher Cue</span>
-            <div class="cue-text">"Inhale — lift the chest one last time. Exhale — both hands to the waist. Slowly lower your hips. Fold into Child's Pose. Arms long, forehead down. Breathe here."</div>
-          </div>
-          <div class="note">Bālāsana after Ustrasana is not optional — it is the completion of the practice.</div>
         </div>
       </div>
     </div>
@@ -732,7 +638,7 @@ footer p { font-size: 12px; color: var(--muted); line-height: 2; }
 </footer>
 
 <script>
-  const cards = document.querySelectorAll('.card');
+  const cards = document.querySelectorAll('.card, .long-block');
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -743,6 +649,16 @@ footer p { font-size: 12px; color: var(--muted); line-height: 2; }
     });
   }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
   cards.forEach(c => io.observe(c));
+
+  function showTab(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+    document.querySelectorAll('.long-block').forEach(b => {
+      if (!b.classList.contains('show')) b.classList.add('show');
+    });
+  }
 
   const links = document.querySelectorAll('nav a');
   window.addEventListener('scroll', () => {
