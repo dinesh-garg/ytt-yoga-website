@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Anapana Sati — Meditation Practicum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@400;500&family=Noto+Serif+Devanagari:wght@300&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:      #faf8f5;
+  --bg2:     #f2ece3;
+  --border:  #dfd5c5;
+  --clay:    #b85a24;
+  --sand:    #2a1f10;
+  --muted:   #5a4a36;
+  --sage:    #3a6640;
+  --gold:    #7a5e10;
+  --warn:    #9a2010;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 48px;
+  background: rgba(250,248,245,0.97);
+  border-bottom: 1px solid var(--border);
+}
+.nav-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; font-weight: 300; letter-spacing: 0.06em;
+  color: var(--clay); text-decoration: none;
+}
+nav ul { display: flex; gap: 24px; list-style: none; }
+nav a {
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; transition: color 0.2s;
+}
+nav a:hover { color: var(--sand); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  padding: 100px 32px 60px;
+  position: relative;
+}
+.hero-script {
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 20px; font-weight: 300;
+  color: var(--clay); opacity: 0.55;
+  margin-bottom: 14px;
+  animation: fadeup 0.9s ease both 0.1s;
+}
+.hero-h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(52px, 9vw, 104px);
+  font-weight: 300; line-height: 0.9;
+  color: var(--sand);
+  animation: fadeup 0.9s ease both 0.2s;
+}
+.hero-h1 em { font-style: italic; color: var(--clay); }
+.hero-pills {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  justify-content: center; margin-top: 28px;
+  animation: fadeup 0.9s ease both 0.35s;
+}
+.pill {
+  font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--clay); padding: 4px 14px;
+  border: 1px solid rgba(184,90,36,0.28); border-radius: 20px;
+}
+.scroll-cue {
+  position: absolute; bottom: 36px;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); animation: fadeup 0.9s ease both 0.5s;
+}
+.scroll-cue-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, var(--clay), transparent);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* PAGE CONTAINER */
+.page { max-width: 720px; margin: 0 auto; padding: 0 32px; }
+
+/* SECTION */
+section { padding: 64px 0; border-top: 1px solid var(--border); }
+
+.sec-label {
+  display: block;
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--clay); margin-bottom: 4px;
+}
+.sec-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px; font-weight: 300;
+  color: var(--sand); margin-bottom: 28px;
+}
+
+/* CARDS */
+.cards { display: flex; flex-direction: column; gap: 2px; }
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: white;
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.card.show { opacity: 1; transform: none; }
+.card:hover { border-color: rgba(184,90,36,0.3); }
+
+.card--green { border-left: 3px solid #3a6640; }
+.card--gold  { border-left: 3px solid #7a5e10; }
+.card--clay  { border-left: 3px solid #b85a24; }
+.card--warn  { border-left: 3px solid #9a2010; background: #fffaf7; }
+
+.card-row {
+  display: flex;
+  align-items: flex-start;
+}
+
+.card-icon {
+  width: 48px;
+  flex-shrink: 0;
+  padding-top: 17px;
+  text-align: center;
+  font-size: 15px;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  align-self: stretch;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.card--warn .card-icon { background: #fdf0eb; }
+
+.card-body { padding: 16px 20px; flex: 1; min-width: 0; }
+
+.card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px; font-style: italic; font-weight: 400;
+  color: var(--sand);
+  margin-bottom: 3px;
+}
+.card-sub {
+  display: block;
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--clay); opacity: 0.75;
+  margin-bottom: 10px;
+}
+
+/* TAGS */
+.tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 11px; }
+.tag {
+  display: inline-block;
+  font-size: 11px; font-weight: 500;
+  padding: 2px 9px; border-radius: 3px;
+  white-space: nowrap;
+}
+.tag-in   { background: #e0f0e4; color: #1e5030; border: 1px solid #bcd8c2; }
+.tag-out  { background: #fde8d8; color: #7a2c10; border: 1px solid #f0c4a8; }
+.tag-hold { background: #f6edcc; color: #5a4008; border: 1px solid #ddd090; }
+.tag-note { background: #ece8e0; color: var(--muted); border: 1px solid var(--border); }
+.tag-warn { background: #fde0cc; color: #8a1c08; border: 1px solid #f0b898; }
+
+/* BULLET LIST */
+ul.bul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+ul.bul li {
+  display: flex;
+  gap: 10px;
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+ul.bul li .dash {
+  color: var(--clay);
+  flex-shrink: 0;
+  user-select: none;
+  margin-top: 1px;
+}
+ul.bul li .kw {
+  font-weight: 500;
+  color: var(--sand);
+}
+
+/* CUE BOX */
+.cue {
+  margin-top: 13px;
+  padding: 9px 14px;
+  background: rgba(184,90,36,0.04);
+  border-left: 2px solid rgba(184,90,36,0.3);
+  border-radius: 0 4px 4px 0;
+}
+.cue-label {
+  display: block;
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--clay); opacity: 0.7;
+  margin-bottom: 3px;
+}
+.cue-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px; font-style: italic;
+  color: var(--sand); line-height: 1.6;
+}
+
+/* NOTES */
+.note {
+  margin-top: 9px;
+  padding: 5px 11px;
+  background: rgba(122,94,16,0.05);
+  border-left: 2px solid rgba(122,94,16,0.35);
+  border-radius: 0 4px 4px 0;
+  font-size: 12px; color: var(--gold); line-height: 1.6;
+}
+.note-warn {
+  margin-top: 9px;
+  padding: 5px 11px;
+  background: rgba(154,32,16,0.05);
+  border-left: 2px solid rgba(154,32,16,0.35);
+  border-radius: 0 4px 4px 0;
+  font-size: 12px; color: var(--warn); line-height: 1.6;
+}
+
+/* SILENCE BLOCK — for pause indicators */
+.silence {
+  margin-top: 13px;
+  padding: 10px 16px;
+  background: rgba(58,102,64,0.04);
+  border: 1px dashed rgba(58,102,64,0.3);
+  border-radius: 5px;
+  display: flex; align-items: center; gap: 10px;
+}
+.silence-icon { font-size: 14px; flex-shrink: 0; }
+.silence-text {
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--sage); font-weight: 500;
+}
+
+/* QUOTE BLOCK */
+.quote-block {
+  margin-top: 16px;
+  padding: 18px 22px;
+  background: rgba(42,31,16,0.03);
+  border: 1px solid rgba(42,31,16,0.1);
+  border-radius: 6px;
+  text-align: center;
+}
+.quote-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-style: italic; font-weight: 300;
+  color: var(--sand); line-height: 1.5; margin-bottom: 8px;
+}
+.quote-attr {
+  font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--clay); opacity: 0.8;
+}
+
+/* MANTRA BLOCK */
+.mantra-block {
+  margin-top: 13px;
+  padding: 14px 18px;
+  background: rgba(184,90,36,0.03);
+  border: 1px solid rgba(184,90,36,0.15);
+  border-radius: 6px;
+  text-align: center;
+}
+.mantra-devanagari {
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 18px; color: var(--clay); opacity: 0.75;
+  line-height: 2; margin-bottom: 6px;
+}
+.mantra-roman {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; font-style: italic;
+  color: var(--sand); line-height: 1.9;
+}
+.mantra-repeat {
+  margin-top: 8px;
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--clay); opacity: 0.7;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 52px 32px;
+  border-top: 1px solid var(--border);
+}
+.footer-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-style: italic; font-weight: 300;
+  color: var(--clay); margin-bottom: 8px;
+}
+footer p { font-size: 12px; color: var(--muted); line-height: 2; }
+
+@keyframes fadeup { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+@keyframes pulse  { 0%,100% { opacity:0.35; } 50% { opacity:1; } }
+
+@media (max-width: 600px) {
+  nav { padding: 12px 16px; flex-wrap: wrap; gap: 8px; }
+  nav ul { gap: 12px; flex-wrap: wrap; }
+  .page { padding: 0 16px; }
+  .card-icon { width: 36px; font-size: 13px; }
+  .card-body { padding: 14px 14px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="#">YTT 200 · Meditation Practicum</a>
+  <ul>
+    <li><a href="#opening">Opening</a></li>
+    <li><a href="#mantra">Mantra</a></li>
+    <li><a href="#sequence">Sequence</a></li>
+    <li><a href="#savasana">Savasana</a></li>
+    <li><a href="#closing">Closing</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-script">आनापान सति · श्वास की माइंडफुलनेस</div>
+  <h1 class="hero-h1">Anapana Sati<br><em>Meditation Practicum</em></h1>
+  <div class="hero-pills">
+    <span class="pill">Meditation Practicum</span>
+    <span class="pill">Mindfulness of Breath</span>
+    <span class="pill">Ānāpānasati</span>
+    <span class="pill">Ājñā &amp; Anāhata</span>
+  </div>
+  <div class="scroll-cue">
+    <div class="scroll-cue-line"></div>
+    scroll
+  </div>
+</section>
+
+<div class="page">
+
+<!-- OPENING -->
+<section id="opening">
+  <span class="sec-label">01</span>
+  <h2 class="sec-title">Opening — Greetings &amp; Introduction</h2>
+  <div class="cards">
+
+    <div class="card card--green">
+      <div class="card-row">
+        <div class="card-icon">🙏</div>
+        <div class="card-body">
+          <div class="card-title">Enter &amp; Settle the Room</div>
+          <span class="card-sub">Before You Speak</span>
+          <div class="tags">
+            <span class="tag tag-note">Stand · Smile · Eye contact</span>
+            <span class="tag tag-note">Let silence land first</span>
+          </div>
+          <ul class="bul">
+            <li><span class="dash">—</span><span>Enter calmly — let your own stillness set the tone before you say a word</span></li>
+            <li><span class="dash">—</span><span>Make natural, gentle eye contact with the group; smile without performing</span></li>
+            <li><span class="dash">—</span><span>Wait until the room quiets on its own — do not rush the beginning</span></li>
+          </ul>
+          <div class="cue">
+            <span class="cue-label">Opening Voice</span>
+            <div class="cue-text">"Namaste, everyone. Welcome. I'm so grateful to share this space and this time with you today. My name is Dinesh, and today I'll be guiding you through a practice of Anapana Sati — mindfulness of the breath."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--green">
+      <div class="card-row">
+        <div class="card-icon">📖</div>
+        <div class="card-body">
+          <div class="card-title">Context — What is Anapana Sati?</div>
+          <span class="card-sub">Brief Introduction · 60 seconds</span>
+          <ul class="bul">
+            <li><span class="dash">—</span><span>One of the oldest and most complete meditation techniques — taught by the Buddha in the Ānāpānasati Sutta</span></li>
+            <li><span class="dash">—</span><span>Ānā = incoming breath · Apāna = outgoing breath · Sati = mindfulness / awareness</span></li>
+            <li><span class="dash">—</span><span>Foundational to Vipassana, Zen, and Theravada traditions</span></li>
+            <li><span class="dash">—</span><span>The only tool needed: your own breath — always present, always available</span></li>
+          </ul>
+          <div class="cue">
+            <span class="cue-label">Teacher Voice</span>
+            <div class="cue-text">"This is one of the oldest and most powerful meditation techniques, taught by the Buddha himself. All you need to bring is your breath — and your full, gentle attention."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MANTRA -->
+<section id="mantra">
+  <span class="sec-label">02</span>
+  <h2 class="sec-title">Mantra — Vakratuṇḍa Mahākāya</h2>
+  <div class="cards">
+
+    <div class="card card--clay">
+      <div class="card-row">
+        <div class="card-icon">🕉</div>
+        <div class="card-body">
+          <div class="card-title">Invocation of Ganesha</div>
+          <span class="card-sub">Obstacle Remover · Before Practice</span>
+          <div class="tags">
+            <span class="tag tag-hold">Anjali Mudra · Palms at heart</span>
+            <span class="tag tag-hold">Chant × 3</span>
+          </div>
+          <ul class="bul">
+            <li><span class="dash">—</span><span>Sit down. Bring palms together at heart center — Añjali Mudrā</span></li>
+            <li><span class="dash">—</span><span>Close your eyes briefly; invite the group to do the same</span></li>
+            <li><span class="dash">—</span><span>Chant slowly and with intention — 3 repetitions</span></li>
+            <li><span class="dash">—</span><span>Hold silence for one full breath after the third repetition before continuing</span></li>
+          </ul>
+          <div class="cue">
+            <span class="cue-label">Teacher Voice</span>
+            <div class="cue-text">"Let us begin by invoking Ganesha — the remover of obstacles — so that whatever is in the way of our stillness today may be gently cleared."</div>
+          </div>
+          <div class="mantra-block">
+            <div class="mantra-devanagari">
+              वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ<br>
+              निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा
+            </div>
+            <div class="mantra-roman">
+              Vakratuṇḍa Mahākāya · Sūryakoṭi Samaprabha<br>
+              Nirvighnaṃ Kuru Me Deva · Sarva Kāryeṣu Sarvadā
+            </div>
+            <div class="mantra-repeat">Repeat × 3 · Hold silence after final repetition</div>
+          </div>
+          <div class="note">Meaning — O Lord with the curved trunk and great form, radiant as a million suns: make all my endeavours free from obstacles, always.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SEQUENCE -->
+<section id="sequence">
+  <span class="sec-label">03</span>
+  <h2 class="sec-title">Sequence — Anapana Sati Meditation</h2>
+  <div class="cards">
+
+    <!-- 1 -->
+    <div class="card card--green">
+      <div class="card-row">
+        <div class="card-icon">1</div>
+        <div class="card-body">
+          <div class="card-title">Body Settling — Find Your Seat</div>
+          <span class="card-sub">Foundation · Arrive in the Body</span>
+          <div class="tags">
+            <span class="tag tag-note">Sukhasana · or any comfortable seat</span>
+            <span class="tag tag-note">Spine tall · Shoulders down</span>
+          </div>
+          <ul class="bul">
+            <li><span class="dash">—</span><span>Cross-legged or whatever the body allows — comfort over posture perfection here</span></li>
+            <li><span class="dash">—</span><span>Spine rises gently, as if a thread draws the crown toward the ceiling</span></li>
+            <li><span class="dash">—</span><span>Hands on knees — palms down (grounding) or palms up (receiving)</span></li>
+            <li><span class="dash">—</span><span>Shoulders melt away from the ears; jaw softens; face relaxes</span></li>
+            <li><span class="dash">—</span><span>Gently close the eyes</span></li>
+          </ul>
+          <div class="cue">
+            <span class="cue-label">Teacher Cue</span>
+            <div class="cue-text">"Find a comfortable seated position. Sit tall — let your spine rise gently. Shoulders melt away from your ears. Soften your jaw. Soften your face. Gently... close your eyes."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="card card--green">
+      <div class="card-row">
+        <div class="card-icon">2</div>
+        <div class="card-body">
+          <div class="card-title">Breath Awareness — The Anchor</div>
+          <span class="card-sub">Core Practice · Return Here Always</span>
+          <div class="tags">
+            <span class="tag tag-in">↑ Inhale — feel the coolness</span>
+            <span class="tag tag-out">↓ Exhale — feel the warmth</span>
+            <span class="tag tag-note">Focus: nostrils · rim · vibrations</span>
+          </div>
+          <ul class="bul">
+            <li><span class="dash">—</span><span>Do not control or change the breath — simply observe it as it is</span></li>
+            <li><span class="dash">—</span><span>Bring all attention to the nostrils — right here, at this precise point</span></li>
+            <li><span class="dash">—</span><span>Notice the coolness of air flowing in; the warmth flowing out</span></li>
+            <li><span class="dash">—</span><span>Feel the subtle vibrations and the gentle touch of air on the rim of the nostrils</span></li>
+            <li><span class="dash">—</span><span>Notice the rise and fall of the chest and belly with each breath</span></li>
+            <li><span class="dash">—</span><span>This is the anchor — the breath is always here, always with you</span></li>
+          </ul>
+          <div class="cue">
+            <span class="cue-label">Teacher Cue</span>
+            <div class="cue-text">"Breathe in... and breathe out. Follow the breath as it enters through your nostrils. Feel the coolness as it flows in. The warmth as it flows back out. Can you feel the subtle vibrations — the gentle touch of air at the nostrils? This is your anchor. Stay here."</div>
+          </div>
+          <div class="silence">
+            <span class="silence-icon">〰</span>
+            <span class="silence-text">Pause — 30 to 45 seconds of held silence</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="card card--gold">
+      <div class="card-row">
+        <div class="card-icon">3</div>
+        <div class="card-body">
+          <div class="card-title">Working with Thoughts</div>
+          <span class="card-sub">The Heart of the Practice</span>
+          <div class="tags">
+            <span class="tag tag-warn">⚠ Do NOT fight or suppress thoughts</span>
+            <span class="tag tag-hold">Notice → Watch → Return</span>
+          </div>
+          <ul class="bul">
+            <li><span class="dash">—</span><span>The mind will wander — this is not failure, this is what minds do</span></li>
+            <li><span class="dash">—</span><span>When a thought arises: memory, plan, worry, sound — do not fight it</span></li>
+            <li><span class="dash">—</span><span>Simply notice: "Ah — a thought has come." Name it silently if helpful</span></li>
+            <li><span class="dash">—</span><span>Watch it — like a cloud passing through the sky. You are the sky. The thought is the cloud.</span></li>
+            <li><span class="dash">—</span><span>Let it pass without following it — then gently return to the breath</span></li>
+            <li><span class="dash">—</span><span>Every moment of noticing and returning IS the practice. That moment of return is the meditation.</span></li>
+          </ul>
+          <div class="cue">
+            <span class="cue-label">Teacher Cue</span>
+            <div class="cue-text">"When a thought comes — do not fight it. Do not judge yourself. Simply notice. 'A thought has come.' Just watch it — like a cloud passing through the sky. You are the sky. Let it pass. And gently... bring your attention back. Back to the nostrils. Back to the breath."</div>
+          </div>
+          <div class="silence">
+            <span class="silence-icon">〰</span>
+            <span class="silence-text">Pause — 45 to 60 seconds of held silence</span>
+          </div>
+          <div class="note">Remind students: the moment of noticing distraction and returning is not a failure — it is the practice itself. Repeat this teaching if needed.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="card card--gold">
+      <div class="card-row">
+        <div class="card-icon">4</div>
+        <div class="card-body">
+          <div class="card-title">Body Scan — Head to Toe</div>
+          <span class="card-sub">Vipassanā Element · Sensation Awareness</span>
+          <div class="tags">
+            <span class="tag tag-hold">Crown → Forehead → Face → Neck</span>
+            <span class="tag tag-hold">Chest → Belly → Hips → Feet</span>
+            <span class="tag tag-note">Observe only · do not change</span>
+          </div>
+          <ul class="bul">
+            <li><span class="dash">—</span><span>Move awareness slowly — do not rush through any region</span></li>
+            <li><span class="dash">—</span><span>At each area: simply observe. Warmth, tingling, pressure, heaviness, or nothing — all are valid</span></li>
+            <li><span class="dash">—</span><span>Do not try to relax or change anything — only observe what is already there</span></li>
+            <li><span class="dash">—</span><span>Entire body: present, alive, breathing</span></li>
+          </ul>
+          <div class="cue">
+            <span class="cue-label">Teacher Cue — Full Body Scan (speak slowly)</span>
+            <div class="cue-text">"Begin at the crown of your head... observe. Move down to the forehead... the temples... the eyes... the cheeks... the jaw. The neck and throat. The shoulders... and down through both arms... the elbows... the wrists... the fingertips. Feel whatever is there — warmth, heaviness, pulsing. Now the chest — feel it rise with every inhale, fall with every exhale. The upper back... mid-back... the belly. Move down to the hips... the thighs... the knees. The calves... the ankles... the feet... and the very tips of your toes. Your entire body — present. Alive. Breathing."</div>
+          </div>
+          <div class="silence">
+            <span class="silence-icon">〰</span>
+            <span class="silence-text">Pause — 30 seconds · then return to breath at nostrils</span>
+          </div>
+          <div class="cue" style="margin-top:10px">
+            <span class="cue-label">Return Cue</span>
+            <div class="cue-text">"Now bring the awareness back to the breath once more. Nostrils. Vibrations. In... and out. In... and out."</div>
+          </div>
+          <div class="silence">
+            <span class="silence-icon">〰</span>
+            <span class="silence-text">Final hold — 30 to 45 seconds of silence</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SAVASANA -->
+<section id="savasana">
+  <span class="sec-label">04</span>
+  <h2 class="sec-title">Savasana — Complete Rest</h2>
+  <div class="cards">
+
+    <div class="card card--clay">
+      <div class="card-row">
+        <div class="card-icon">☽</div>
+        <div class="card-body">
+          <div class="card-title">Transition to Corpse Pose</div>
+          <span class="card-sub">Śavāsana · शवासन</span>
+          <div class="tags">
+            <span class="tag tag-note">Slowly lower to the back</span>
+            <span class="tag tag-note">Legs extended · Palms up</span>
+            <span class="tag tag-hold">Hold — 2 to 3 minutes minimum</span>
+          </div>
+          <ul class="bul">
+            <li><span class="dash">—</span><span>Guide the transition slowly and quietly — no abrupt instructions</span></li>
+            <li><span class="dash">—</span><span>Legs extend fully; feet fall naturally outward</span></li>
+            <li><span class="dash">—</span><span>Arms rest by the sides — palms facing upward: open, receiving</span></li>
+            <li><span class="dash">—</span><span>The floor holds the body completely — no effort required</span></li>
+            <li><span class="dash">—</span><span>Savasana is not sleep — it is conscious, effortless awareness</span></li>
+          </ul>
+          <div class="cue">
+            <span class="cue-label">Teacher Cue</span>
+            <div class="cue-text">"Now, very gently, begin to let go of any effort at all. Slowly lower yourself down onto your back. Legs extend fully. Arms rest by your sides — palms facing upward, open, receiving. Let the floor hold you completely. You don't need to do anything. You have nowhere to be but here. Let the body be heavy. Let the breath be natural. Let the mind rest."</div>
+          </div>
+          <div class="silence">
+            <span class="silence-icon">〰</span>
+            <span class="silence-text">2 to 3 minutes of deep silence — do not speak</span>
+          </div>
+          <div class="note">This is the most important part of the practice. Do not shorten it. The integration of the meditation happens here.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--green">
+      <div class="card-row">
+        <div class="card-icon">↑</div>
+        <div class="card-body">
+          <div class="card-title">Coming Back Up</div>
+          <span class="card-sub">Re-emergence · Slow &amp; Intentional</span>
+          <div class="tags">
+            <span class="tag tag-in">↑ Deepen the breath</span>
+            <span class="tag tag-note">Fingers → Toes → Right side → Sit up</span>
+          </div>
+          <ul class="bul">
+            <li><span class="dash">—</span><span>Begin by deepening the breath — no sudden cues</span></li>
+            <li><span class="dash">—</span><span>Invite gentle movement of fingers, then toes</span></li>
+            <li><span class="dash">—</span><span>Roll to the right side — use the arm as a pillow; stay here for one full breath</span></li>
+            <li><span class="dash">—</span><span>Slowly press up to seated — no rush, no force</span></li>
+            <li><span class="dash">—</span><span>Wait in silence until the entire group has returned and settled</span></li>
+          </ul>
+          <div class="cue">
+            <span class="cue-label">Teacher Cue</span>
+            <div class="cue-text">"Slowly begin to bring your awareness back to the room. Start to deepen the breath — feel the air filling your lungs. Gently wiggle your fingers... your toes. Roll to your right side, using your arm as a pillow. Stay here for a breath. And slowly, gently — press yourself up to a comfortable seated position. Take your time."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section id="closing">
+  <span class="sec-label">05</span>
+  <h2 class="sec-title">Closing — Gratitude &amp; Quote</h2>
+  <div class="cards">
+
+    <div class="card card--gold">
+      <div class="card-row">
+        <div class="card-icon">🙏</div>
+        <div class="card-body">
+          <div class="card-title">Anjali Mudra — Return to Stillness</div>
+          <span class="card-sub">Closing Gesture</span>
+          <ul class="bul">
+            <li><span class="dash">—</span><span>Bring palms together at the heart — Añjali Mudrā</span></li>
+            <li><span class="dash">—</span><span>Bow slightly; guide the group to mirror you</span></li>
+            <li><span class="dash">—</span><span>Pause here — feel the warmth of the palms at the heart center</span></li>
+          </ul>
+          <div class="cue">
+            <span class="cue-label">Teacher Voice</span>
+            <div class="cue-text">"Bring your hands to your heart. Feel the warmth there. Before we close, I'd like to leave you with a few words."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--clay">
+      <div class="card-row">
+        <div class="card-icon">✦</div>
+        <div class="card-body">
+          <div class="card-title">Closing Quote</div>
+          <span class="card-sub">Thich Nhat Hanh</span>
+          <div class="quote-block">
+            <div class="quote-text">"The present moment is the only moment available to us — and it is the door to all moments."</div>
+            <div class="quote-attr">— Thich Nhat Hanh</div>
+          </div>
+          <div class="cue" style="margin-top:14px">
+            <span class="cue-label">Closing Teacher Voice</span>
+            <div class="cue-text">"Carry that stillness with you as you step back into your day. The breath is always there — your anchor, your home. Thank you for this practice. Thank you for your presence."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--green">
+      <div class="card-row">
+        <div class="card-icon">🕉</div>
+        <div class="card-body">
+          <div class="card-title">Namaste — Closing Chant</div>
+          <span class="card-sub">Final Offering</span>
+          <div class="tags">
+            <span class="tag tag-hold">Anjali Mudra</span>
+            <span class="tag tag-note">Bow</span>
+          </div>
+          <div class="mantra-block">
+            <div class="mantra-devanagari">ॐ शान्तिः शान्तिः शान्तिः</div>
+            <div class="mantra-roman">Om Śāntiḥ · Śāntiḥ · Śāntiḥ</div>
+            <div class="mantra-repeat">Peace in body · Peace in mind · Peace in spirit</div>
+          </div>
+          <div class="cue" style="margin-top:12px">
+            <span class="cue-label">Final Word</span>
+            <div class="cue-text">"Namaste. 🙏"</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</div><!-- /page -->
+
+<footer>
+  <div class="footer-title">Anapana Sati — Meditation Practicum</div>
+  <p>आनापान सति · श्वास की माइंडफुलनेस<br>200 Hour Yoga Teacher Training · Rishikesh, India</p>
+</footer>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const i = Array.from(e.target.parentNode.children).indexOf(e.target);
+        setTimeout(() => e.target.classList.add('show'), i * 50);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+  cards.forEach(c => io.observe(c));
+
+  const links = document.querySelectorAll('nav a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    document.querySelectorAll('section[id]').forEach(s => {
+      if (window.scrollY >= s.offsetTop - 180) cur = s.id;
+    });
+    links.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--sand)' : '';
+    });
+  });
+</script>
+</body>
+</html>
