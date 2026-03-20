@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hatha Yoga Practicum — Teaching Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Karla:wght@300;400;500&family=Noto+Serif+Devanagari:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:      #faf8f5;
+    --bg2:     #f3ede5;
+    --bg3:     #e8e0d4;
+    --clay:    #c4622a;
+    --clay-lt: #a84e1f;
+    --sand:    #3d2c1a;
+    --sand-lt: #1a1208;
+    --sage:    #3d6b42;
+    --sage-lt: #2a5030;
+    --gold:    #8a6c14;
+    --gold-lt: #6e5410;
+    --text:    #1e1a14;
+    --muted:   #3a2e22;
+    --line:    rgba(100,80,50,0.10);
+    --line-s:  rgba(100,80,50,0.22);
+    --r: 8px;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family:'Karla',sans-serif; background:var(--bg); color:var(--text); font-size:16px; line-height:1.7; overflow-x:hidden; }
+  body::before { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events:none; z-index:0; opacity:0.08; }
+
+  /* NAV */
+  nav { position:fixed; top:0; width:100%; z-index:100; padding:18px 48px; display:flex; justify-content:space-between; align-items:center; background:rgba(250,248,245,0.97); box-shadow:0 1px 0 rgba(100,80,50,0.08); backdrop-filter:blur(2px); }
+  .nav-logo { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; letter-spacing:0.12em; color:var(--clay); text-decoration:none; }
+  .nav-links { display:flex; gap:32px; list-style:none; }
+  .nav-links a { font-size:13px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--sand-lt); }
+
+  /* HERO */
+  .hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:120px 24px 80px; position:relative; background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(196,98,42,0.07) 0%,transparent 70%); }
+  .hero-devanagari { font-family:'Noto Serif Devanagari',serif; font-size:clamp(20px,3.5vw,40px); font-weight:300; color:var(--clay); opacity:0.65; letter-spacing:0.04em; margin-bottom:10px; animation:fadeUp 1.2s ease both 0.2s; }
+  .hero-title { font-family:'Cormorant Garamond',serif; font-size:clamp(52px,9vw,104px); font-weight:300; line-height:0.9; letter-spacing:-0.02em; color:var(--sand-lt); animation:fadeUp 1.2s ease both 0.4s; }
+  .hero-title em { font-style:italic; color:var(--clay-lt); }
+  .hero-badge { display:inline-block; margin-top:28px; padding:6px 20px; border:1px solid rgba(196,98,42,0.35); border-radius:20px; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--clay-lt); animation:fadeUp 1.2s ease both 0.6s; }
+  .hero-subtitle { margin-top:14px; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); animation:fadeUp 1.2s ease both 0.65s; }
+  .hero-meaning { margin-top:32px; max-width:560px; font-family:'Cormorant Garamond',serif; font-size:clamp(17px,2.2vw,21px); font-style:italic; font-weight:300; color:var(--sand); line-height:1.65; animation:fadeUp 1.2s ease both 0.8s; }
+  .hero-scroll { position:absolute; bottom:40px; display:flex; flex-direction:column; align-items:center; gap:8px; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); animation:fadeUp 1.2s ease both 1s; }
+  .hero-scroll-line { width:1px; height:48px; background:linear-gradient(to bottom,var(--clay),transparent); animation:scrollPulse 2s ease-in-out infinite; }
+
+  /* DIVIDER */
+  .divider { width:100%; height:1px; background:linear-gradient(to right,transparent,var(--line-s) 30%,var(--line-s) 70%,transparent); }
+
+  /* SEQUENCE OVERVIEW */
+  .sequence-overview-section { padding:80px 48px; background:var(--bg2); border-bottom:1px solid var(--line); }
+  .sequence-overview-inner { max-width:860px; margin:0 auto; }
+  .overview-header { text-align:center; margin-bottom:48px; }
+  .overview-label { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--clay); display:block; margin-bottom:12px; }
+  .overview-title { font-family:'Cormorant Garamond',serif; font-size:clamp(32px,4.5vw,52px); font-weight:300; color:var(--sand-lt); line-height:1.1; margin-bottom:10px; }
+  .overview-subtitle { font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); }
+  .overview-steps { display:flex; flex-direction:column; gap:2px; }
+  .overview-step { display:grid; grid-template-columns:56px 1fr; background:var(--bg3); border:1px solid var(--line); border-radius:var(--r); overflow:hidden; transition:border-color 0.2s,transform 0.2s; }
+  .overview-step:hover { border-color:rgba(196,98,42,0.45); transform:translateX(2px); }
+  .overview-step--sage { border-left:3px solid rgba(61,107,66,0.5); }
+  .overview-step--gold { border-left:3px solid rgba(184,150,58,0.5); }
+  .overview-step--clay { border-left:3px solid rgba(196,98,42,0.6); }
+  .step-num { display:flex; align-items:flex-start; justify-content:center; padding-top:20px; font-family:'Cormorant Garamond',serif; font-size:15px; font-weight:600; color:var(--muted); background:var(--bg2); border-right:1px solid var(--line); }
+  .overview-step--sage .step-num { color:var(--sage-lt); }
+  .overview-step--gold .step-num { color:var(--gold-lt); }
+  .overview-step--clay .step-num { color:var(--clay-lt); }
+  .step-body { padding:18px 24px; }
+  .step-title { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; font-style:italic; color:var(--sand-lt); margin-bottom:6px; line-height:1.1; }
+  .step-desc { font-size:13px; color:var(--muted); line-height:1.75; }
+  .step-asana-grid { margin-top:12px; display:flex; flex-direction:column; gap:1px; }
+  .step-asana-row { display:grid; grid-template-columns:28px 1fr 1fr; align-items:baseline; padding:4px 8px; border-radius:4px; transition:background 0.15s; }
+  .step-asana-row:hover { background:rgba(100,80,50,0.05); }
+  .asana-pos { font-family:'Cormorant Garamond',serif; font-size:12px; color:var(--clay); font-weight:600; }
+  .asana-skt-sm { font-family:'Cormorant Garamond',serif; font-size:13px; font-style:italic; color:var(--sand); }
+  .asana-eng-sm { font-size:11px; color:var(--muted); padding-left:8px; }
+
+  /* SECTION BLOCKS */
+  .sequence-block { padding:80px 48px; max-width:1100px; margin:0 auto; }
+  .block-header { display:flex; align-items:baseline; gap:20px; margin-bottom:48px; flex-wrap:wrap; }
+  .block-label { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--clay); font-weight:500; white-space:nowrap; }
+  .block-title { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,4vw,42px); font-weight:300; color:var(--sand-lt); line-height:1; }
+  .block-line { flex:1; height:1px; background:var(--line); min-width:20px; }
+  .block-rounds { font-size:11px; letter-spacing:0.1em; color:var(--sage-lt); padding:3px 12px; border:1px solid rgba(61,107,66,0.3); border-radius:12px; white-space:nowrap; }
+  .block-note { font-size:13px; color:var(--muted); margin-bottom:28px; margin-top:-20px; line-height:1.8; }
+
+  /* ASANA CARDS */
+  .asana-list { display:flex; flex-direction:column; gap:2px; }
+  .asana-card { display:grid; grid-template-columns:56px 1fr; border:1px solid var(--line); border-radius:var(--r); overflow:hidden; background:var(--bg2); opacity:0; transform:translateY(16px); transition:opacity 0.5s ease,transform 0.5s ease,border-color 0.2s; }
+  .asana-card.visible { opacity:1; transform:translateY(0); }
+  .asana-card:hover { border-color:rgba(196,98,42,0.55); transform:translateY(-1px); box-shadow:0 4px 16px rgba(100,80,50,0.08); }
+  .asana-num { display:flex; align-items:center; justify-content:center; background:var(--bg3); border-right:1px solid var(--line); font-family:'Cormorant Garamond',serif; font-size:15px; font-weight:300; color:var(--clay); padding:16px 4px; min-height:72px; }
+  .asana-body { padding:18px 24px; }
+  .asana-names { margin-bottom:8px; }
+  .asana-skt { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; font-style:italic; color:var(--sand-lt); line-height:1.1; }
+  .asana-eng { font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--sage-lt); margin-top:3px; }
+  .asana-instruction { font-size:14px; color:var(--muted); line-height:1.75; margin-bottom:10px; }
+  .asana-instruction strong { color:var(--sand); font-weight:500; }
+  .asana-note { margin-top:8px; font-size:12px; color:var(--clay-lt); padding:5px 12px; border-left:2px solid rgba(196,98,42,0.5); background:rgba(196,98,42,0.07); border-radius:0 4px 4px 0; line-height:1.6; }
+  .breath-tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px; }
+  .tag { display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:500; letter-spacing:0.04em; padding:3px 10px; border-radius:4px; }
+  .tag-in   { background:#ddf0e0; color:#1e5030; border:1px solid rgba(42,80,48,0.25); }
+  .tag-out  { background:#fde8d8; color:#8a3010; border:1px solid rgba(168,78,31,0.25); }
+  .tag-hold { background:#f8efc8; color:#5a4008; border:1px solid rgba(138,108,20,0.25); }
+  .tag-note { background:#f0e8dc; color:var(--muted); border:1px solid rgba(100,80,50,0.20); }
+  .side-pill { display:inline-block; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; padding:2px 10px; border-radius:10px; background:rgba(184,150,58,0.12); color:var(--gold-lt); margin-top:4px; margin-bottom:6px; }
+  .side-divider { display:flex; align-items:center; gap:16px; margin:24px 0 16px; }
+  .side-divider-line { flex:1; height:1px; background:var(--line); }
+  .side-divider-label { font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--clay); white-space:nowrap; }
+
+  /* TRANSITION BAND */
+  .transition-band { display:flex; align-items:center; gap:16px; padding:16px 32px; background:var(--bg3); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin:0; }
+  .transition-band-arrow { font-family:'Cormorant Garamond',serif; font-size:22px; color:var(--clay); opacity:0.6; flex-shrink:0; }
+  .transition-band-text { font-size:13px; font-style:italic; color:var(--muted); line-height:1.6; }
+  .transition-band-text strong { font-style:normal; color:var(--sand); font-weight:500; }
+
+  /* COLOR LEGEND */
+  .legend-bar { display:flex; flex-wrap:wrap; gap:20px; padding:20px 48px; background:var(--bg2); border-bottom:1px solid var(--line); max-width:100%; }
+  .legend-item { display:flex; align-items:center; gap:8px; font-size:11px; letter-spacing:0.06em; color:var(--muted); }
+  .legend-swatch { width:14px; height:14px; border-radius:3px; flex-shrink:0; }
+
+  /* FOOTER */
+  footer { padding:60px 48px; text-align:center; border-top:1px solid var(--line); }
+  footer p { font-size:12px; color:var(--muted); letter-spacing:0.08em; line-height:2; }
+  .footer-logo { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; font-style:italic; color:var(--clay); margin-bottom:12px; display:block; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes scrollPulse { 0%,100%{opacity:0.4;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.15)} }
+
+  @media(max-width:768px){
+    nav{padding:16px 20px;flex-wrap:wrap;gap:10px}
+    .nav-links{flex-wrap:wrap;gap:16px}
+    .sequence-block{padding:60px 20px}
+    .sequence-overview-section{padding:60px 20px}
+    .legend-bar{padding:16px 20px;gap:14px}
+    footer{padding:40px 20px}
+    .transition-band{padding:14px 20px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">YTT 200</a>
+  <ul class="nav-links">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#standing">Standing</a></li>
+    <li><a href="#sitting">Sitting</a></li>
+    <li><a href="#cooldown">Cool Down</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-devanagari">आसन शिक्षण मार्गदर्शिका</div>
+  <h1 class="hero-title">Hatha Yoga<br/><em>Practicum</em></h1>
+  <span class="hero-badge">YTT 200 · Hatha Yoga Practicum Exam · Rishikesh</span>
+  <p class="hero-subtitle">Teaching Reference Guide</p>
+  <p class="hero-meaning">A structured teaching reference for the Hatha Yoga Practicum exam — standing sequence, sitting sequence, and cool-down with full breath cues, transitions, and instruction notes.</p>
+  <div class="hero-scroll"><div class="hero-scroll-line"></div>scroll</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BREATH LEGEND -->
+<div class="legend-bar">
+  <div class="legend-item"><div class="legend-swatch" style="background:#3d6b42"></div>Standing section</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:#8a6c14"></div>Sitting section</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:#c4622a"></div>Cool-down section</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:#2a5030; border-radius:2px"></div>Inhale cue</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:#8a3010; border-radius:2px"></div>Exhale cue</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:#5a4008; border-radius:2px"></div>Hold / breath count</div>
+</div>
+
+<!-- CLASS OVERVIEW -->
+<div id="overview" class="sequence-overview-section">
+  <div class="sequence-overview-inner">
+    <div class="overview-header">
+      <span class="overview-label">Hatha Yoga · YTT 200</span>
+      <h2 class="overview-title">Class at a Glance</h2>
+      <p class="overview-subtitle">A quick-reference map of the entire sequence</p>
+    </div>
+    <div class="overview-steps">
+
+      <div class="overview-step overview-step--sage">
+        <div class="step-num">A</div>
+        <div class="step-body">
+          <div class="step-title">Standing Asanas — 7 Poses</div>
+          <div class="step-desc">Root → grow tall → expand laterally → open hips → fold forward. Hold each for 5 breaths. Do both sides before moving on.</div>
+          <div class="step-asana-grid">
+            <div class="step-asana-row"><span class="asana-pos">1</span><span class="asana-skt-sm">Tāḍāsana</span><span class="asana-eng-sm">Palm Tree / Mountain</span></div>
+            <div class="step-asana-row"><span class="asana-pos">2</span><span class="asana-skt-sm">Tiryaka Tāḍāsana</span><span class="asana-eng-sm">Swaying Palm Tree</span></div>
+            <div class="step-asana-row"><span class="asana-pos">3</span><span class="asana-skt-sm">Trikoṇāsana</span><span class="asana-eng-sm">Triangle Pose</span></div>
+            <div class="step-asana-row"><span class="asana-pos">4</span><span class="asana-skt-sm">Utthita Pārśvakoṇāsana</span><span class="asana-eng-sm">Extended Side Angle</span></div>
+            <div class="step-asana-row"><span class="asana-pos">5</span><span class="asana-skt-sm">Vīrabhadrāsana II</span><span class="asana-eng-sm">Warrior II</span></div>
+            <div class="step-asana-row"><span class="asana-pos">6</span><span class="asana-skt-sm">Vīrabhadrāsana I</span><span class="asana-eng-sm">Warrior I</span></div>
+            <div class="step-asana-row"><span class="asana-pos">7</span><span class="asana-skt-sm">Pādāṅguṣṭhāsana</span><span class="asana-eng-sm">Big Toe Pose</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="overview-step overview-step--gold">
+        <div class="step-num">B</div>
+        <div class="step-body">
+          <div class="step-title">Sitting Asanas — 4 Poses</div>
+          <div class="step-desc">Establish the seat → fold bilaterally → fold unilaterally → counter-pose backbend to neutralise.</div>
+          <div class="step-asana-grid">
+            <div class="step-asana-row"><span class="asana-pos">1</span><span class="asana-skt-sm">Daṇḍāsana</span><span class="asana-eng-sm">Staff Pose</span></div>
+            <div class="step-asana-row"><span class="asana-pos">2</span><span class="asana-skt-sm">Paścimottānāsana</span><span class="asana-eng-sm">Seated Forward Bend</span></div>
+            <div class="step-asana-row"><span class="asana-pos">3</span><span class="asana-skt-sm">Jānu Śīrṣāsana</span><span class="asana-eng-sm">Head-to-Knee Pose</span></div>
+            <div class="step-asana-row"><span class="asana-pos">4</span><span class="asana-skt-sm">Pūrvottānāsana</span><span class="asana-eng-sm">Upward Plank</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="overview-step overview-step--clay">
+        <div class="step-num">C</div>
+        <div class="step-body">
+          <div class="step-title">Cool Down &amp; Śavāsana</div>
+          <div class="step-desc">Release supine → decompress → twist to neutralise → final surrender. If time permits, include all four.</div>
+          <div class="step-asana-grid">
+            <div class="step-asana-row"><span class="asana-pos">①</span><span class="asana-skt-sm">Bālāsana</span><span class="asana-eng-sm">Child's Pose · if time permits</span></div>
+            <div class="step-asana-row"><span class="asana-pos">②</span><span class="asana-skt-sm">Apānāsana</span><span class="asana-eng-sm">Hug knees · rock gently</span></div>
+            <div class="step-asana-row"><span class="asana-pos">③</span><span class="asana-skt-sm">Supta Matsyendrāsana</span><span class="asana-eng-sm">Supine twist · left then right</span></div>
+            <div class="step-asana-row"><span class="asana-pos">④</span><span class="asana-skt-sm">Śavāsana</span><span class="asana-eng-sm">Corpse Pose · min. 5 minutes</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- STANDING SEQUENCE                       -->
+<!-- ═══════════════════════════════════════ -->
+
+<div id="standing" class="sequence-block">
+  <div class="block-header">
+    <span class="block-label">Section A · Standing</span>
+    <h2 class="block-title">Standing Sequence</h2>
+    <div class="block-line"></div>
+    <span class="block-rounds">7 Poses · 5 Breaths Each</span>
+  </div>
+  <p class="block-note">Root → mobilise → expand laterally → open hips → fold forward. The sequence builds from stillness into dynamic expansion and closes by returning to the earth. Practise both sides before moving to the next asana.</p>
+
+  <div class="asana-list">
+
+    <div class="asana-card">
+      <div class="asana-num">1</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Tāḍāsana</div><div class="asana-eng">Palm Tree Pose · Mountain</div></div>
+        <div class="breath-tags">
+          <span class="tag tag-in">↑ Inhale — sweep arms overhead, rise onto toes</span>
+          <span class="tag tag-hold">Retain briefly at the top</span>
+          <span class="tag tag-out">↓ Exhale — lower arms, heels down</span>
+        </div>
+        <div class="asana-instruction"><strong>Setup:</strong> Feet hip-width, all four corners of each foot grounded. Engage thighs, lift kneecaps. Lengthen tailbone downward, crown of the head floats up. Fingers interlaced, palms turned to the sky on the inhale. <strong>Hold 5 breaths</strong> — this is the foundation for every standing pose that follows. Re-establish stillness after the sun salutations.</div>
+        <div class="asana-note">This is the standing equivalent of Daṇḍāsana. Establish alignment here before the laterals begin.</div>
+      </div>
+    </div>
+
+    <div class="asana-card">
+      <div class="asana-num">2</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Tiryaka Tāḍāsana</div><div class="asana-eng">Swaying Palm Tree</div></div>
+        <div class="breath-tags">
+          <span class="tag tag-in">↑ Inhale — arms up, interlace fingers, palms to sky</span>
+          <span class="tag tag-out">↓ Exhale — side-bend right, hips square</span>
+          <span class="tag tag-in">↑ Inhale — return to centre</span>
+          <span class="tag tag-out">↓ Exhale — side-bend left</span>
+        </div>
+        <div class="asana-instruction">From Tāḍāsana. Feet hip-width, press the outer edges down as you bend — the pelvis must not shift. Keep both arms long; do not collapse the waist on the concave side. The movement is a pure lateral — like a palm tree swaying in a breeze, roots unmoved. <strong>3–5 rounds each side.</strong></div>
+        <div class="asana-note">Lengthens the lateral trunk, intercostals, and quadratus lumborum. Prepares the side body for Trikoṇāsana.</div>
+      </div>
+    </div>
+
+    <div class="asana-card">
+      <div class="asana-num">3</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Trikoṇāsana</div><div class="asana-eng">Triangle Pose</div></div>
+        <div class="side-pill">Right side · then Left side</div>
+        <div class="breath-tags">
+          <span class="tag tag-in">↑ Inhale — step wide, arms to T</span>
+          <span class="tag tag-out">↓ Exhale — reach right hand to shin or ankle</span>
+          <span class="tag tag-in">↑ Inhale — lengthen top arm to sky</span>
+          <span class="tag tag-hold">Hold 5 breaths</span>
+          <span class="tag tag-in">↑ Inhale — rise up with a strong core</span>
+          <span class="tag tag-out">↓ Exhale — pivot and switch sides</span>
+        </div>
+        <div class="asana-instruction"><strong>Foot placement:</strong> right foot 90°, left foot 15°. Stack the hips over the heels. The key action is rotation — think <strong>two panes of glass</strong>, not a forward fold. Revolve the ribcage open to the ceiling. Gaze up to the top hand if comfortable on the neck. Bottom arm reaches down, not forward. Repeat left side.</div>
+        <div class="asana-note">Common error: students collapse the chest forward. Cue "stack the shoulders" and "twist open to the sky."</div>
+      </div>
+    </div>
+
+    <div class="asana-card">
+      <div class="asana-num">4</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Utthita Pārśvakoṇāsana</div><div class="asana-eng">Extended Side Angle</div></div>
+        <div class="side-pill">Right side · then Left side</div>
+        <div class="breath-tags">
+          <span class="tag tag-in">↑ Inhale — bend front knee to 90°, spine long</span>
+          <span class="tag tag-out">↓ Exhale — forearm to thigh or hand outside front foot</span>
+          <span class="tag tag-in">↑ Inhale — extend top arm overhead by the ear</span>
+          <span class="tag tag-hold">Hold 5 breaths · one long diagonal line</span>
+        </div>
+        <div class="asana-instruction">Builds directly on the Trikoṇāsana stance. Front knee tracks over the ankle — no deeper. One long diagonal line from the back heel through the fingertips. Press the outer back foot firmly into the mat. Open the chest towards the ceiling — <strong>do not collapse forward</strong>. The top arm by the ear intensifies the lateral stretch. Repeat left side.</div>
+        <div class="asana-note">Strengthens the legs and core while deeply opening the thoracic spine and hip flexors.</div>
+      </div>
+    </div>
+
+    <div class="asana-card">
+      <div class="asana-num">5</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Vīrabhadrāsana II</div><div class="asana-eng">Warrior II</div></div>
+        <div class="side-pill">Right side · then Left side</div>
+        <div class="breath-tags">
+          <span class="tag tag-in">↑ Inhale — arms open wide to T, gaze over right fingers</span>
+          <span class="tag tag-out">↓ Exhale — sink front knee over ankle</span>
+          <span class="tag tag-hold">Hold 5 breaths · strong, steady dṛṣṭi (gaze)</span>
+        </div>
+        <div class="asana-instruction">From a wide stance, pivot to the short edge. Right knee directly over right ankle. Hips open to the long edge — not squared to the front. Both arms reaching actively. Imagine you are being pulled apart at both hands simultaneously. The back arm is as engaged as the front. <strong>Steady gaze forward</strong> — cultivate the quality of a warrior: fierce but calm. Repeat left side.</div>
+        <div class="asana-note">The hips in Warrior II are open (facing the side). This distinguishes it from Warrior I. Cue students to feel the difference.</div>
+      </div>
+    </div>
+
+    <div class="asana-card">
+      <div class="asana-num">6</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Vīrabhadrāsana I</div><div class="asana-eng">Warrior I</div></div>
+        <div class="side-pill">Right side · then Left side</div>
+        <div class="breath-tags">
+          <span class="tag tag-in">↑ Inhale — pivot hips square to front, sweep arms overhead</span>
+          <span class="tag tag-out">↓ Exhale — sink front knee, draw shoulder blades together</span>
+          <span class="tag tag-in">↑ Inhale — lift and lengthen through the torso, slight backbend</span>
+          <span class="tag tag-hold">Hold 5 breaths</span>
+        </div>
+        <div class="asana-instruction">Back heel down at 45°, pressing firmly. <strong>Square the hips to the front — this is the key challenge of this pose.</strong> Lift chest, gentle backbend without compressing the lower back. Arms parallel or palms together overhead. The back leg is active — feel the psoas and hip flexor stretching. Repeat left side.</div>
+        <div class="asana-note">Most physically demanding standing pose in this sequence. Allow extra breath here. Common error: back heel lifting, hips twisting open. Keep returning to the squareness of the hips.</div>
+      </div>
+    </div>
+
+    <div class="asana-card">
+      <div class="asana-num">7</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Pādāṅguṣṭhāsana</div><div class="asana-eng">Big Toe Pose</div></div>
+        <div class="breath-tags">
+          <span class="tag tag-in">↑ Inhale — feet hip-width, lengthen spine long</span>
+          <span class="tag tag-out">↓ Exhale — hinge from hips, hook peace fingers around big toes</span>
+          <span class="tag tag-in">↑ Inhale — flat back, lift chest halfway (Ardha Uttānāsana)</span>
+          <span class="tag tag-out">↓ Exhale — fold fully, elbows bend wide</span>
+          <span class="tag tag-hold">Hold 5–8 breaths · surrender deeper on each exhale</span>
+        </div>
+        <div class="asana-instruction"><strong>Lead with the chest, not the head.</strong> Soft bend in the knees if hamstrings are tight — never sacrifice a long spine for straight legs. Hook the peace finger (index and middle) firmly around the big toe. On each exhale, soften and release a little deeper. This bilateral forward fold <strong>neutralises the spine</strong> after the Warriors and closes the standing sequence with quiet.</div>
+        <div class="asana-note">This is the closing of the standing sequence. Invite students to let gravity do the work — no forcing, no reaching. Simply breathe and release.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TRANSITION: STANDING → SITTING -->
+<div class="transition-band">
+  <div class="transition-band-arrow">↓</div>
+  <div class="transition-band-text"><strong>Transition:</strong> From Pādāṅguṣṭhāsana, bend the knees, release the toes, and slowly roll up vertebra by vertebra — or step back and lower to seated. Come to sit at the centre of the mat for the sitting sequence.</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SITTING SEQUENCE                        -->
+<!-- ═══════════════════════════════════════ -->
+
+<div id="sitting" class="sequence-block">
+  <div class="block-header">
+    <span class="block-label">Section B · Sitting</span>
+    <h2 class="block-title">Sitting Sequence</h2>
+    <div class="block-line"></div>
+    <span class="block-rounds">4 Poses</span>
+  </div>
+  <p class="block-note">Establish the seat → fold bilaterally → fold unilaterally → counter-pose with a backbend to neutralise the spine. The sitting sequence takes the awareness inward and prepares the body for the cool-down.</p>
+
+  <div class="asana-list">
+
+    <div class="asana-card">
+      <div class="asana-num">1</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Daṇḍāsana</div><div class="asana-eng">Staff Pose</div></div>
+        <div class="breath-tags">
+          <span class="tag tag-in">↑ Inhale — sit tall, hands beside hips, flex feet strongly</span>
+          <span class="tag tag-out">↓ Exhale — press thighs into mat, draw lower belly in</span>
+          <span class="tag tag-hold">Hold 3–5 breaths · establish the base</span>
+        </div>
+        <div class="asana-instruction">Legs extended, feet flexed actively. Hands press into the mat alongside the hips. <strong>This is the seated equivalent of Tāḍāsana</strong> — the pose is active, not passive. If the lower back rounds, sit on a folded blanket to tilt the pelvis forward. The alignment established here is the template for every seated pose that follows.</div>
+        <div class="asana-note">Never skip this pose. Students often collapse immediately — use 3 breaths here to reset posture before folding.</div>
+      </div>
+    </div>
+
+    <div class="asana-card">
+      <div class="asana-num">2</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Paścimottānāsana</div><div class="asana-eng">Seated Forward Bend</div></div>
+        <div class="breath-tags">
+          <span class="tag tag-in">↑ Inhale — arms up, spine long, grow tall</span>
+          <span class="tag tag-out">↓ Exhale — hinge from hips, walk hands to feet or shins</span>
+          <span class="tag tag-in">↑ Inhale — flat back, lift chest slightly</span>
+          <span class="tag tag-out">↓ Exhale — soften and fold deeper</span>
+          <span class="tag tag-hold">Hold 8–10 breaths · deepen on each exhale</span>
+        </div>
+        <div class="asana-instruction"><strong>Lead with the chest, not the head.</strong> Feet flexed throughout. Use a strap around the soles if needed — <strong>never sacrifice a flat back for the sake of reaching the feet.</strong> On each inhale, create a little length; on each exhale, surrender a little more. Bilateral hamstring release and deep spinal extension.</div>
+        <div class="asana-note">The longest hold in the sitting sequence — 8 to 10 breaths. Allow students to settle and breathe into the back of the legs.</div>
+      </div>
+    </div>
+
+    <div class="asana-card">
+      <div class="asana-num">3</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Jānu Śīrṣāsana</div><div class="asana-eng">Head-to-Knee Pose</div></div>
+        <div class="side-pill">Right side first · then Left side</div>
+        <div class="breath-tags">
+          <span class="tag tag-in">↑ Inhale — bend right knee, sole to inner left thigh, sit tall</span>
+          <span class="tag tag-out">↓ Exhale — slight rotation, fold over left leg</span>
+          <span class="tag tag-hold">Hold 5–8 breaths each side</span>
+          <span class="tag tag-in">↑ Inhale — rise up slowly, switch sides</span>
+        </div>
+        <div class="asana-instruction">Right knee bends, sole of right foot to inner left thigh (not the knee). <strong>Slight rotation of the torso towards the extended leg</strong> before folding. Extended foot stays flexed. The bent knee may not touch the floor — that is fine, do not force it. Notice the asymmetry in the body: breathe into the tighter side with patience. Repeat on the left.</div>
+        <div class="asana-note">Unilateral fold — reveals imbalances between left and right. Common tighter side is the left hamstring in most students.</div>
+      </div>
+    </div>
+
+    <div class="asana-card">
+      <div class="asana-num">4</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Pūrvottānāsana</div><div class="asana-eng">Upward Plank · East Stretch</div></div>
+        <div class="breath-tags">
+          <span class="tag tag-in">↑ Inhale — hands behind hips, fingers forward, lengthen spine</span>
+          <span class="tag tag-out">↓ Exhale — press palms, lift hips, point or flex the toes</span>
+          <span class="tag tag-in">↑ Inhale — open chest, optional gentle head drop back</span>
+          <span class="tag tag-hold">Hold 3–5 breaths · full body engaged</span>
+          <span class="tag tag-out">↓ Exhale — lower hips with control</span>
+        </div>
+        <div class="asana-instruction"><strong>Counter-pose for all the forward folds of the sitting sequence.</strong> Toes pointed or flexed — both are valid. The entire posterior chain engages: glutes, hamstrings, back extensors. If wrists are sensitive, come onto fingertips or fists. Lift the hips as high as comfortable. The front body opens completely — the "east side" of the body.</div>
+        <div class="asana-note">Essential after three forward folds. Do not skip — this neutralises the spine and restores the natural lumbar curve.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TRANSITION: SITTING → SUPINE -->
+<div class="transition-band">
+  <div class="transition-band-arrow">↓</div>
+  <div class="transition-band-text"><strong>Transition:</strong> From Pūrvottānāsana, lower the hips. From sitting, slowly lower down vertebra by vertebra onto the back. Arrive supine — the mat supports you completely.</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- COOL DOWN                               -->
+<!-- ═══════════════════════════════════════ -->
+
+<div id="cooldown" class="sequence-block">
+  <div class="block-header">
+    <span class="block-label">Section C · Cool Down</span>
+    <h2 class="block-title">Cool Down &amp; Śavāsana</h2>
+    <div class="block-line"></div>
+    <span class="block-rounds">4 Poses · If Time Permits</span>
+  </div>
+  <p class="block-note">Release the body supine → decompress the spine → final spinal twist → dissolve into stillness. All four poses are optional depending on time — <strong>Śavāsana is the only non-negotiable.</strong></p>
+
+  <div class="asana-list">
+
+    <div class="asana-card">
+      <div class="asana-num">①</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Bālāsana</div><div class="asana-eng">Child's Pose</div></div>
+        <div class="breath-tags">
+          <span class="tag tag-note">If time permits — include first</span>
+          <span class="tag tag-in">↑ Inhale — in Table, lengthen spine</span>
+          <span class="tag tag-out">↓ Exhale — sink hips back to heels, arms extended or by sides</span>
+          <span class="tag tag-hold">Hold 8–10 breaths · passive release</span>
+        </div>
+        <div class="asana-instruction">Come to hands and knees (Table Top) before lowering. Knees wide apart for a deeper hip release, or together for more lumbar decompression. Forehead rests on the mat. Arms extended overhead or resting alongside the body — whatever feels most restful. <strong>Let gravity do the work entirely.</strong> No muscular effort is needed here.</div>
+        <div class="asana-note">The first inward fold — begins the transition from the active world of standing and sitting poses to the stillness of Śavāsana.</div>
+      </div>
+    </div>
+
+    <div class="asana-card">
+      <div class="asana-num">②</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Apānāsana</div><div class="asana-eng">Knees-to-Chest Pose</div></div>
+        <div class="breath-tags">
+          <span class="tag tag-in">↑ Inhale — knees slightly away from the chest</span>
+          <span class="tag tag-out">↓ Exhale — hug knees in, gentle pressure on the abdomen</span>
+          <span class="tag tag-hold">Rock gently side to side · 8 breaths</span>
+        </div>
+        <div class="asana-instruction">Lie on the back. Hug both knees to the chest. <strong>Inhale:</strong> knees float slightly away. <strong>Exhale:</strong> draw them back in. Rock gently side to side — this massages the sacrum and the lumbar spine. Apāna is the downward-moving prāṇa; this pose encourages release, grounding, and the natural elimination of accumulated tension.</div>
+        <div class="asana-note">Simple yet deeply releasing. The rocking motion gently releases the sacroiliac joint and lower back — universally therapeutic.</div>
+      </div>
+    </div>
+
+    <div class="asana-card">
+      <div class="asana-num">③</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Supta Matsyendrāsana</div><div class="asana-eng">Supine Spinal Twist</div></div>
+        <div class="side-pill">Left side first · then Right side</div>
+        <div class="breath-tags">
+          <span class="tag tag-in">↑ Inhale — arms open wide to T, lengthen spine</span>
+          <span class="tag tag-out">↓ Exhale — draw right knee to chest, cross left</span>
+          <span class="tag tag-hold">Hold 5–8 breaths · gaze to the right</span>
+          <span class="tag tag-in">↑ Inhale — return to centre</span>
+          <span class="tag tag-out">↓ Exhale — switch: left knee crosses right, gaze left</span>
+        </div>
+        <div class="asana-instruction">From Apānāsana, open arms wide into a T. Bring right knee across to the left. Both shoulders stay grounded — this is the key. If the knee does not reach the floor, place a block or folded blanket beneath it. <strong>Always twist the left side last</strong> — this follows the ascending colon and is considered more digestively beneficial. Hold 5–8 slow breaths each side.</div>
+        <div class="asana-note">The final active pose before Śavāsana. Neutralises the spine after all forward and backward bends. A profound, effortless release.</div>
+      </div>
+    </div>
+
+    <div class="asana-card">
+      <div class="asana-num">④</div>
+      <div class="asana-body">
+        <div class="asana-names"><div class="asana-skt">Śavāsana</div><div class="asana-eng">Corpse Pose</div></div>
+        <div class="breath-tags">
+          <span class="tag tag-in">↑ One final deep inhale — lengthen the entire body</span>
+          <span class="tag tag-out">↓ Exhale — let everything go</span>
+          <span class="tag tag-hold">Remain completely still · minimum 5 minutes</span>
+        </div>
+        <div class="asana-instruction">Feet hip-width apart, falling open naturally. Arms 30 cm from the sides, palms facing up. Eyes closed. Guide the class: <em>"Scan from crown to toes — soften the jaw, the tongue, the hands, the hips. Nowhere to be, nothing to do. Simply be."</em> Allow a minimum of five minutes — ten is ideal. <strong>This pose integrates the entire practice into the nervous system.</strong></div>
+        <div class="asana-note">The most important pose in the class. Do not rush or shorten it under any circumstances. The physical practice is preparation for this — conscious, effortless rest.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<footer>
+  <span class="footer-logo">Hatha Yoga Practicum</span>
+  <p>200 Hour Yoga Teacher Training · Rishikesh, India<br/>
+  <span style="font-size:11px;opacity:0.5;">हठ योग · Practicum Exam Reference Guide</span>
+  </p>
+</footer>
+
+<script>
+  const cards = document.querySelectorAll('.asana-card');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const card = entry.target;
+        const siblings = Array.from(card.parentNode.children);
+        const idx = siblings.indexOf(card);
+        setTimeout(() => card.classList.add('visible'), idx * 60);
+        observer.unobserve(card);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  cards.forEach(c => observer.observe(c));
+
+  const sections = document.querySelectorAll('[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 200) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--sand-lt)' : '';
+    });
+  });
+</script>
+
+</body>
+</html>

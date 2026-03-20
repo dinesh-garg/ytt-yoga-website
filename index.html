@@ -261,6 +261,68 @@
   .card-pranayama { --card-accent: rgba(100,140,180,0.45); --card-accent-color: #a0c4d8; --card-glow-hover: rgba(100,140,180,0.04); }
   .card-meditation { --card-accent: rgba(140,100,180,0.45); --card-accent-color: #c4a8d8; --card-glow-hover: rgba(140,100,180,0.04); }
 
+  /* PRACTICUMS SECTION */
+  .practicums-section {
+    padding: 100px 48px 120px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .practicums-header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+  .practicums-header .section-eyebrow {
+    display: inline-block;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--clay); opacity: 0.7;
+    border: 1px solid rgba(196,98,42,0.25);
+    border-radius: 20px;
+    padding: 4px 16px;
+    margin-bottom: 20px;
+  }
+  .practicums-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 300;
+    color: var(--sand-lt);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .practicums-header p {
+    font-size: 14px; color: var(--muted); letter-spacing: 0.06em;
+    max-width: 520px; margin: 0 auto;
+    line-height: 1.8;
+  }
+  .practicums-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .practicum-tag {
+    display: inline-block;
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--card-accent-color, var(--clay));
+    background: rgba(196,98,42,0.07);
+    border: 1px solid rgba(196,98,42,0.15);
+    border-radius: 10px;
+    padding: 3px 10px;
+    margin-bottom: 18px;
+    opacity: 0.85;
+  }
+
+  /* Practicum card colour variants */
+  .card-p-hatha     { --card-accent: rgba(196,98,42,0.45); --card-accent-color: var(--clay-lt); --card-glow-hover: rgba(196,98,42,0.04); }
+  .card-p-alignment { --card-accent: rgba(107,140,110,0.45); --card-accent-color: var(--sage-lt); --card-glow-hover: rgba(107,140,110,0.04); }
+  .card-p-ashtanga  { --card-accent: rgba(184,150,58,0.45); --card-accent-color: var(--gold-lt); --card-glow-hover: rgba(184,150,58,0.04); }
+
+  @media (max-width: 900px) {
+    .practicums-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .practicums-section { padding: 60px 20px 80px; }
+    .practicums-grid { grid-template-columns: 1fr; }
+  }
+
   /* FOOTER */
   footer {
     padding: 60px 48px;
@@ -302,6 +364,7 @@
   <a class="nav-logo" href="index.html">YTT</a>
   <ul class="nav-links">
     <li><a href="#subjects">Subjects</a></li>
+    <li><a href="#practicums">Practicums</a></li>
   </ul>
 </nav>
 
@@ -406,7 +469,59 @@
 
 <div class="divider"></div>
 
-<footer>
+<!-- SAMPLE PRACTICUMS -->
+<section class="practicums-section" id="practicums">
+  <div class="practicums-header">
+    <div class="section-eyebrow">Practical Assessment</div>
+    <h2>Sample Practicums</h2>
+    <p>Real practicum submissions from this YTT program — shared as a reference for fellow teachers in training. Use them as a guide for structure, format, and depth.</p>
+  </div>
+
+  <div class="practicums-grid">
+
+    <!-- Hatha Asana Practicum -->
+    <a class="subject-card card-p-hatha visible" href="hatha-yoga-practicum.html">
+      <div class="card-number">Practicum 01 · Live</div>
+      <div class="practicum-tag">Hatha Yoga</div>
+      <div class="card-devanagari">हठ आसन</div>
+      <div class="card-title">Hatha Asana Practicum</div>
+      <div class="card-desc">A complete teaching practicum for Hatha Asana — covering class structure, pose selection, cueing language, breath integration, and sequencing rationale. A reference for how to plan and present a teaching session.</div>
+      <div class="card-footer">
+        <span class="card-status status-live">● Live</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Alignment & Adjustment Practicum -->
+    <a class="subject-card card-p-alignment visible" href="alignment-and-adjustment-practiccum.html">
+      <div class="card-number">Practicum 02 · Live</div>
+      <div class="practicum-tag">Alignment & Adjustment</div>
+      <div class="card-devanagari">संरेखण</div>
+      <div class="card-title">Alignment & Adjustment Practicum</div>
+      <div class="card-desc">A detailed practicum on hands-on assists and postural alignment — exploring when and how to adjust, verbal vs physical cues, safety considerations, and the principles that guide a teacher's touch.</div>
+      <div class="card-footer">
+        <span class="card-status status-live">● Live</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Ashtanga Practicum — Coming Soon -->
+    <a class="subject-card card-p-ashtanga" href="#" onclick="return false;" style="cursor:default;">
+      <div class="card-number">Practicum 03 · Coming Soon</div>
+      <div class="practicum-tag">Ashtanga Yoga</div>
+      <div class="card-devanagari">अष्टांग</div>
+      <div class="card-title">Ashtanga Practicum</div>
+      <div class="card-desc">An in-depth practicum on the Ashtanga Primary Series — teaching the standing sequence, vinyasa count, Mysore-style instruction, and the traditional method of introducing postures to students.</div>
+      <div class="card-footer">
+        <span class="card-status status-soon">◌ Coming Soon</span>
+        <span class="card-arrow" style="opacity:0.25;">→</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<div class="divider"></div>
   <span class="footer-logo">Hatha Ashtanga Vinyasa Yoga</span>
   <p>Rishikesh, India, India<br/>
   <span style="font-size:11px;opacity:0.5;">हठ · अष्टांग · विन्यास योग</span>
