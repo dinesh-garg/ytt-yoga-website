@@ -251,6 +251,39 @@
     color: var(--muted);
     letter-spacing: 0.06em;
   }
+
+  /* ── Mobile only (≤ 768px) ── */
+  @media (max-width: 768px) {
+    body {
+      padding: 28px 14px 48px;
+    }
+    .header h1 {
+      font-size: 1.9rem;
+    }
+    .row {
+      flex-wrap: wrap;
+    }
+    .card {
+      flex: 0 0 calc(33.33% - 8px);
+      aspect-ratio: 2 / 3;
+    }
+    .card-skt {
+      font-size: 0.68rem;
+    }
+    .card-eng {
+      font-size: 0.54rem;
+    }
+    .b {
+      font-size: 0.48rem;
+    }
+    .card-number {
+      font-size: 0.62rem;
+    }
+    .section-label span {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+    }
+  }
 </style>
 </head>
 <body>
