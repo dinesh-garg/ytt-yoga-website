@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashtanga Primary Series — Yoga Chikitsā</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400&family=Noto+Serif+Devanagari:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:          #FAF7F2;
+    --card-bg:     #F2EBE0;
+    --card-bg-alt: #EDE4D6;
+    --border:      #D4C4AE;
+    --accent:      #8A9E7E;
+    --text:        #3B3228;
+    --muted:       #A89880;
+    --divider:     #DDD0BE;
+    --row-label-sun:   #8A9E7E;
+    --row-label-stand: #B08060;
+    --in-bg:   #ddf0e0;
+    --in-text: #1e5030;
+    --in-bdr:  rgba(42,80,48,0.25);
+    --out-bg:  #fde8d8;
+    --out-text:#8a3010;
+    --out-bdr: rgba(168,78,31,0.25);
+    --hold-bg: #f8efc8;
+    --hold-text:#5a4008;
+    --hold-bdr:rgba(138,108,20,0.25);
+    --uj-bg:   #f0e8dc;
+    --uj-text: #3d2c1a;
+    --uj-bdr:  rgba(100,80,50,0.20);
+  }
+
+  body {
+    background: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    padding: 48px 40px 64px;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .header {
+    text-align: center;
+    margin-bottom: 44px;
+  }
+  .header h1 {
+    font-family: 'Cormorant Garant', serif;
+    font-weight: 300;
+    font-size: 3rem;
+    letter-spacing: 0.04em;
+    color: var(--text);
+    line-height: 1.1;
+  }
+  .header p {
+    font-family: 'Cormorant Garant', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--accent);
+    letter-spacing: 0.18em;
+    margin-top: 8px;
+  }
+  .header-line {
+    width: 480px;
+    max-width: 90%;
+    height: 1px;
+    background: var(--border);
+    margin: 18px auto 0;
+  }
+
+  /* ── Section ── */
+  .section {
+    margin-bottom: 36px;
+  }
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .section-label span {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .section-label .line {
+    flex: 1;
+    height: 1px;
+    background: var(--divider);
+  }
+  .sun-label span   { color: var(--row-label-sun); }
+  .stand-label span { color: var(--row-label-stand); }
+
+  /* ── Card Row ── */
+  .row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: nowrap;
+  }
+
+  /* ── Individual Card ── */
+  .card {
+    flex: 1;
+    min-width: 0;
+    aspect-ratio: 2 / 3;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow: hidden;
+    position: relative;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .card:hover {
+    box-shadow: 0 6px 22px rgba(60,40,20,0.10);
+    transform: translateY(-1px);
+  }
+
+  /* ── Image Placeholder ── */
+  .card-img {
+    flex: 1;
+    min-height: 0;
+    background: var(--card-bg-alt);
+    border-bottom: 1px dashed var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(255,255,255,0.18) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  /* ── Card Footer — kept very compact ── */
+  .card-foot {
+    flex-shrink: 0;
+    padding: 5px 6px 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: var(--card-bg);
+  }
+
+  .card-top-row {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+
+  .card-number {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .card-skt {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 0.72rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.15;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .card-eng {
+    font-size: 0.52rem;
+    font-weight: 300;
+    color: var(--muted);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    line-height: 1.1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  /* ── Breath tags ── */
+  .card-breath {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    margin-top: 1px;
+  }
+  .b {
+    font-size: 0.44rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    padding: 1px 4px;
+    border-radius: 2px;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+  .b-in   { background: var(--in-bg);   color: var(--in-text);   border: 1px solid var(--in-bdr); }
+  .b-out  { background: var(--out-bg);  color: var(--out-text);  border: 1px solid var(--out-bdr); }
+  .b-hold { background: var(--hold-bg); color: var(--hold-text); border: 1px solid var(--hold-bdr); }
+  .b-uj   { background: var(--uj-bg);   color: var(--uj-text);   border: 1px solid var(--uj-bdr); }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    margin-top: 48px;
+  }
+  .footer-line {
+    width: 320px;
+    max-width: 80%;
+    height: 1px;
+    background: var(--divider);
+    margin: 0 auto 14px;
+  }
+  .footer p {
+    font-family: 'Cormorant Garant', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+  }
+
+  /* ── Legend ── */
+  .legend {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 32px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Ashtanga Primary Series</h1>
+    <p>Yoga Chikitsā &nbsp;·&nbsp; Yoga Therapy</p>
+    <div class="header-line"></div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-item"><span class="b b-in">↑ inhale</span> Inhale</div>
+    <div class="legend-item"><span class="b b-out">↓ exhale</span> Exhale</div>
+    <div class="legend-item"><span class="b b-hold">hold ×</span> Hold</div>
+    <div class="legend-item"><span class="b b-uj">ujjayi</span> Ujjayi breath</div>
+  </div>
+
+  <!-- ═══════════════════════════
+       SURYA NAMASKAR A
+  ════════════════════════════ -->
+  <div class="section">
+    <div class="section-label sun-label">
+      <span>Sūrya Namaskāra A &nbsp;·&nbsp; 5 Rounds</span>
+      <div class="line"></div>
+    </div>
+    <div class="row">
+
+      <!-- 1 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/urdhva-vrikshasana.png" alt="Urdhva Vrikshasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">1</span>
+            <span class="card-skt">Urdhva Vrikshasana</span>
+          </div>
+          <span class="card-eng">Mountain Arms</span>
+          <div class="card-breath">
+            <span class="b b-in">↑ inhale</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/uttanasana.png" alt="Uttanasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">2</span>
+            <span class="card-skt">Uttanasana</span>
+          </div>
+          <span class="card-eng">Standing Forward Fold</span>
+          <div class="card-breath">
+            <span class="b b-out">↓ exhale</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/ardha-uttanasana.png" alt="Ardha Uttanasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">3</span>
+            <span class="card-skt">Ardha Uttanasana</span>
+          </div>
+          <span class="card-eng">Half Lift</span>
+          <div class="card-breath">
+            <span class="b b-in">↑ inhale</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/chaturanga-dandasana.png" alt="Chaturanga Dandasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">4</span>
+            <span class="card-skt">Chaturanga Dandasana</span>
+          </div>
+          <span class="card-eng">Four-Limbed Staff</span>
+          <div class="card-breath">
+            <span class="b b-out">↓ exhale</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/urdhva-mukha-svanasana.png" alt="Urdhva Mukha Svanasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">5</span>
+            <span class="card-skt">Urdhva Mukha Svanasana</span>
+          </div>
+          <span class="card-eng">Upward-Facing Dog</span>
+          <div class="card-breath">
+            <span class="b b-in">↑ inhale</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/adho-mukha-svanasana.png" alt="Adho Mukha Svanasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">6</span>
+            <span class="card-skt">Adho Mukha Svanasana</span>
+          </div>
+          <span class="card-eng">Downward-Facing Dog</span>
+          <div class="card-breath">
+            <span class="b b-out">↓ exhale</span>
+            <span class="b b-uj">ujjayi ×5</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/ardha-uttanasana.png" alt="Ardha Uttanasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">7</span>
+            <span class="card-skt">Ardha Uttanasana</span>
+          </div>
+          <span class="card-eng">Half Lift</span>
+          <div class="card-breath">
+            <span class="b b-in">↑ inhale</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/uttanasana.png" alt="Uttanasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">8</span>
+            <span class="card-skt">Uttanasana</span>
+          </div>
+          <span class="card-eng">Standing Forward Fold</span>
+          <div class="card-breath">
+            <span class="b b-out">↓ exhale</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/urdhva-vrikshasana.png" alt="Urdhva Vrikshasana → Samasthiti" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">9</span>
+            <span class="card-skt">Urdhva Vrikshasana → Samasthiti</span>
+          </div>
+          <span class="card-eng">Arms Up → Equal Standing</span>
+          <div class="card-breath">
+            <span class="b b-in">↑ arms up</span>
+            <span class="b b-out">↓ samasthiti</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════
+       SURYA NAMASKAR B — I
+  ════════════════════════════ -->
+  <div class="section">
+    <div class="section-label sun-label">
+      <span>Sūrya Namaskāra B &nbsp;—&nbsp; I &nbsp;·&nbsp; 5 Rounds</span>
+      <div class="line"></div>
+    </div>
+    <div class="row">
+
+      <!-- 1 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/utkatasana.png" alt="Utkatasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">1</span>
+            <span class="card-skt">Utkatasana</span>
+          </div>
+          <span class="card-eng">Chair / Fierce Pose</span>
+          <div class="card-breath">
+            <span class="b b-in">↑ inhale</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/uttanasana.png" alt="Uttanasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">2</span>
+            <span class="card-skt">Uttanasana</span>
+          </div>
+          <span class="card-eng">Standing Forward Fold</span>
+          <div class="card-breath">
+            <span class="b b-out">↓ exhale</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/ardha-uttanasana.png" alt="Ardha Uttanasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">3</span>
+            <span class="card-skt">Ardha Uttanasana</span>
+          </div>
+          <span class="card-eng">Half Lift</span>
+          <div class="card-breath">
+            <span class="b b-in">↑ inhale</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/chaturanga-dandasana.png" alt="Chaturanga Dandasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">4</span>
+            <span class="card-skt">Chaturanga Dandasana</span>
+          </div>
+          <span class="card-eng">Four-Limbed Staff</span>
+          <div class="card-breath">
+            <span class="b b-out">↓ exhale</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/urdhva-mukha-svanasana.png" alt="Urdhva Mukha Svanasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">5</span>
+            <span class="card-skt">Urdhva Mukha Svanasana</span>
+          </div>
+          <span class="card-eng">Upward-Facing Dog</span>
+          <div class="card-breath">
+            <span class="b b-in">↑ inhale</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/adho-mukha-svanasana.png" alt="Adho Mukha Svanasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">6</span>
+            <span class="card-skt">Adho Mukha Svanasana</span>
+          </div>
+          <span class="card-eng">Downward-Facing Dog</span>
+          <div class="card-breath">
+            <span class="b b-out">↓ exhale</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/virabhadrasana-a.png" alt="Virabhadrasana A (R)" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">7</span>
+            <span class="card-skt">Virabhadrasana A (R)</span>
+          </div>
+          <span class="card-eng">Warrior I · Right</span>
+          <div class="card-breath">
+            <span class="b b-in">↑ right leg fwd</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/chaturanga-dandasana.png" alt="Chaturanga Dandasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">8</span>
+            <span class="card-skt">Chaturanga Dandasana</span>
+          </div>
+          <span class="card-eng">Four-Limbed Staff</span>
+          <div class="card-breath">
+            <span class="b b-out">↓ exhale</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/urdhva-mukha-svanasana.png" alt="Urdhva Mukha Svanasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">9</span>
+            <span class="card-skt">Urdhva Mukha Svanasana</span>
+          </div>
+          <span class="card-eng">Upward-Facing Dog</span>
+          <div class="card-breath">
+            <span class="b b-in">↑ inhale</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════
+       SURYA NAMASKAR B — II
+  ════════════════════════════ -->
+  <div class="section">
+    <div class="section-label sun-label">
+      <span>Sūrya Namaskāra B &nbsp;—&nbsp; II</span>
+      <div class="line"></div>
+    </div>
+    <div class="row">
+
+      <!-- 10 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/adho-mukha-svanasana.png" alt="Adho Mukha Svanasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">10</span>
+            <span class="card-skt">Adho Mukha Svanasana</span>
+          </div>
+          <span class="card-eng">Downward-Facing Dog</span>
+          <div class="card-breath">
+            <span class="b b-out">↓ exhale</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/virabhadrasana-a.png" alt="Virabhadrasana A (L)" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">11</span>
+            <span class="card-skt">Virabhadrasana A (L)</span>
+          </div>
+          <span class="card-eng">Warrior I · Left</span>
+          <div class="card-breath">
+            <span class="b b-in">↑ left leg fwd</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/chaturanga-dandasana.png" alt="Chaturanga Dandasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">12</span>
+            <span class="card-skt">Chaturanga Dandasana</span>
+          </div>
+          <span class="card-eng">Four-Limbed Staff</span>
+          <div class="card-breath">
+            <span class="b b-out">↓ exhale</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 13 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/urdhva-mukha-svanasana.png" alt="Urdhva Mukha Svanasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">13</span>
+            <span class="card-skt">Urdhva Mukha Svanasana</span>
+          </div>
+          <span class="card-eng">Upward-Facing Dog</span>
+          <div class="card-breath">
+            <span class="b b-in">↑ inhale</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 14 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/adho-mukha-svanasana.png" alt="Adho Mukha Svanasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">14</span>
+            <span class="card-skt">Adho Mukha Svanasana</span>
+          </div>
+          <span class="card-eng">Downward-Facing Dog</span>
+          <div class="card-breath">
+            <span class="b b-out">↓ exhale</span>
+            <span class="b b-uj">ujjayi ×5</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 15 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/ardha-uttanasana.png" alt="Ardha Uttanasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">15</span>
+            <span class="card-skt">Ardha Uttanasana</span>
+          </div>
+          <span class="card-eng">Half Lift</span>
+          <div class="card-breath">
+            <span class="b b-in">↑ inhale</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 16 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/uttanasana.png" alt="Uttanasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">16</span>
+            <span class="card-skt">Uttanasana</span>
+          </div>
+          <span class="card-eng">Standing Forward Fold</span>
+          <div class="card-breath">
+            <span class="b b-out">↓ exhale</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 17 -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/utkatasana.png" alt="Utkatasana → Samasthiti" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">17</span>
+            <span class="card-skt">Utkatasana → Samasthiti</span>
+          </div>
+          <span class="card-eng">Chair → Equal Standing</span>
+          <div class="card-breath">
+            <span class="b b-in">↑ arms up</span>
+            <span class="b b-out">↓ samasthiti</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 18 — Samasthiti rest marker -->
+      <div class="card" style="opacity:0.5; border-style: dashed;">
+        <div class="card-img" style="background: transparent;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">—</span>
+            <span class="card-skt">Samasthiti</span>
+          </div>
+          <span class="card-eng">Equal Standing · Rest</span>
+          <div class="card-breath">
+            <span class="b b-uj">neutral</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════
+       STANDING POSES — I
+  ════════════════════════════ -->
+  <div class="section">
+    <div class="section-label stand-label">
+      <span>Utthiṣṭha Sthiti &nbsp;—&nbsp; I</span>
+      <div class="line"></div>
+    </div>
+    <div class="row">
+
+      <!-- 1 Padangusthasana -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/padangusthasana.png" alt="Padangusthasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">1</span>
+            <span class="card-skt">Padangusthasana</span>
+          </div>
+          <span class="card-eng">Big Toe Pose</span>
+          <div class="card-breath">
+            <span class="b b-out">↓ fold</span>
+            <span class="b b-hold">hold ×3</span>
+            <span class="b b-in">↑ head up</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 Padahastasana -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/padahastasana.png" alt="Padahastasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">2</span>
+            <span class="card-skt">Padahastasana</span>
+          </div>
+          <span class="card-eng">Hands Under Feet</span>
+          <div class="card-breath">
+            <span class="b b-out">↓ deeper</span>
+            <span class="b b-hold">hold ×3</span>
+            <span class="b b-in">↑ rise</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Utthita Trikonasana -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/utthita-trikonasana.png" alt="Utthita Trikonasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">3</span>
+            <span class="card-skt">Utthita Trikonasana</span>
+          </div>
+          <span class="card-eng">Extended Triangle</span>
+          <div class="card-breath">
+            <span class="b b-out">↓ to side</span>
+            <span class="b b-hold">hold ×3</span>
+            <span class="b b-in">↑ center</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 Parivritta Trikonasana -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/parivrtta-trikonasana.png" alt="Parivritta Trikonasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">4</span>
+            <span class="card-skt">Parivritta Trikonasana</span>
+          </div>
+          <span class="card-eng">Revolved Triangle</span>
+          <div class="card-breath">
+            <span class="b b-out">↓ twist</span>
+            <span class="b b-hold">hold ×3</span>
+            <span class="b b-in">↑ rise</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 Utthita Parsvakonasana -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/utthita-parsvakonasana.png" alt="Utthita Parsvakonasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">5</span>
+            <span class="card-skt">Utthita Parsvakonasana</span>
+          </div>
+          <span class="card-eng">Extended Side Angle</span>
+          <div class="card-breath">
+            <span class="b b-out">↓ to side</span>
+            <span class="b b-uj">ujjayi ×3</span>
+            <span class="b b-in">↑ center</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 Parivritta Parsvakonasana -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/parivritta-parsvakonasana.png" alt="Parivritta Parsvakonasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">6</span>
+            <span class="card-skt">Parivritta Parsvakonasana</span>
+          </div>
+          <span class="card-eng">Revolved Side Angle</span>
+          <div class="card-breath">
+            <span class="b b-out">↓ full exhale</span>
+            <span class="b b-hold">hold ×3</span>
+            <span class="b b-in">↑ rise</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7 Prasarita A -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/prasarita-padottanasana-a.png" alt="Prasarita Padottanasana A" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">7</span>
+            <span class="card-skt">Prasarita Padottanasana A</span>
+          </div>
+          <span class="card-eng">Wide Fold A · Palms Down</span>
+          <div class="card-breath">
+            <span class="b b-out">↓ palms</span>
+            <span class="b b-hold">hold ×3</span>
+            <span class="b b-in">↑ rise</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 Prasarita B -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/prasarita-padottanasana-b.png" alt="Prasarita Padottanasana B" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">8</span>
+            <span class="card-skt">Prasarita Padottanasana B</span>
+          </div>
+          <span class="card-eng">Wide Fold B · Hands on Waist</span>
+          <div class="card-breath">
+            <span class="b b-out">↓ waist</span>
+            <span class="b b-hold">hold ×3</span>
+            <span class="b b-in">↑ rise</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9 Prasarita C -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/prasarita-padottanasana-c.png" alt="Prasarita Padottanasana C" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">9</span>
+            <span class="card-skt">Prasarita Padottanasana C</span>
+          </div>
+          <span class="card-eng">Wide Fold C · Arms Overhead</span>
+          <div class="card-breath">
+            <span class="b b-out">↓ arms</span>
+            <span class="b b-hold">hold ×3</span>
+            <span class="b b-in">↑ rise</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════
+       STANDING POSES — II
+  ════════════════════════════ -->
+  <div class="section">
+    <div class="section-label stand-label">
+      <span>Utthiṣṭha Sthiti &nbsp;—&nbsp; II</span>
+      <div class="line"></div>
+    </div>
+    <div class="row">
+
+      <!-- 10 Prasarita D -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/prasarita-padottanasana-d.png" alt="Prasarita Padottanasana D" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">10</span>
+            <span class="card-skt">Prasarita Padottanasana D</span>
+          </div>
+          <span class="card-eng">Wide Fold D · Hold Toes</span>
+          <div class="card-breath">
+            <span class="b b-out">↓ toes</span>
+            <span class="b b-hold">hold ×3</span>
+            <span class="b b-in">↑ head up</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11 Parsvottanasana -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/parsvottanasana.png" alt="Parsvottanasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">11</span>
+            <span class="card-skt">Parsvottanasana</span>
+          </div>
+          <span class="card-eng">Pyramid Pose</span>
+          <div class="card-breath">
+            <span class="b b-out">↓ fold</span>
+            <span class="b b-hold">hold ×3</span>
+            <span class="b b-in">↑ rise</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12 Utthita Hasta Padangusthasana -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/utthita-hasta-padangusthasana.png" alt="Utthita Hasta Padangusthasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">12</span>
+            <span class="card-skt">Utthita Hasta Padangusthasana</span>
+          </div>
+          <span class="card-eng">Hand-to-Big-Toe</span>
+          <div class="card-breath">
+            <span class="b b-in">↑ leg fwd</span>
+            <span class="b b-out">↓ head to leg</span>
+            <span class="b b-out">↓ leg side</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 13 Ardha Baddha Padmottanasana -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/ardha-baddha-padmottanasana.png" alt="Ardha Baddha Padmottanasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">13</span>
+            <span class="card-skt">Ardha Baddha Padmottanasana</span>
+          </div>
+          <span class="card-eng">Half Bound Lotus Fold</span>
+          <div class="card-breath">
+            <span class="b b-in">↑ arm up</span>
+            <span class="b b-out">↓ slow fold</span>
+            <span class="b b-hold">hold ×3</span>
+            <span class="b b-in">↑ rise</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 14 Utkatasana -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/utkatasana.png" alt="Utkatasana" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">14</span>
+            <span class="card-skt">Utkatasana</span>
+          </div>
+          <span class="card-eng">Chair / Fierce Pose</span>
+          <div class="card-breath">
+            <span class="b b-in">↑ land</span>
+            <span class="b b-hold">hold ×3</span>
+            <span class="b b-out">↓ jump back</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 15 Virabhadrasana A & B -->
+      <div class="card">
+        <div class="card-img"><img src="yoga_imgs/virabhadrasana-a.png" alt="Virabhadrasana A &amp; B" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;"></div>
+        <div class="card-foot">
+          <div class="card-top-row">
+            <span class="card-number">15</span>
+            <span class="card-skt">Virabhadrasana A &amp; B</span>
+          </div>
+          <span class="card-eng">Warrior I &amp; II</span>
+          <div class="card-breath">
+            <span class="b b-in">↑ step fwd</span>
+            <span class="b b-hold">hold ×3 each</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hidden fillers to keep grid alignment -->
+      <div class="card" style="visibility:hidden;"></div>
+      <div class="card" style="visibility:hidden;"></div>
+      <div class="card" style="visibility:hidden;"></div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-line"></div>
+    <p>Yoga Chikitsā &nbsp;·&nbsp; Ashtanga Vinyasa &nbsp;·&nbsp; Primary Series</p>
+  </div>
+
+</body>
+</html>

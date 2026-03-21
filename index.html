@@ -324,7 +324,83 @@
     .practicums-grid { grid-template-columns: 1fr; }
   }
 
-  /* FOOTER */
+  /* REFERENCES SECTION */
+  .references-section {
+    padding: 100px 48px 120px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .references-header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+  .references-header .section-eyebrow {
+    display: inline-block;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--clay); opacity: 0.7;
+    border: 1px solid rgba(196,98,42,0.25);
+    border-radius: 20px;
+    padding: 4px 16px;
+    margin-bottom: 20px;
+  }
+  .references-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 300;
+    color: var(--sand-lt);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .references-header p {
+    font-size: 14px; color: var(--muted); letter-spacing: 0.06em;
+    max-width: 520px; margin: 0 auto;
+    line-height: 1.8;
+  }
+  .references-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .reference-tag {
+    display: inline-block;
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--card-accent-color, var(--clay));
+    background: rgba(196,98,42,0.07);
+    border: 1px solid rgba(196,98,42,0.15);
+    border-radius: 10px;
+    padding: 3px 10px;
+    margin-bottom: 18px;
+    opacity: 0.85;
+  }
+  /* preview strip — mini image row inside the card */
+  .card-preview-strip {
+    display: flex;
+    gap: 3px;
+    margin: 18px 0 22px;
+    height: 42px;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .card-preview-strip span {
+    flex: 1;
+    background: var(--bg3);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 9px; font-style: italic; color: var(--muted);
+    letter-spacing: 0.04em;
+    overflow: hidden;
+  }
+  .card-preview-strip img {
+    width: 100%; height: 100%; object-fit: contain;
+    object-position: center bottom;
+    filter: sepia(0.1) brightness(0.96);
+  }
+  .card-r-chart { --card-accent: rgba(138,158,126,0.5); --card-accent-color: #5a7a52; --card-glow-hover: rgba(138,158,126,0.05); }
+
+  @media (max-width: 900px) { .references-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .references-section { padding: 60px 20px 80px; } .references-grid { grid-template-columns: 1fr; } }
   footer {
     padding: 60px 48px;
     text-align: center;
@@ -366,6 +442,7 @@
   <ul class="nav-links">
     <li><a href="#subjects">Subjects</a></li>
     <li><a href="#practicums">Practicums</a></li>
+    <li><a href="#references">References</a></li>
   </ul>
 </nav>
 
@@ -526,6 +603,44 @@
       <div class="card-devanagari">आनापान सति</div>
       <div class="card-title">Meditation Practicum</div>
       <div class="card-desc">A complete guided meditation practicum for Anapana Sati — mindfulness of breath. Covers the opening invocation, Vakratuṇḍa mantra, breath observation at the nostrils, thought-watching, full body scan, Savasana, and closing ritual.</div>
+      <div class="card-footer">
+        <span class="card-status status-live">● Live</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- REFERENCE TOOLS -->
+<section class="references-section" id="references">
+  <div class="references-header">
+    <div class="section-eyebrow">Visual Reference</div>
+    <h2>Quick Reference</h2>
+    <p>Interactive charts and visual tools built alongside the curriculum — designed for memorisation, review, and exam prep.</p>
+  </div>
+
+  <div class="references-grid">
+
+    <!-- Ashtanga Asana Chart -->
+    <a class="subject-card card-r-chart visible" href="ashtanga-asana-chart.html">
+      <div class="card-number">Chart 01 · Live</div>
+      <div class="reference-tag">Ashtanga Primary Series</div>
+      <div class="card-devanagari">अष्टांग · योग चिकित्सा</div>
+      <div class="card-title">Asana Chart</div>
+
+      <!-- Mini preview strip using the actual pose images -->
+      <div class="card-preview-strip">
+        <span><img src="yoga_imgs/urdhva-vrikshasana.png" alt="Urdhva Vrikshasana"/></span>
+        <span><img src="yoga_imgs/chaturanga-dandasana.png" alt="Chaturanga"/></span>
+        <span><img src="yoga_imgs/adho-mukha-svanasana.png" alt="Down Dog"/></span>
+        <span><img src="yoga_imgs/virabhadrasana-a.png" alt="Warrior A"/></span>
+        <span><img src="yoga_imgs/utthita-trikonasana.png" alt="Trikonasana"/></span>
+      </div>
+
+      <div class="card-desc">A complete visual grid of the Ashtanga Primary Series — all five rows from Sūrya Namaskāra A &amp; B through the standing sequence. Each card shows the pose image, Sanskrit name, English name, and colour-coded breath cues.</div>
       <div class="card-footer">
         <span class="card-status status-live">● Live</span>
         <span class="card-arrow">→</span>
