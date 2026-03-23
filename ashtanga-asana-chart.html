@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ashtanga Primary Series</title>
+<title>Ashtanga Primary Series Chart — YTT 200</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400&family=Noto+Serif+Devanagari:wght@300;400&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -37,7 +37,7 @@
     background: var(--bg);
     font-family: 'DM Sans', sans-serif;
     color: var(--text);
-    padding: 48px 40px 64px;
+    padding: 96px 40px 64px;
     min-height: 100vh;
   }
 
@@ -284,9 +284,42 @@
       letter-spacing: 0.14em;
     }
   }
+
+  /* ── Navigation ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 14px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(250,247,242,0.97);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(2px);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 18px; font-weight: 300; letter-spacing: 0.12em;
+    color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-logo:hover { color: var(--text); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  @media(max-width:768px){ nav{padding:12px 16px; flex-wrap:wrap; gap:8px;} .nav-links{gap:14px;} }
 </style>
 </head>
 <body>
+
+<nav>
+  <a class="nav-logo" href="index.html">YTT</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="ashtanga-yoga.html">Ashtanga</a></li>
+    <li><a href="index.html#subjects">All Subjects</a></li>
+  </ul>
+</nav>
 
   <div class="header">
     <h1>Ashtanga Primary Series</h1>
