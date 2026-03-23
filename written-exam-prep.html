@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Written Exam Prep · YTT</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Karla:wght@300;400;500&family=Noto+Serif+Devanagari:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:      #faf8f5;
+    --bg2:     #f3ede5;
+    --bg3:     #e8e0d4;
+    --clay:    #c4622a;
+    --clay-lt: #a84e1f;
+    --sand:    #3d2c1a;
+    --sand-lt: #1a1208;
+    --sage:    #3d6b42;
+    --sage-lt: #2a5030;
+    --gold:    #8a6c14;
+    --gold-lt: #6e5410;
+    --text:    #1e1a14;
+    --muted:   #3a2e22;
+    --line:    rgba(100,80,50,0.10);
+    --line-s:  rgba(100,80,50,0.22);
+    --r: 8px;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Karla', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 18px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(250,248,245,0.97);
+    box-shadow: 0 1px 0 rgba(100,80,50,0.08);
+    backdrop-filter: blur(2px);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 300; letter-spacing: 0.12em;
+    color: var(--clay); text-decoration: none;
+  }
+  .nav-back {
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+    opacity: 0.7; transition: opacity 0.2s;
+  }
+  .nav-back:hover { opacity: 1; }
+
+  /* PAGE HEADER */
+  .page-header {
+    padding: 140px 48px 80px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .page-eyebrow {
+    font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--clay); opacity: 0.75;
+    border: 1px solid rgba(196,98,42,0.25);
+    border-radius: 20px;
+    padding: 4px 16px;
+    display: inline-block;
+    margin-bottom: 24px;
+  }
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 6vw, 72px);
+    font-weight: 300; font-style: italic;
+    color: var(--sand-lt);
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+  .page-devanagari {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 20px; font-weight: 300;
+    color: var(--clay); opacity: 0.6;
+    margin-bottom: 20px;
+  }
+  .page-desc {
+    font-size: 14px; color: var(--muted); letter-spacing: 0.05em;
+    line-height: 1.85; max-width: 560px; margin: 0 auto 36px;
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; font-weight: 300; font-style: italic;
+    color: var(--clay-lt);
+    display: block;
+  }
+  .stat-label {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted); opacity: 0.65;
+  }
+
+  /* SUBJECT FILTER TABS */
+  .filter-wrap {
+    background: var(--bg2);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 0 48px;
+    position: sticky;
+    top: 61px;
+    z-index: 90;
+    overflow-x: auto;
+  }
+  .filter-tabs {
+    display: flex; gap: 0;
+    max-width: 1100px;
+    margin: 0 auto;
+    list-style: none;
+  }
+  .filter-tabs li { flex-shrink: 0; }
+  .filter-tabs button {
+    background: none; border: none; cursor: pointer;
+    font-family: 'Karla', sans-serif;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted);
+    padding: 18px 20px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+  .filter-tabs button:hover { color: var(--clay); }
+  .filter-tabs button.active {
+    color: var(--clay);
+    border-bottom-color: var(--clay);
+    font-weight: 500;
+  }
+
+  /* MAIN CONTENT */
+  .content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 48px 120px;
+  }
+
+  /* SUBJECT SECTION */
+  .subject-section {
+    margin-bottom: 80px;
+  }
+  .subject-section.hidden { display: none; }
+
+  .subject-heading {
+    display: flex; align-items: baseline; gap: 16px;
+    margin-bottom: 8px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line-s);
+  }
+  .subject-heading h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 300; font-style: italic;
+    color: var(--sand-lt);
+  }
+  .subject-devanagari {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 16px; font-weight: 300;
+    color: var(--clay); opacity: 0.55;
+  }
+  .subject-count {
+    margin-left: auto;
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted); opacity: 0.55;
+    flex-shrink: 0;
+  }
+
+  /* SOURCE TAG */
+  .source-group-label {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted); opacity: 0.5;
+    margin: 28px 0 12px;
+    padding-left: 2px;
+  }
+
+  /* QUESTION CARD */
+  .q-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .q-card {
+    background: var(--bg2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px 22px;
+    transition: border-color 0.25s, background 0.25s;
+  }
+  .q-card:hover {
+    border-color: var(--line-s);
+    background: var(--bg3);
+  }
+  .q-meta {
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 10px;
+  }
+  .q-num {
+    font-size: 10px; letter-spacing: 0.12em;
+    color: var(--clay-lt); opacity: 0.7;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+  }
+  .q-badge {
+    font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 2px 8px; border-radius: 8px;
+  }
+  .badge-quiz {
+    background: rgba(100,140,180,0.12);
+    color: #2a5080;
+    border: 1px solid rgba(100,140,180,0.25);
+  }
+  .badge-teacher {
+    background: rgba(61,107,66,0.12);
+    color: var(--sage-lt);
+    border: 1px solid rgba(61,107,66,0.25);
+  }
+  .q-text {
+    font-size: 13.5px; font-weight: 500;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  .options-list {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .option {
+    display: flex; align-items: flex-start; gap: 9px;
+    font-size: 12.5px; color: var(--muted);
+    line-height: 1.5;
+    padding: 7px 10px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    transition: background 0.15s;
+  }
+  .option.correct {
+    background: rgba(61,107,66,0.09);
+    border-color: rgba(61,107,66,0.25);
+    color: var(--sage-lt);
+    font-weight: 500;
+  }
+  .opt-key {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; font-style: italic;
+    min-width: 16px;
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+  .option.correct .opt-key { opacity: 1; }
+  .tick {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--sage);
+    flex-shrink: 0;
+  }
+
+  /* NOTE / TRAP BOX */
+  .q-note {
+    margin-top: 12px;
+    font-size: 11.5px; line-height: 1.6;
+    color: var(--muted); opacity: 0.8;
+    background: rgba(138,108,20,0.07);
+    border-left: 2px solid rgba(138,108,20,0.35);
+    border-radius: 0 4px 4px 0;
+    padding: 7px 10px;
+  }
+  .q-trap {
+    margin-top: 8px;
+    font-size: 11px; line-height: 1.55;
+    color: #7a3a10;
+    background: rgba(196,98,42,0.07);
+    border-left: 2px solid rgba(196,98,42,0.30);
+    border-radius: 0 4px 4px 0;
+    padding: 6px 10px;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%; height: 1px;
+    background: linear-gradient(to right, transparent, var(--line-s) 30%, var(--line-s) 70%, transparent);
+    margin: 0;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 60px 48px;
+    text-align: center;
+    border-top: 1px solid var(--line);
+  }
+  footer p { font-size: 12px; color: var(--muted); letter-spacing: 0.08em; line-height: 2; }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 300; font-style: italic;
+    color: var(--clay); margin-bottom: 12px; display: block;
+  }
+
+  @media (max-width: 900px) {
+    .q-grid { grid-template-columns: 1fr; }
+    nav { padding: 16px 20px; }
+    .filter-wrap { padding: 0 20px; }
+    .content { padding: 40px 20px 80px; }
+    .page-header { padding: 120px 20px 60px; }
+  }
+  @media (max-width: 600px) {
+    .stats-bar { gap: 24px; }
+    .subject-heading { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">YTT</a>
+  <a class="nav-back" href="index.html">← Back to Home</a>
+</nav>
+
+<div class="page-header">
+  <div class="page-eyebrow">Written Exam · All Subjects</div>
+  <div class="page-devanagari">परीक्षा तैयारी</div>
+  <h1 class="page-title">Exam Question Bank</h1>
+  <p class="page-desc">Every question from the 200-Hour Hatha Ashtanga Vinyasa YTT written exam — across all six subjects. Correct answers are highlighted in green. Teacher class notes are distinguished from quiz paper questions.</p>
+  <div class="stats-bar">
+    <div class="stat"><span class="stat-num">80</span><span class="stat-label">Total Questions</span></div>
+    <div class="stat"><span class="stat-num">6</span><span class="stat-label">Subjects</span></div>
+    <div class="stat"><span class="stat-num">75</span><span class="stat-label">Minutes · Quiz Duration</span></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- FILTER TABS -->
+<div class="filter-wrap">
+  <ul class="filter-tabs" id="filterTabs">
+    <li><button class="active" data-subject="all">All (80)</button></li>
+    <li><button data-subject="pranayama">Pranayama (10)</button></li>
+    <li><button data-subject="hatha">Hatha Yoga (10)</button></li>
+    <li><button data-subject="anatomy">Anatomy (23)</button></li>
+    <li><button data-subject="philosophy">Philosophy (10)</button></li>
+    <li><button data-subject="meditation">Meditation (17)</button></li>
+    <li><button data-subject="ashtanga">Ashtanga (10)</button></li>
+  </ul>
+</div>
+
+<div class="content">
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 1. PRANAYAMA -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="subject-section" data-subject="pranayama">
+  <div class="subject-heading">
+    <h2>Pranayama</h2>
+    <span class="subject-devanagari">प्राणायाम</span>
+    <span class="subject-count">10 questions</span>
+  </div>
+  <div class="q-grid">
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q1</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">What is Prana?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Breath</li>
+        <li class="option"><span class="opt-key">B.</span>Inhalation</li>
+        <li class="option"><span class="opt-key">C.</span>Exhalation</li>
+        <li class="option correct"><span class="opt-key">D.</span>Vital Energy<span class="tick">✓</span></li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q2</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">What is the term used for Retention?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Bhramari</li>
+        <li class="option correct"><span class="opt-key">B.</span>Khumbhaka<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>Rechaka</li>
+        <li class="option"><span class="opt-key">D.</span>Mudra</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q3</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">Name of the Nadi related to the Moon?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Khechari</li>
+        <li class="option"><span class="opt-key">B.</span>Pingala</li>
+        <li class="option correct"><span class="opt-key">C.</span>Ida<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">D.</span>Sushumna</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q4</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">Name of the Nadi related to the Sun?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Khechari</li>
+        <li class="option correct"><span class="opt-key">B.</span>Pingala<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>Ida</li>
+        <li class="option"><span class="opt-key">D.</span>Sushumna</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q5</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">Yogic name for the Victorious Breath?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Bhairavi</li>
+        <li class="option correct"><span class="opt-key">B.</span>Ujjayi<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>Bhakstrika</li>
+        <li class="option"><span class="opt-key">D.</span>Sushumna</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q6</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">Yogic name for the Humming Bee breath?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Bhairavi</li>
+        <li class="option"><span class="opt-key">B.</span>Bhastrika</li>
+        <li class="option correct"><span class="opt-key">C.</span>Bhramari<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">D.</span>Sushumna</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q7</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">Yogic name for Alternate Nostril breathing?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Kapalbhati</li>
+        <li class="option"><span class="opt-key">B.</span>Bhakstrika</li>
+        <li class="option"><span class="opt-key">C.</span>Chandra Bhedan</li>
+        <li class="option correct"><span class="opt-key">D.</span>Nadi Shodhan<span class="tick">✓</span></li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q8</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">Name of the cooling breath?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Bhairavi</li>
+        <li class="option"><span class="opt-key">B.</span>Pingala</li>
+        <li class="option correct"><span class="opt-key">C.</span>Sheetali<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">D.</span>Sushumna</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q9</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">Which is the cooling Nostril?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Pingala</li>
+        <li class="option"><span class="opt-key">B.</span>Right</li>
+        <li class="option correct"><span class="opt-key">C.</span>Left — Ida Nadi<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">D.</span>Ida</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q10</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">Which is the heating Nostril?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Pingala</li>
+        <li class="option correct"><span class="opt-key">B.</span>Right — Pingala Nadi<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>Left</li>
+        <li class="option"><span class="opt-key">D.</span>Ida</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 2. HATHA YOGA -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="subject-section" data-subject="hatha">
+  <div class="subject-heading">
+    <h2>Hatha Yoga</h2>
+    <span class="subject-devanagari">हठ योग</span>
+    <span class="subject-count">10 questions</span>
+  </div>
+  <div class="q-grid">
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q1</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">"Churning the Mill" belongs to which Pawanmuktasana Series?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Pawanmuktasana Series A</li>
+        <li class="option"><span class="opt-key">B.</span>Pawanmuktasana Series B</li>
+        <li class="option correct"><span class="opt-key">C.</span>Pawanmuktasana Series C<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">D.</span>All the above</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q2</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">How many steps are there in Hatha Yoga Sun Salutations?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>17</li>
+        <li class="option"><span class="opt-key">B.</span>13</li>
+        <li class="option correct"><span class="opt-key">C.</span>12<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">D.</span>15</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q3</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">Which of the following is a prone pose?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Uttanpadasana (Raised Leg Pose)</li>
+        <li class="option correct"><span class="opt-key">B.</span>Phalakasana (Plank Pose)<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>Sarvangasana (Shoulder Stand)</li>
+        <li class="option"><span class="opt-key">D.</span>Supta Virasana (Reclining Hero Pose)</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q4</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">"Rocking and Rolling" belongs to which Pawanmuktasana Series?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Pawanmuktasana Series A</li>
+        <li class="option correct"><span class="opt-key">B.</span>Pawanmuktasana Series B<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>Pawanmuktasana Series C</li>
+        <li class="option"><span class="opt-key">D.</span>None of the above</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q5</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">What is Surya Namaskar?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>A type of meditation</li>
+        <li class="option correct"><span class="opt-key">B.</span>A set of yoga postures performed in sequence<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>A breathing exercise</li>
+        <li class="option"><span class="opt-key">D.</span>A type of dance</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q6</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">In Virabhadrasana II, correct spinal alignment includes:</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Arching the lower back to increase extension</li>
+        <li class="option"><span class="opt-key">B.</span>Tilting the pelvis forward to deepen the bend</li>
+        <li class="option correct"><span class="opt-key">C.</span>Maintaining a neutral spine and drawing the tailbone slightly down<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">D.</span>Twisting the torso toward the bent leg</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q7</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">What makes an asana a "static" practice from a traditional Hatha perspective?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>It is performed in a seated posture only</li>
+        <li class="option correct"><span class="opt-key">B.</span>It involves holding the posture with stillness, breath awareness, and mental absorption<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>It includes high repetition of movements</li>
+        <li class="option"><span class="opt-key">D.</span>It allows the muscles to relax and stretch deeply without focus</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q8</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">In teaching methodology, a well-sequenced class should NOT:</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Begin with a grounding practice</li>
+        <li class="option"><span class="opt-key">B.</span>Include a balance of muscle groups and spinal movements</li>
+        <li class="option correct"><span class="opt-key">C.</span>Rush into advanced poses without preparation<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">D.</span>End with relaxation and integration</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q9</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">If you are making a Hatha class, what will be your primary concern?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Alignment</li>
+        <li class="option correct"><span class="opt-key">B.</span>Breathing<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>Vinyasa flow</li>
+        <li class="option"><span class="opt-key">D.</span>Drishti</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q10</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">If you plan a class based on a digestion theme, which Asana group you prefer as a peak posture?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Sarvangasana, Bakasana, Paschimottanasana</li>
+        <li class="option correct"><span class="opt-key">B.</span>Uttanasana, Marichayasana, Janusirsasana<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>Salabhasana, Uttanasana, Paschimottanasana</li>
+        <li class="option"><span class="opt-key">D.</span>Sirsasana, Vrischikasana, Uttanasana</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 3. ANATOMY -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="subject-section" data-subject="anatomy">
+  <div class="subject-heading">
+    <h2>Anatomy &amp; Physiology</h2>
+    <span class="subject-devanagari">शरीर रचना</span>
+    <span class="subject-count">23 questions</span>
+  </div>
+
+  <div class="source-group-label">Teacher — In-Class Notes (15 questions)</div>
+  <div class="q-grid">
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">T1</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">How many bones are in the Axial Skeleton?</div>
+      <ul class="options-list">
+        <li class="option correct"><span class="opt-key">Ans.</span>80 bones<span class="tick">✓</span></li>
+      </ul>
+      <div class="q-note">Axial skeleton = skull + vertebral column + rib cage + sternum. It forms the central axis of the body.</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">T2</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">Number of bones in the spine?</div>
+      <ul class="options-list">
+        <li class="option correct"><span class="opt-key">Ans.</span>26 bones<span class="tick">✓</span></li>
+      </ul>
+      <div class="q-note">7 cervical + 12 thoracic + 5 lumbar + 1 sacrum + 1 coccyx = 26</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">T3</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">Sacrum is the base of the spine, but also takes part in forming which section?</div>
+      <ul class="options-list">
+        <li class="option correct"><span class="opt-key">Ans.</span>Hip section<span class="tick">✓</span></li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">T4</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">Number of bones in one arm?</div>
+      <ul class="options-list">
+        <li class="option correct"><span class="opt-key">Ans.</span>30 bones<span class="tick">✓</span></li>
+      </ul>
+      <div class="q-note">Humerus (1) + Radius & Ulna (2) + Carpals (8) + Metacarpals (5) + Phalanges (14) = 30</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">T5</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">Quadricep muscle is a group of how many muscles?</div>
+      <ul class="options-list">
+        <li class="option correct"><span class="opt-key">Ans.</span>4 muscles<span class="tick">✓</span></li>
+      </ul>
+      <div class="q-note">Rectus femoris · Vastus lateralis · Vastus medialis · Vastus intermedius</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">T6</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">Intervertebral disc is not present between?</div>
+      <ul class="options-list">
+        <li class="option correct"><span class="opt-key">Ans.</span>Sacrum and Coccyx<span class="tick">✓</span></li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">T7</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">Ribcage is made with how many bones?</div>
+      <ul class="options-list">
+        <li class="option correct"><span class="opt-key">Ans.</span>25 bones<span class="tick">✓</span></li>
+      </ul>
+      <div class="q-note">12 pairs of ribs (24) + 1 sternum = 25</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">T8</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">Kyphosis is a deep arch of the Thoracic section of the spine and is going towards?</div>
+      <ul class="options-list">
+        <li class="option correct"><span class="opt-key">Ans.</span>Posterior of body<span class="tick">✓</span></li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">T9</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">Appendicular skeleton is made of how many bones?</div>
+      <ul class="options-list">
+        <li class="option correct"><span class="opt-key">Ans.</span>126 bones<span class="tick">✓</span></li>
+      </ul>
+      <div class="q-note">Both arms, both legs, shoulder girdle, and pelvic girdle.</div>
+      <div class="q-trap">Note: Quiz paper states 128. Teacher's answer and standard anatomy both give 126. The quiz paper likely has a typo.</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">T10</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">Tendon is a connection between?</div>
+      <ul class="options-list">
+        <li class="option correct"><span class="opt-key">Ans.</span>Muscle to bone<span class="tick">✓</span></li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">T11</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">Ligaments are connections between?</div>
+      <ul class="options-list">
+        <li class="option correct"><span class="opt-key">Ans.</span>Bone to bone<span class="tick">✓</span></li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">T12</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">The diaphragm is a muscle related to which system?</div>
+      <ul class="options-list">
+        <li class="option correct"><span class="opt-key">Ans.</span>Respiratory system<span class="tick">✓</span></li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">T13</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">Are hairs and nails dead?</div>
+      <ul class="options-list">
+        <li class="option correct"><span class="opt-key">Ans.</span>No — they are not dead<span class="tick">✓</span></li>
+      </ul>
+      <div class="q-note">Hair follicles and nail matrix contain living cells. The visible shaft/plate is keratinized, but the growth origin is alive.</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">T14</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">Fibrous cartilage is present over?</div>
+      <ul class="options-list">
+        <li class="option correct"><span class="opt-key">Ans.</span>Intervertebral disc<span class="tick">✓</span></li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">T15</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">Heart Chakra (Anahata) is associated with which gland?</div>
+      <ul class="options-list">
+        <li class="option correct"><span class="opt-key">Ans.</span>Thymus gland<span class="tick">✓</span></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="source-group-label" style="margin-top:32px;">Quiz Paper — Additional Questions (8 questions)</div>
+  <div class="q-grid">
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q1</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">If a human body is bent forward, which plane is involved?</div>
+      <ul class="options-list">
+        <li class="option correct"><span class="opt-key">A.</span>Sagittal<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">B.</span>Coronal</li>
+        <li class="option"><span class="opt-key">C.</span>Transverse</li>
+        <li class="option"><span class="opt-key">D.</span>Frontal</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q2</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">Which of the following hip muscles contracts in Cobra Pose?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Quadriceps</li>
+        <li class="option"><span class="opt-key">B.</span>Abdominal muscles</li>
+        <li class="option correct"><span class="opt-key">C.</span>Gluteus maximus<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">D.</span>Psoas</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q3</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">How many bones are there in a baby's body?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>210</li>
+        <li class="option"><span class="opt-key">B.</span>206</li>
+        <li class="option"><span class="opt-key">C.</span>209</li>
+        <li class="option correct"><span class="opt-key">D.</span>300<span class="tick">✓</span></li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q4</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">How many pairs of ribs are classified as false ribs out of the 12 pairs?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>1–7</li>
+        <li class="option"><span class="opt-key">B.</span>5–8</li>
+        <li class="option correct"><span class="opt-key">C.</span>8–12<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">D.</span>11 &amp; 12</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q5</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">What is an isometric contraction?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Same length with movement</li>
+        <li class="option"><span class="opt-key">B.</span>Same tension with movement</li>
+        <li class="option correct"><span class="opt-key">C.</span>Same length without movement<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">D.</span>Same tension without movement</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q6</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">How many ligaments are present in the knee joint?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>2</li>
+        <li class="option"><span class="opt-key">B.</span>6</li>
+        <li class="option"><span class="opt-key">C.</span>3</li>
+        <li class="option correct"><span class="opt-key">D.</span>4<span class="tick">✓</span></li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q7</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">What type of tissue is the meniscus made of?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Nervous tissue</li>
+        <li class="option"><span class="opt-key">B.</span>Muscle tissue</li>
+        <li class="option"><span class="opt-key">C.</span>Epithelial tissue</li>
+        <li class="option correct"><span class="opt-key">D.</span>Connective tissue<span class="tick">✓</span></li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q8</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">Q-angle stands for?</div>
+      <ul class="options-list">
+        <li class="option correct"><span class="opt-key">A.</span>Quadriceps<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">B.</span>Quadratus Lumborum</li>
+        <li class="option"><span class="opt-key">C.</span>Both A and B</li>
+        <li class="option"><span class="opt-key">D.</span>None of these</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 4. YOGA PHILOSOPHY -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="subject-section" data-subject="philosophy">
+  <div class="subject-heading">
+    <h2>Yoga Philosophy</h2>
+    <span class="subject-devanagari">योग दर्शन</span>
+    <span class="subject-count">10 questions</span>
+  </div>
+  <div class="q-grid">
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q1</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">The word "Yoga" is derived from the Sanskrit root "Yuj" which means:</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>To stretch</li>
+        <li class="option correct"><span class="opt-key">B.</span>To unite or join<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>To breathe</li>
+        <li class="option"><span class="opt-key">D.</span>To meditate</li>
+      </ul>
+      <div class="q-note">"Yuj" = to unite or connect — union of body, mind, and consciousness with universal reality.</div>
+      <div class="q-trap">Not stretching — that is a modern Western oversimplification.</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q2</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">According to Patanjali's Yoga Sutras, how many limbs (branches) are there in Ashtanga Yoga?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>6</li>
+        <li class="option correct"><span class="opt-key">B.</span>8<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>7</li>
+        <li class="option"><span class="opt-key">D.</span>9</li>
+      </ul>
+      <div class="q-note">The 8 limbs: Yama · Niyama · Asana · Pranayama · Pratyahara · Dharana · Dhyana · Samadhi</div>
+      <div class="q-trap">Do not confuse Patanjali's Ashtanga (8 limbs philosophy) with modern Ashtanga Vinyasa physical practice.</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q3</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">Which of these is NOT one of the five Yamas?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Ahimsa</li>
+        <li class="option"><span class="opt-key">B.</span>Satya</li>
+        <li class="option correct"><span class="opt-key">C.</span>Dharana<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">D.</span>Asteya</li>
+      </ul>
+      <div class="q-note">5 Yamas: Ahimsa · Satya · Asteya · Brahmacharya · Aparigraha. Dharana = concentration (6th limb).</div>
+      <div class="q-trap">Dharana sounds ethical but it is a mental limb — not a Yama.</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q4</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">What does "Pranayama" literally mean?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Breathing exercise</li>
+        <li class="option correct"><span class="opt-key">B.</span>Life force control<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>Mental concentration</li>
+        <li class="option"><span class="opt-key">D.</span>Physical posture</li>
+      </ul>
+      <div class="q-note">"Prana" = vital energy. "Ayama" = expansion/control. Breath is the tool to influence prana — not the definition itself.</div>
+      <div class="q-trap">"Breathing exercise" is an oversimplification. Pranayama works on the energy body using breath as the vehicle.</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q5</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">Which philosophical text is considered the foundational text of Ashtanga yoga?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Bhagavad Gita</li>
+        <li class="option"><span class="opt-key">B.</span>Hatha Yoga Pradipika</li>
+        <li class="option correct"><span class="opt-key">C.</span>Yoga Sutras of Patanjali<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">D.</span>Upanishads</li>
+      </ul>
+      <div class="q-note">Yoga Sutras = systematic source of classical yoga, defines the 8 limbs. Bhagavad Gita = broader spiritual philosophy. Hatha Yoga Pradipika = practice-oriented.</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q6</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">The concept of "Karma" refers to:</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Destiny</li>
+        <li class="option correct"><span class="opt-key">B.</span>Action and its consequences<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>Bad luck</li>
+        <li class="option"><span class="opt-key">D.</span>Future predictions</li>
+      </ul>
+      <div class="q-note">Karma = action + result (cause and effect). Every action leaves a samskara (mental imprint).</div>
+      <div class="q-trap">"Karma" is widely misused to mean fate. In yogic philosophy it is strictly about action and consequence.</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q7</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">What are the three Gunas in Yogic philosophy?</div>
+      <ul class="options-list">
+        <li class="option correct"><span class="opt-key">A.</span>Sattva, Rajas, Tamas<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">B.</span>Prana, Apana, Samana</li>
+        <li class="option"><span class="opt-key">C.</span>Yama, Niyama, Asana</li>
+        <li class="option"><span class="opt-key">D.</span>Dharma, Karma, Maya</li>
+      </ul>
+      <div class="q-note">The 3 Gunas are fundamental qualities of nature (Prakriti): Sattva = clarity/balance · Rajas = activity/movement · Tamas = inertia/darkness. Everything is a combination of all three.</div>
+      <div class="q-trap">Other options mix in Vayus (Prana/Apana/Samana) — a completely different framework.</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q8</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">What is the ultimate goal of yoga according to classical texts?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Physical fitness</li>
+        <li class="option"><span class="opt-key">B.</span>Mental relaxation</li>
+        <li class="option correct"><span class="opt-key">C.</span>Self-realization (Moksha)<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">D.</span>Social connection</li>
+      </ul>
+      <div class="q-note">Moksha = liberation from suffering and ignorance. Fitness and relaxation are side effects, not the goal.</div>
+      <div class="q-trap">Modern wellness framing reduces yoga to health benefits. The classical tradition points to liberation.</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q9</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">The concept of "Chitta Vritti Nirodha" refers to:</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Physical exercise</li>
+        <li class="option"><span class="opt-key">B.</span>Breathing techniques</li>
+        <li class="option correct"><span class="opt-key">C.</span>Stilling the fluctuations of the mind<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">D.</span>Ethical principles</li>
+      </ul>
+      <div class="q-note">Chitta = mind · Vritti = modifications/fluctuations · Nirodha = cessation. This IS the core definition of yoga from Patanjali's Yoga Sutras.</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q10</span><span class="q-badge badge-teacher">Teacher</span></div>
+      <div class="q-text">Which Kosha (layer) is directly associated with the physical body?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Vijnanamaya kosha</li>
+        <li class="option correct"><span class="opt-key">B.</span>Annamaya kosha<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>Pranamaya kosha</li>
+        <li class="option"><span class="opt-key">D.</span>Manomaya kosha</li>
+      </ul>
+      <div class="q-note">The 5 Koshas: 1. Annamaya (physical) · 2. Pranamaya (energy) · 3. Manomaya (mental) · 4. Vijnanamaya (intellect) · 5. Anandamaya (bliss). "Anna" = food → the body made of matter.</div>
+      <div class="q-trap">Vijnanamaya sounds scientific but it is the intellect layer. Annamaya = the physical food body.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 5. MEDITATION -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="subject-section" data-subject="meditation">
+  <div class="subject-heading">
+    <h2>Meditation</h2>
+    <span class="subject-devanagari">ध्यान</span>
+    <span class="subject-count">17 questions</span>
+  </div>
+  <div class="q-grid">
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q1</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">What is the primary goal of meditation?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>To achieve physical strength</li>
+        <li class="option correct"><span class="opt-key">B.</span>To quiet the mind and reach a state of inner peace<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>To increase flexibility</li>
+        <li class="option"><span class="opt-key">D.</span>To learn advanced breathing techniques</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q2</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">In silent meditation, the main focus is usually on:</div>
+      <ul class="options-list">
+        <li class="option correct"><span class="opt-key">A.</span>Breath, thoughts, or still awareness<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">B.</span>Movement and music</li>
+        <li class="option"><span class="opt-key">C.</span>Talking to a partner</li>
+        <li class="option"><span class="opt-key">D.</span>Visualization and chanting</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q3</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">What is the first step of Dynamic Meditation?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Deep silence</li>
+        <li class="option correct"><span class="opt-key">B.</span>Chaotic breathing<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>Dancing freely</li>
+        <li class="option"><span class="opt-key">D.</span>Lying in stillness</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q4</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">What is the 5th stage of Yoga Nidra?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Breathing control</li>
+        <li class="option"><span class="opt-key">B.</span>Sound healing</li>
+        <li class="option correct"><span class="opt-key">C.</span>Body scan or rotation of consciousness<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">D.</span>Chanting mantras aloud</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q5</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">Which of the following is a stage in Yoga Nidra?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Internal gaze</li>
+        <li class="option"><span class="opt-key">B.</span>External gaze</li>
+        <li class="option correct"><span class="opt-key">C.</span>Awareness of feelings &amp; sensations<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">D.</span>All of the above</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q6</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">In mindfulness meditation, the practitioner primarily focuses on:</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Chanting mantras</li>
+        <li class="option correct"><span class="opt-key">B.</span>Observing thoughts, sensations, and breath in the present moment<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>Visualizing colors and shapes</li>
+        <li class="option"><span class="opt-key">D.</span>Moving the body through yoga postures</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q7</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">In which stage of mantra meditation do we chant in a humming voice?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Mansika</li>
+        <li class="option"><span class="opt-key">B.</span>Vaikhari</li>
+        <li class="option correct"><span class="opt-key">C.</span>Upamsu<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">D.</span>Antar Mouna</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q8</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">Most common posture used during seated meditation?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Supine (lying down)</li>
+        <li class="option"><span class="opt-key">B.</span>Kneeling</li>
+        <li class="option correct"><span class="opt-key">C.</span>Cross-legged (Padmasana or Sukhasana)<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">D.</span>Standing</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q9</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">Which of the following is NOT considered a benefit of practicing meditation regularly?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Reducing stress and anxiety</li>
+        <li class="option"><span class="opt-key">B.</span>Enhancing emotional regulation</li>
+        <li class="option"><span class="opt-key">C.</span>Improving concentration and focus</li>
+        <li class="option correct"><span class="opt-key">D.</span>Building muscle mass<span class="tick">✓</span></li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q10</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">Which meditation technique emphasizes developing concentration by focusing on a candle flame or other visual object?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Zazen</li>
+        <li class="option correct"><span class="opt-key">B.</span>Trataka<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>Yoga Nidra</li>
+        <li class="option"><span class="opt-key">D.</span>Sound meditation</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q11</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">In the Eight Limbs of Yoga (Ashtanga Yoga) described in the Yoga Sutras of Patanjali, meditation is called:</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Pranayama (breathing practice)</li>
+        <li class="option"><span class="opt-key">B.</span>Dharana (concentration)</li>
+        <li class="option correct"><span class="opt-key">C.</span>Dhyana (meditation)<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">D.</span>Asana (posture)</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q12</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">What does Dharana (concentration) mean?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Sleeping deeply</li>
+        <li class="option correct"><span class="opt-key">B.</span>Focusing the mind on one object<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>Talking loudly</li>
+        <li class="option"><span class="opt-key">D.</span>Moving the body</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q13</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">In Yoga Nidra (guided yogic relaxation practice), what is Sankalpa (resolution)?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>A physical exercise</li>
+        <li class="option correct"><span class="opt-key">B.</span>A positive intention or affirmation<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>A breathing technique</li>
+        <li class="option"><span class="opt-key">D.</span>A mantra chant</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q14</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">What is Antar Mouna (Inner Silence Meditation)?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Chanting loudly in a group</li>
+        <li class="option correct"><span class="opt-key">B.</span>Observing thoughts silently without reacting<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>Practicing fast breathing</li>
+        <li class="option"><span class="opt-key">D.</span>Doing physical postures</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q15</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">What is the main purpose of Antar Mouna practice?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>To suppress thoughts</li>
+        <li class="option correct"><span class="opt-key">B.</span>To develop witness awareness (observer attitude)<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>To sleep deeply</li>
+        <li class="option"><span class="opt-key">D.</span>To control others</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q16</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">Which type of mantra chanting is done silently in the mind?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Vaikhari (loud chanting)</li>
+        <li class="option"><span class="opt-key">B.</span>Upamsu (whispering)</li>
+        <li class="option correct"><span class="opt-key">C.</span>Mansika (mental chanting)<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">D.</span>Kirtan (group singing)</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q17</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">The meditation practice of looking steadily at a candle flame is called:</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Yoga Nidra (yogic sleep)</li>
+        <li class="option correct"><span class="opt-key">B.</span>Trataka (steady gazing)<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>Dynamic Meditation</li>
+        <li class="option"><span class="opt-key">D.</span>Walking Meditation</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 6. ASHTANGA YOGA -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="subject-section" data-subject="ashtanga">
+  <div class="subject-heading">
+    <h2>Ashtanga Yoga</h2>
+    <span class="subject-devanagari">अष्टांग योग</span>
+    <span class="subject-count">10 questions</span>
+  </div>
+  <div class="q-grid">
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q1</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">What does "Ashtanga" literally mean in Sanskrit?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Eight breath cycles</li>
+        <li class="option correct"><span class="opt-key">B.</span>Eight limbs or paths<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>One-pointed focus</li>
+        <li class="option"><span class="opt-key">D.</span>Series of flow</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q2</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">What is the correct sequence in Ashtanga Vinyasa practice?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Meditation → Warm-up → Inversions</li>
+        <li class="option"><span class="opt-key">B.</span>Asana → Bandha → Mudra</li>
+        <li class="option"><span class="opt-key">C.</span>Closing sequence → Pranayama → Chant</li>
+        <li class="option correct"><span class="opt-key">D.</span>Opening chant → Asana → Closing sequence<span class="tick">✓</span></li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q3</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">Which of the following is a part of Surya Namaskara A?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Trikonasana</li>
+        <li class="option"><span class="opt-key">B.</span>Ardha Matsyendrasana</li>
+        <li class="option correct"><span class="opt-key">C.</span>Chaturanga Dandasana<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">D.</span>Savasana</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q4</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">What is the name of the breathing technique used in Ashtanga Yoga?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Anulom Vilom</li>
+        <li class="option correct"><span class="opt-key">B.</span>Ujjayi<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>Bhastrika</li>
+        <li class="option"><span class="opt-key">D.</span>Nadi Shodhan</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q5</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">Which style best describes Ashtanga Vinyasa Yoga?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Static and gentle</li>
+        <li class="option"><span class="opt-key">B.</span>Restorative</li>
+        <li class="option correct"><span class="opt-key">C.</span>Dynamic and flowing<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">D.</span>Chant-based</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q6</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">Which sequence initiates every Ashtanga practice?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Savasana</li>
+        <li class="option correct"><span class="opt-key">B.</span>Surya Namaskara A<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>Tadasana</li>
+        <li class="option"><span class="opt-key">D.</span>Kapalabhati</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q7</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">What is the first series of Ashtanga Yoga called?</div>
+      <ul class="options-list">
+        <li class="option correct"><span class="opt-key">A.</span>Primary Series<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">B.</span>Intermediate Series</li>
+        <li class="option"><span class="opt-key">C.</span>Advanced Series</li>
+        <li class="option"><span class="opt-key">D.</span>Foundation Series</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q8</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">What does "Vinyasa" mean in Ashtanga Yoga?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Breath retention</li>
+        <li class="option"><span class="opt-key">B.</span>Body alignment</li>
+        <li class="option"><span class="opt-key">C.</span>Meditation technique</li>
+        <li class="option correct"><span class="opt-key">D.</span>Breath synchronized with movement<span class="tick">✓</span></li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q9</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">Who is considered the founder of Ashtanga Vinyasa Yoga?</div>
+      <ul class="options-list">
+        <li class="option correct"><span class="opt-key">A.</span>Pattabhi Jois<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">B.</span>Swami Sivananda</li>
+        <li class="option"><span class="opt-key">C.</span>B.K.S. Iyengar</li>
+        <li class="option"><span class="opt-key">D.</span>Paramahansa Yogananda</li>
+      </ul>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-num">Q10</span><span class="q-badge badge-quiz">Quiz</span></div>
+      <div class="q-text">Which is the last asana of the sitting sequence?</div>
+      <ul class="options-list">
+        <li class="option"><span class="opt-key">A.</span>Trikonasana</li>
+        <li class="option correct"><span class="opt-key">B.</span>Ardha Matsyendrasana<span class="tick">✓</span></li>
+        <li class="option"><span class="opt-key">C.</span>Navasana</li>
+        <li class="option"><span class="opt-key">D.</span>Savasana</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+</div><!-- /content -->
+
+<div class="divider"></div>
+<footer>
+  <span class="footer-logo">Hatha Ashtanga Vinyasa Yoga</span>
+  <p>Rishikesh, India<br/>
+  <span style="font-size:11px;opacity:0.5;">हठ · अष्टांग · विन्यास योग</span></p>
+</footer>
+
+<script>
+  const tabs = document.querySelectorAll('.filter-tabs button');
+  const sections = document.querySelectorAll('.subject-section');
+
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabs.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const subject = btn.dataset.subject;
+      sections.forEach(sec => {
+        if (subject === 'all' || sec.dataset.subject === subject) {
+          sec.classList.remove('hidden');
+        } else {
+          sec.classList.add('hidden');
+        }
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>
