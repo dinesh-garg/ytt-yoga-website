@@ -375,7 +375,7 @@ $('bs').addEventListener('click',()=>{
       const o=b.dataset.opt;
       if(chose===o&&o===right){b.classList.add('oc');b.innerHTML+='<span class="ri">✓</span>';}
       else if(chose===o&&o!==right){b.classList.add('ow');b.innerHTML+='<span class="ri">✗</span>';}
-      else if(o===right&&chose!==right){b.classList.add('or');b.innerHTML+='<span class="ri">←</span>';}
+      else if(o===right&&chose!==right){b.classList.add('oc');b.innerHTML+='<span class="ri">✓</span>';}
     });
     if(!chose)sk++;
     else if(chose===right){ok++;c.classList.add('answered-correct');sub[s].c++;}
