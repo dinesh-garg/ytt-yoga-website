@@ -85,6 +85,29 @@ nav{position:fixed;top:0;width:100%;z-index:100;padding:18px 48px;display:flex;j
 .ob.or .ok{color:var(--gold-lt);opacity:1}
 .ri{margin-left:auto;flex-shrink:0;font-size:14px}
 
+/* WRONG ANSWERS REVIEW PANEL */
+.wrong-panel{background:#fff8f7;border:1px solid var(--no-bdr);border-radius:12px;padding:28px 32px;margin-bottom:32px}
+.wrong-panel-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.wrong-panel-icon{width:36px;height:36px;background:var(--no-bg);border:1px solid var(--no-bdr);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.wrong-panel-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--no-txt)}
+.wrong-panel-sub{font-size:12px;color:var(--no-txt);opacity:0.7;margin-top:2px}
+.wrong-item{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid rgba(192,57,43,0.1);cursor:pointer;transition:background 0.15s;border-radius:6px}
+.wrong-item:last-child{border-bottom:none}
+.wrong-item:hover{background:rgba(192,57,43,0.04);padding-left:6px}
+.wi-num{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--no-bdr);background:var(--no-bg);border:1px solid rgba(192,57,43,0.25);border-radius:6px;padding:3px 8px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.wi-body{flex:1;min-width:0}
+.wi-q{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:400;color:var(--sand-lt);line-height:1.4;margin-bottom:5px}
+.wi-answers{display:flex;gap:12px;flex-wrap:wrap}
+.wi-wrong{font-size:12px;color:var(--no-txt);background:var(--no-bg);border:1px solid rgba(192,57,43,0.2);border-radius:4px;padding:2px 8px}
+.wi-right{font-size:12px;color:var(--ok-txt);background:var(--ok-bg);border:1px solid rgba(42,122,59,0.2);border-radius:4px;padding:2px 8px}
+.wi-skip{font-size:12px;color:var(--muted);opacity:0.6;background:var(--bg3);border-radius:4px;padding:2px 8px}
+.wi-arrow{font-size:12px;color:var(--no-bdr);opacity:0.6;flex-shrink:0;margin-top:4px}
+/* Wrong card scroll highlight */
+.q-card.answered-wrong{border-color:var(--no-bdr);border-width:2px;position:relative}
+.q-card.answered-wrong::before{content:'';position:absolute;inset:0;border-radius:10px;box-shadow:0 0 0 3px rgba(192,57,43,0.12);pointer-events:none}
+.wrong-badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--no-txt);background:var(--no-bg);border:1px solid rgba(192,57,43,0.3);border-radius:20px;padding:3px 10px;margin-left:auto}
+.q-card.answered-wrong .q-meta{margin-bottom:12px}
+
 /* RESULTS */
 .results-panel{display:none;max-width:860px;margin:0 auto;padding:0 48px 80px}
 .results-panel.visible{display:block}
@@ -293,6 +316,19 @@ footer p{font-size:12px;color:var(--muted);letter-spacing:0.08em;line-height:2}
 </div>
 
 <div class="results-panel" id="rp">
+
+  <!-- Wrong answers summary -->
+  <div class="wrong-panel" id="wp" style="display:none">
+    <div class="wrong-panel-header">
+      <div class="wrong-panel-icon">✗</div>
+      <div>
+        <div class="wrong-panel-title">Questions to Review</div>
+        <div class="wrong-panel-sub" id="wp-sub">–</div>
+      </div>
+    </div>
+    <div id="wl"></div>
+  </div>
+
   <div class="score-card">
     <div class="score-ring">
       <svg viewBox="0 0 126 126" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -364,26 +400,60 @@ $('bs').addEventListener('click',()=>{
   let ok=0,no=0,sk=0;
   const sub={};
 
+  const wrongItems=[];
+
   document.querySelectorAll('.q-card').forEach(c=>{
     const qid=c.dataset.qid,right=c.dataset.correct,chose=ans[qid];
     const s=c.closest('.subject-block').dataset.subject;
     if(!sub[s])sub[s]={c:0,t:0};
     sub[s].t++;
     c.dataset.locked='1';
+    let rightText='',chosenText='';
     c.querySelectorAll('.ob').forEach(b=>{
       b.disabled=true;b.style.background='';b.style.borderColor='';
       const o=b.dataset.opt;
+      const rawTxt=b.querySelector('.ok').nextSibling?b.querySelector('.ok').nextSibling.textContent.trim():(b.textContent.replace(b.querySelector('.ok').textContent,'').trim());
+      if(o===right)rightText=rawTxt;
+      if(o===chose)chosenText=rawTxt;
       if(chose===o&&o===right){b.classList.add('oc');b.innerHTML+='<span class="ri">✓</span>';}
       else if(chose===o&&o!==right){b.classList.add('ow');b.innerHTML+='<span class="ri">✗</span>';}
       else if(o===right&&chose!==right){b.classList.add('oc');b.innerHTML+='<span class="ri">✓</span>';}
     });
-    if(!chose)sk++;
+    if(!chose){sk++;c.classList.add('answered-wrong');wrongItems.push({qid,num:c.querySelector('.q-num').textContent,q:c.querySelector('.q-text').textContent,chosen:null,right:rightText});}
     else if(chose===right){ok++;c.classList.add('answered-correct');sub[s].c++;}
-    else{no++;c.classList.add('answered-wrong');}
+    else{no++;c.classList.add('answered-wrong');wrongItems.push({qid,num:c.querySelector('.q-num').textContent,q:c.querySelector('.q-text').textContent,chosen:chosenText,right:rightText});}
+    // Add wrong badge to card header
+    if(c.classList.contains('answered-wrong')){
+      const meta=c.querySelector('.q-meta');
+      meta.innerHTML+=`<span class="wrong-badge">✗ incorrect</span>`;
+    }
   });
 
   $('sa').style.display='none';
   $('rp').classList.add('visible');
+
+  // Build wrong panel
+  if(wrongItems.length>0){
+    $('wp').style.display='';
+    $('wp-sub').textContent=wrongItems.length+' question'+(wrongItems.length>1?'s':'')+' answered incorrectly or skipped — click any to jump to it';
+    const wl=$('wl');
+    wl.innerHTML='';
+    wrongItems.forEach(w=>{
+      const ansHtml=w.chosen
+        ?`<span class="wi-wrong">✗ You: ${w.chosen}</span><span class="wi-right">✓ Correct: ${w.right}</span>`
+        :`<span class="wi-skip">Skipped</span><span class="wi-right">✓ Correct: ${w.right}</span>`;
+      const div=document.createElement('div');
+      div.className='wrong-item';
+      div.innerHTML=`<span class="wi-num">${w.num}</span><div class="wi-body"><div class="wi-q">${w.q}</div><div class="wi-answers">${ansHtml}</div></div><span class="wi-arrow">↓</span>`;
+      div.addEventListener('click',()=>{
+        const card=document.querySelector(`.q-card[data-qid="${w.qid}"]`);
+        if(card){card.scrollIntoView({behavior:'smooth',block:'center'});card.style.outline='3px solid var(--no-bdr)';setTimeout(()=>{card.style.outline='';},2000);}
+      });
+      wl.appendChild(div);
+    });
+  } else {
+    $('wp').style.display='none';
+  }
 
   const pct=Math.round(ok/TOTAL*100);
   setTimeout(()=>{
@@ -420,13 +490,19 @@ $('br2').addEventListener('click',()=>{
     c.querySelectorAll('.ob').forEach(b=>{
       b.disabled=false;
       b.classList.remove('oc','ow','or');
-      b.style.background='';b.style.borderColor='';
+      b.style.background='';b.style.borderColor='';b.style.outline='';
       const key=b.querySelector('.ok').outerHTML;
       const txt=b.textContent.replace(/[✓✗←]/g,'').trim();
       b.innerHTML=key+txt;
     });
+    // Remove wrong badge
+    const badge=c.querySelector('.wrong-badge');
+    if(badge)badge.remove();
+    c.style.outline='';
   });
   $('rp').classList.remove('visible');
+  $('wp').style.display='none';
+  $('wl').innerHTML='';
   $('br').innerHTML='';
   $('sa').style.display='';
   $('arc').style.strokeDashoffset='358';
