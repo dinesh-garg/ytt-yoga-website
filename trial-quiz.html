@@ -491,9 +491,8 @@ $('br2').addEventListener('click',()=>{
       b.disabled=false;
       b.classList.remove('oc','ow','or');
       b.style.background='';b.style.borderColor='';b.style.outline='';
-      const key=b.querySelector('.ok').outerHTML;
-      const txt=b.textContent.replace(/[✓✗←]/g,'').trim();
-      b.innerHTML=key+txt;
+      const ri=b.querySelector('.ri');
+      if(ri)ri.remove();
     });
     // Remove wrong badge
     const badge=c.querySelector('.wrong-badge');
